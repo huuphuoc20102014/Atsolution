@@ -1,33 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ATSOLUTION\\Atsolution\\Atsolution\\Atsolution.csproj": {}
+    "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\Atsolution\\Atsolution.csproj": {}
   },
   "projects": {
-    "E:\\ATSOLUTION\\Atsolution\\Atsolution\\Atsolution.csproj": {
+    "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\Atsolution\\Atsolution.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ATSOLUTION\\Atsolution\\Atsolution\\Atsolution.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\Atsolution\\Atsolution.csproj",
         "projectName": "Atsolution",
-        "projectPath": "E:\\ATSOLUTION\\Atsolution\\Atsolution\\Atsolution.csproj",
-        "packagesPath": "C:\\Users\\Truong Phan\\.nuget\\packages\\",
-        "outputPath": "E:\\ATSOLUTION\\Atsolution\\Atsolution\\obj\\",
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\Atsolution\\Atsolution.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\Atsolution\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Truong Phan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R2 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
