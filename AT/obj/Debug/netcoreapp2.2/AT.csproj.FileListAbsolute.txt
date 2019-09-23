@@ -32,3 +32,38 @@ C:\Users\Administrator\Desktop\New folder\AT\AT\obj\Debug\netcoreapp2.2\AT.cspro
 C:\Users\Administrator\Desktop\New folder\AT\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
 C:\Users\Administrator\Desktop\New folder\AT\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
 C:\Users\Administrator\Desktop\New folder\AT\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.deps.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.runtimeconfig.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.Views.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.Views.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorAssemblyInfo.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorAssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.TagHelpers.input.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.TagHelpers.output.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorCoreGenerate.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorTargetAssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.Views.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.csproj.CopyComplete
