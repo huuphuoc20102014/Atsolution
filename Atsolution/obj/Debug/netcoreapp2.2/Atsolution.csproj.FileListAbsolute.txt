@@ -1,0 +1,142 @@
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.deps.json
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.json
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.dev.json
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.dll
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.input.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.output.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorCoreGenerate.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cs
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\source\repos\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CopyComplete
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.deps.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.input.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.output.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorCoreGenerate.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cs
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CopyComplete
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CoreCompileInputs.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfoInputs.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfo.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.input.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.output.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorCoreGenerate.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MenuPartial.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cache
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cs
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.dll
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.pdb
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.deps.json
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.json
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.dev.json
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.dll
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.pdb
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.dll
+E:\ATSOLUTION\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.pdb
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.Views.pdb
+E:\ATSOLUTION\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CopyComplete
+C:\Users\Administrator\Desktop\atsolution\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MenuPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.deps.json
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.json
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.dll
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\bin\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorAssemblyInfo.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.input.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.TagHelpers.output.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorCoreGenerate.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Footer.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Header.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginBoxStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MenuPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.RazorTargetAssemblyInfo.cs
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.Views.pdb
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.dll
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.pdb
+C:\Users\Administrator\Desktop\New folder\Atsolution\Atsolution\obj\Debug\netcoreapp2.2\Atsolution.csproj.CopyComplete
