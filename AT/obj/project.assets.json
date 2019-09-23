@@ -12961,11 +12961,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\New folder\\AT\\AT\\AT.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\AT\\AT.csproj",
       "projectName": "AT",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\New folder\\AT\\AT\\AT.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\AT\\AT.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\New folder\\AT\\AT\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Desktop\\atsolution\\Atsolution\\AT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
