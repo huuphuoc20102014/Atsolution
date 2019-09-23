@@ -1,0 +1,28 @@
+﻿@model List<AT.Efs.Entities.Menu>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="#"><i class="@item.IconSlug"></i><span>@item.Name</span></a>
+        <ul>
+            <li>
+                <a href="#">Shop Products listing</a>
+                <ul>
+                    <li><a href="shop-right-bar.html">Right Side Bar</a></li>
+                    <li><a href="shop.html">Left Side Bar</a></li>
+                    <li><a href="shop-no-bar.html">No side bar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Product Page</a>
+                <ul>
+                    <li><a href="product-right-bar.html">Right Side Bar</a></li>
+                    <li><a href="product.html">Left Side Bar</a></li>
+                    <li><a href="product-no-bar.html">No side bar</a></li>
+                </ul>
+            </li>
+            <li><a href="cart.html">Shoping cart</a></li>
+            <li><a href="check-out.html">Check out</a></li>
+        </ul>
+    </li>
+}

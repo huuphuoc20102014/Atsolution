@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using AT.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AT.Efs.Entities;
 
 namespace AT
 {
@@ -37,7 +38,12 @@ namespace AT
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("ATConnection")));
+
+            services.AddDbContext<WebAtSolutionContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ATConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
-@*@inject Atsolution.Efs.Entities.WebAtSolutionContext webContext*@
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 
 <div id="headWrapper" class="clearfix">
     <!-- top bar start -->
@@ -37,10 +37,10 @@
                     <!-- top navigation menu start -->
                     <nav class="top-nav mega-menu">
                         <ul>
-                            @*@{
-                                var menuModel = await Atsolution.Helpers.MenuHelper.GetDataMenu(webContext);
+                            @{
+                                var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
                                 <partial name="_MenuPartial" model="menuModel" />
-                            }*@
+                            }
 
                             @*<li class="selected">
                                     <a href="#"><i class="fa fa-home"></i><span>Home</span></a>
