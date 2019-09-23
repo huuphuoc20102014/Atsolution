@@ -33,12 +33,11 @@ namespace AT.Efs.Entities
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductComment> ProductComment { get; set; }
         public virtual DbSet<ProductImage> ProductImage { get; set; }
+        public virtual DbSet<Project> Project { get; set; }
+        public virtual DbSet<ProjectType> ProjectType { get; set; }
+        public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Setting> Setting { get; set; }
         public virtual DbSet<TableVersion> TableVersion { get; set; }
-
-        // Unable to generate entity type for table 'dbo.Project'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.ProjectType'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.Service'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -828,6 +827,171 @@ namespace AT.Efs.Entities
                     .HasForeignKey(d => d.FkProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductImage_Product");
+            });
+
+            modelBuilder.Entity<Project>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.FkProjectTypeId)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImageSlug).HasMaxLength(100);
+
+                entity.Property(e => e.KeyWord).HasMaxLength(1000);
+
+                entity.Property(e => e.LongDescriptionHtml)
+                    .HasColumnName("LongDescription_Html")
+                    .HasColumnType("ntext");
+
+                entity.Property(e => e.MetaData).HasMaxLength(1000);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Note).HasMaxLength(1000);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
+
+                entity.Property(e => e.ShortDescriptionHtml)
+                    .HasColumnName("ShortDescription_Html")
+                    .HasMaxLength(1000);
+
+                entity.Property(e => e.SlugName)
+                    .IsRequired()
+                    .HasColumnName("Slug_Name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tags).HasMaxLength(1000);
+
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.FkProjectType)
+                    .WithMany(p => p.Project)
+                    .HasForeignKey(d => d.FkProjectTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ProjectType");
+            });
+
+            modelBuilder.Entity<ProjectType>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.KeyWord).HasMaxLength(1000);
+
+                entity.Property(e => e.MetaData).HasMaxLength(1000);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Note).HasMaxLength(1000);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
+
+                entity.Property(e => e.SlugName)
+                    .IsRequired()
+                    .HasColumnName("Slug_Name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tags).HasMaxLength(1000);
+
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ImageSlug).HasMaxLength(100);
+
+                entity.Property(e => e.KeyWord).HasMaxLength(1000);
+
+                entity.Property(e => e.LongDescriptionHtml)
+                    .HasColumnName("LongDescription_Html")
+                    .HasColumnType("ntext");
+
+                entity.Property(e => e.MetaData).HasMaxLength(1000);
+
+                entity.Property(e => e.Note).HasMaxLength(1000);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
+
+                entity.Property(e => e.ServiceName)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.ShortDescriptionHtml)
+                    .HasColumnName("ShortDescription_Html")
+                    .HasMaxLength(1000);
+
+                entity.Property(e => e.SlugName)
+                    .IsRequired()
+                    .HasColumnName("Slug_Name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tags).HasMaxLength(1000);
+
+                entity.Property(e => e.UpdatedBy)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Setting>(entity =>
