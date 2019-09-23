@@ -39,7 +39,6 @@ C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.pdb
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.Views.dll
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\bin\Debug\netcoreapp2.2\AT.Views.pdb
-C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.csprojAssemblyReference.cache
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorAssemblyInfo.cache
 C:\Users\Administrator\Desktop\atsolution\Atsolution\AT\obj\Debug\netcoreapp2.2\AT.RazorAssemblyInfo.cs
