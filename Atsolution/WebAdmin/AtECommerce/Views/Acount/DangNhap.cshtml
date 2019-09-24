@@ -1,0 +1,137 @@
+﻿@model AtECommerce.Models.AccountObjectViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CoreUI Pro Bootstrap 4 Admin Template">
+    <meta name="author" content="Lukasz Holeczek">
+    <meta name="keyword" content="CoreUI Pro Bootstrap 4 Admin Template">
+    <title>Đăng nhập</title>
+
+    <!-- Icons -->
+    <link href="~/vendors/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/vendors/css/simple-line-icons.min.css" rel="stylesheet">
+
+    <!-- Main styles for this application -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <!-- Styles required by this views -->
+
+
+</head>
+
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top: 50px;">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <form asp-action="DangNhap">
+                            <div class="card-body">
+                                <h1>Đăng nhập</h1>
+                                <p class="text-muted">Đăng nhập bằng tài khoản quản trị viên</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <input type="text" asp-for="UserLogin" id="userLogin" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                    </div>
+                                    <input type="password" asp-for="PasswordLogin" id="passLogin" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-primary px-4 login" value="Login" />
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        @{
+                            if (TempData["UserLoginFailed"] != null)
+                            {
+                                <p class="alert alert-danger">@TempData["UserLoginFailed"]</p>
+                            }
+                        }
+                    </div>
+                    <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                        <div class="card-body text-center">
+                            <div>
+                                <h2>Sign up</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and necessary plugins -->
+    <script src="~/vendors/js/jquery.min.js"></script>
+    <script src="~/vendors/js/popper.min.js"></script>
+    <script src="~/vendors/js/bootstrap.min.js"></script>
+    @*<script>
+            var _urlLogin = '@Url.Action("LoginAsync", "Acount")';
+
+            $(document).ready(function () {
+                $(".login").click(function () {
+                    var userLogin = $('#userLogin').val();
+                    var passLogin = $('#passLogin').val();
+
+                    $.ajax({
+                        url: _urlLogin,
+                        type: 'POST',
+                        data: {
+                            userLogin: userLogin,
+                            passLogin: passLogin,
+                        },
+                        dataType: 'json',
+                        error: function (jqXHR, exception) {
+                            var msg = '';
+                            if (jqXHR.status === 0) {
+                                msg = 'Not connect.\n Verify Network.';
+                            } else if (jqXHR.status == 404) {
+                                msg = 'Requested page not found. [404]';
+                            } else if (jqXHR.status == 500) {
+                                msg = 'Internal Server Error [500].';
+                            } else if (exception === 'parsererror') {
+                                msg = 'Requested JSON parse failed.';
+                            } else if (exception === 'timeout') {
+                                msg = 'Time out error.';
+                            } else if (exception === 'abort') {
+                                msg = 'Ajax request aborted.';
+                            } else {
+                                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                            }
+                            alert(msg);
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.errorMessage) {
+                                alert('Sai tài khoản mật khẩu');
+                            }
+                            else {
+
+                            }
+                        },
+                    });
+                });
+            });
+        </script>*@
+</body>
+</html>
+

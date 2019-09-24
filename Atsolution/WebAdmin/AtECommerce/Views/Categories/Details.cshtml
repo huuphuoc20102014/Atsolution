@@ -1,0 +1,214 @@
+﻿@model GenEf.Efs.Entities.Category
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<h4>Chi tiết Loại sản phẩm</h4>
+<hr />
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right ">
+    </div>
+    <div class="col-md-7">
+        <a asp-action="Edit" asp-route-id="@Model.SlugName" class="btn btn-primary">Sửa</a>
+        <a asp-action="Delete" asp-route-id="@Model.SlugName" class="btn btn-danger">Xoá</a>
+        <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+    </div>
+</div>
+
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Mã :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Code)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tên :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        SEO :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.SlugName)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Auto SEO :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.AutoSlug)
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Hình ảnh :
+    </div>
+    <div class="col-md-7">
+        <img width="200" class="border border-primary" asp-for="Image" id="img_Thumbnail_Image" src="/ImagesCategory/@Url.Content(Model?.Image)" />
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Thứ tự :
+    </div>
+    <div class="col-md-7">
+        @Model.SortIndex.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Cấp :
+    </div>
+    <div class="col-md-7">
+        @Model.Rank.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Thẻ :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Từ khóa :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.KeyWord)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.MetaData) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.MetaData)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ghi chú :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Note)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tạo bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày tạo :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Cập nhật bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày cập nhật :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowVersion) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.RowVersion)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowStatus) :
+    </div>
+    <div class="col-md-7">
+        @Model.RowStatus.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Số thể loại con :
+    </div>
+    <div class="col-md-7">
+        @Model.CountChild.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Số sản phẩm :
+    </div>
+    <div class="col-md-7">
+        @Model.CountProduct.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Loại sản phẩm :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.FkCategory.Name):
+    </div>
+</div>
+
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right ">
+    </div>
+    <div class="col-md-7">
+        <a asp-action="Edit" asp-route-id="@Model.SlugName" class="btn btn-primary">Sửa</a>
+        <a asp-action="Delete" asp-route-id="@Model.SlugName" class="btn btn-danger">Xoá</a>
+        <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+    </div>
+</div>

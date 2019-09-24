@@ -1,0 +1,241 @@
+﻿@model GenEf.Efs.Entities.AccountObject
+@{
+    ViewData["Title"] = "Xóa Tài Khoản";
+}
+
+
+
+<h4>Xóa tài khoản</h4>
+<h5 class="text-danger">Bạn có chắc muốn xóa tài khoản này?</h5>
+<hr />
+
+<form asp-action="Delete">
+    <input type="hidden" name="Id" value="@Model?.AccountObjectId" />
+    <input type="hidden" asp-for="RowVersion" />
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a asp-action="Edit" asp-route-id="@Model.AccountObjectId" class="btn btn-primary">Sửa</a>
+            <a asp-action="Details" asp-route-id="@Model.AccountObjectId" class="k-button">Chi tiết</a>
+            <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+        </div>
+    </div>
+</form>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Mã :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.AccountObjectCode)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Họ tên :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.AccountObjectName)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tên đăng nhập :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UserLogin)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        SEO :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Gender)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày sinh :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.BirthDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Nơi sinh :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.BirthPlace)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Địa chỉ :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Số điện thoại :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Mobile)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Fax :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Fax)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Địa chỉ email :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Quốc gia :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tỉnh / Thành phố :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.ProvinceOrCity)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Quân / Huyện :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.District)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Phường / Xã :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.WardOrCommune)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Loại tài khoản :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.FkAccountObjectType)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tạo bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày tạo :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Cập nhật bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.ModifiedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày cập nhật :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.ModifiedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Hình ảnh :
+    </div>
+    <div class="col-md-7">
+        <img width="200" class="border border-primary" id="img_ImageSlug" src="~/Image/@Url.Content(Model?.ImageSlug)" />
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowVersion) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.RowVersion)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowStatus) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.RowStatus)
+    </div>
+</div>
+
+
+<form asp-action="Delete">
+    <input type="hidden" name="Id" value="@Model?.AccountObjectId" />
+    <input type="hidden" asp-for="RowVersion" />
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a asp-action="Edit" asp-route-id="@Model.AccountObjectId" class="btn btn-primary">Sửa</a>
+            <a asp-action="Details" asp-route-id="@Model.AccountObjectId" class="k-button">Chi tiết</a>
+            <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+        </div>
+    </div>
+</form>
+
+

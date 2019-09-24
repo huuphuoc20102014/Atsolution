@@ -1,0 +1,158 @@
+﻿@model GenEf.Efs.Entities.ProductComment
+@{
+    ViewData["Title"] = "Chi tiết Bình luận";
+}
+
+
+
+    <h4>Chi tiết Bình luận</h4>
+<hr />
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right ">
+    </div>
+    <div class="col-md-7">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Sửa</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Xoá</a>
+        <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tên :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Mã sản phẩm :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.FkProductId)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Email :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Số điện thoại :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Bình luận :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Comment)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Đánh giá :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Rating)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Đã đọc :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.IsRead)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ghi chú :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Note)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Tạo bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày tạo :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Cập nhật bởi :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        Ngày cập nhật :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowVersion) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.RowVersion)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowStatus) :
+    </div>
+    <div class="col-md-7">
+        @Model.RowStatus.ToString("N0")
+    </div>
+</div>
+
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right ">
+    </div>
+    <div class="col-md-7">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Sửa</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Xoá</a>
+        <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+    </div>
+</div>

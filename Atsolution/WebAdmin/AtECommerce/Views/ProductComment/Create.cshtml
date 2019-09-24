@@ -1,0 +1,137 @@
+﻿@model ProductCommentCreateViewModel
+
+
+@{
+    ViewData["Title"] = "Tạo Bình luận";
+}
+
+
+<h4>Tạo Bình luận</h4>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Name" class="col-form-label">Tên</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Name" class="k-textbox form-control" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="FkProductId" class="col-form-label">Loại sản phẩm</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <kendo-dropdownlist for="FkProductId" class="form-control" bind-to="@ViewBag.FkProductId" option-label="--- None ---" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="FkProductId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Email" class="col-form-label">Email</label>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Email" class="k-textbox form-control" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Phone" class="col-form-label">Số điện thoại</label>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Phone" class="k-textbox form-control" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Comment" class="col-form-label">Bình luận</label>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Comment" class="k-textbox form-control" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Rating" class="col-form-label">Đánh giá</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-6 col-md-5 col-lg-4 col-xl-3">
+            <kendo-numerictextbox for="Rating" class="form-control" min="@System.Int32.MinValue" max="@System.Int32.MaxValue" decimals="0" restrict-decimals="true" format="N0" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="IsRead" class="col-form-label">Đã đọc</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <kendo-switch for="IsRead" checked="@Model?.IsRead" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="IsRead" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Note" class="col-form-label">Ghi chú</label>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Note" class="k-textbox form-control" />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Note" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            <a asp-action="Index" class="k-button">Quay lại danh sách</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
