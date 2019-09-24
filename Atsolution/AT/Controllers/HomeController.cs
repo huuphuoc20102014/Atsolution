@@ -14,10 +14,9 @@ namespace AT.Controllers
         public IActionResult Index()
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
-
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            model.listProj = _webcontext.Project.ToList();
+            return View(model);
         }
-
-        
     }
 }
