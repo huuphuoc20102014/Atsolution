@@ -16,6 +16,10 @@ namespace AT.Controllers
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             HomeViewModel model = new HomeViewModel();
             model.listProj = _webcontext.Project.ToList();
+            model.listBlog = _webcontext.News
+                .OrderByDescending(p => p.CreatedDate)
+                .ToList();
+
             return View(model);
         }
     }

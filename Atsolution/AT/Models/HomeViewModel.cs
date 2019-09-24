@@ -9,6 +9,6 @@ namespace AT.Models
     public class HomeViewModel
     {
         public List<Project> listProj { get; set; }
-
+        public List<News> listBlog { get; set; }
     }
 }
