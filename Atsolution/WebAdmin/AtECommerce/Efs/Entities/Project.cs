@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class Project
+    public partial class Project : AtBaseECommerceEntity
     {
         public string Id { get; set; }
         public string FkProjectTypeId { get; set; }

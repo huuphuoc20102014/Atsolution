@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class ImageSlide
+    public partial class ImageSlide : AtBaseECommerceEntity
     {
         public string Id { get; set; }
         public string Name { get; set; }

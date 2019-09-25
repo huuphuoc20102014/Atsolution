@@ -10,11 +10,11 @@ namespace AtECommerce.Areas.Admin.Controllers
 {
     public class BaseAdminController : Controller
     {
-        protected WebAtSolutionContext WebAtSolutionContext { get; }
+        protected WebAtSolutionContext AtSolutionContext { get; }
 
         public BaseAdminController(WebAtSolutionContext atSolutionContext)
         {
-            WebAtSolutionContext = atSolutionContext;
+            AtSolutionContext = atSolutionContext;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -23,11 +23,11 @@ namespace AtECommerce.Areas.Admin.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                WebAtSolutionContext.LoginUserId = User.Identity.Name;
+                AtSolutionContext.LoginUserId = User.Identity.Name;
             }
             else
             {
-                WebAtSolutionContext.LoginUserId = null;
+                AtSolutionContext.LoginUserId = null;
             }
         }
     }

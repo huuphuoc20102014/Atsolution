@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class TableVersion
+    public partial class TableVersion : AtBaseECommerceEntity
     {
         public string Id { get; set; }
         public DateTime LastModify { get; set; }

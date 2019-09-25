@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class Service
+    public partial class Service : AtBaseECommerceEntity
     {
         public string Id { get; set; }
         public string ServiceName { get; set; }

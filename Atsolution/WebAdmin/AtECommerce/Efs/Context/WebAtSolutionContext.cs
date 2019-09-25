@@ -2,17 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
     public partial class WebAtSolutionContext : DbContext
     {
-
-
-        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options)
-            : base(options)
-        {
-        }
-
         public virtual DbSet<AboutCustomer> AboutCustomer { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -38,6 +31,10 @@ namespace AT.Efs.Entities
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Setting> Setting { get; set; }
         public virtual DbSet<TableVersion> TableVersion { get; set; }
+
+        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options) : base(options)
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1101,6 +1098,10 @@ namespace AT.Efs.Entities
                     .IsRequired()
                     .IsRowVersion();
             });
+
+            OnModelCreatingExt(modelBuilder);
         }
+
+        partial void OnModelCreatingExt(ModelBuilder modelBuilder);
     }
 }

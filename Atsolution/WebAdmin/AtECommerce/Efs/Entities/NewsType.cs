@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class NewsType
+    public partial class NewsType : AtBaseECommerceEntity
     {
         public NewsType()
         {

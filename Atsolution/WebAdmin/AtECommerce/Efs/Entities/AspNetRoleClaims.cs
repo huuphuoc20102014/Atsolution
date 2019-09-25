@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class AspNetRoleClaims
+    public partial class AspNetRoleClaims : AtBaseECommerceEntity
     {
         public int Id { get; set; }
         public string RoleId { get; set; }

@@ -44,7 +44,7 @@ namespace AtECommerce
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("ATConnection")));
+                    Configuration.GetConnectionString("WebAtSolutionContext")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -57,9 +57,9 @@ namespace AtECommerce
                 .AddViewLocalization()
                 ;
 
-            //services.AddDbContext<WebAtSolutionContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("ATConnection")));
+            services.AddDbContext<WebAtSolutionContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("WebAtSolutionContext")));
 
         }
 

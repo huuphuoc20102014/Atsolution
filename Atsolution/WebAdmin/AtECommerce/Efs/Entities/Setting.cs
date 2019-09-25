@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class Setting
+    public partial class Setting : AtBaseECommerceEntity
     {
         public string Id { get; set; }
         public string Value { get; set; }

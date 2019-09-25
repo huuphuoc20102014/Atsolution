@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AtECommerce.Efs.Entities;
 
 namespace AtECommerce.Data
 {
@@ -12,5 +13,6 @@ namespace AtECommerce.Data
             : base(options)
         {
         }
+        public DbSet<AtECommerce.Efs.Entities.AboutUs> AboutUs { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AT.Efs.Entities
+namespace AtECommerce.Efs.Entities
 {
-    public partial class AspNetUserTokens
+    public partial class AspNetUserTokens : AtBaseECommerceEntity
     {
         public string UserId { get; set; }
         public string LoginProvider { get; set; }
