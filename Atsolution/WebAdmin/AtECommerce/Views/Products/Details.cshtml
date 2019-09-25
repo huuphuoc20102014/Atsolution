@@ -1,0 +1,340 @@
+﻿@model AtECommerce.Efs.Entities.Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+    <h4>Details Product</h4>
+    <hr />
+	
+	<div class="row form-group">
+		<div class="col-md-3 text-md-right ">
+		</div>
+		<div class="col-md-7">
+					<a asp-action="Edit" asp-route-id="@Model.Slug_Name" class="btn btn-primary">Edit</a>
+					<a asp-action="Delete" asp-route-id="@Model.Slug_Name" class="btn btn-danger">Delete</a>
+			<a asp-action="Index" class="k-button">Back to List</a>
+		</div>
+	</div>
+
+		
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Code) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Code)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Name) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Name)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Slug_Name) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Slug_Name)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.AutoSlug) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.AutoSlug)
+			</div>
+		</div>
+		
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Specification_Html) :
+			</div>
+			<div class="col-12 border border-primary">
+				@Html.Raw(Model.Specification_Html)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.ShortDescription_Html) :
+			</div>
+			<div class="col-12 border border-primary">
+				@Html.Raw(Model.ShortDescription_Html)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.LongDescription_Html) :
+			</div>
+			<div class="col-12 border border-primary">
+				@Html.Raw(Model.LongDescription_Html)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.SKU) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.SKU)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Color) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Color)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Size) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Size)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Material) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Material)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Style) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Style)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Price) :
+			</div>
+			<div class="col-md-7">
+									@Model.Price?.ToString("N2")
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CCY) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.CCY)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Country) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Country)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Producer) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Producer)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Status) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Status)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.ImageSlug) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.ImageSlug)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Rating) :
+			</div>
+			<div class="col-md-7">
+									@Model.Rating?.ToString("N0")
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CountView) :
+			</div>
+			<div class="col-md-7">
+									@Model.CountView?.ToString("N0")
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.IsService) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.IsService)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Tags) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Tags)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.KeyWord) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.KeyWord)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.MetaData) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.MetaData)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.Note) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.Note)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CreatedBy) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.CreatedBy)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CreatedDate) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.CreatedDate)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.UpdatedBy) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.UpdatedBy)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.UpdatedDate) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.UpdatedDate)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.RowVersion) :
+			</div>
+			<div class="col-md-7">
+							@Html.DisplayFor(model => model.RowVersion)
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.RowStatus) :
+			</div>
+			<div class="col-md-7">
+									@Model.RowStatus.ToString("N0")
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CountComment) :
+			</div>
+			<div class="col-md-7">
+									@Model.CountComment.ToString("N0")
+			</div>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.CountReply) :
+			</div>
+			<div class="col-md-7">
+									@Model.CountReply.ToString("N0")
+			</div>
+		</div>
+		
+        <div class="row form-group">
+			<div class="col-md-3 text-md-right details-label">
+				@Html.DisplayNameFor(model => model.FkProduct) :
+			</div>
+			<div class="col-md-7">
+				@Html.DisplayFor(model => model.FkProduct.Name)
+			</div>
+		</div>
+		
+		
+
+	<div class="row form-group">
+		<div class="col-md-3 text-md-right ">
+		</div>
+		<div class="col-md-7">
+					<a asp-action="Edit" asp-route-id="@Model.Slug_Name" class="btn btn-primary">Edit</a>
+					<a asp-action="Delete" asp-route-id="@Model.Slug_Name" class="btn btn-danger">Delete</a>
+			<a asp-action="Index" class="k-button">Back to List</a>
+		</div>
+	</div>

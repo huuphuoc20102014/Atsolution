@@ -1,0 +1,109 @@
+﻿
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer Localizer
+@inject IStringLocalizer<Category> EntityLocalizer
+@inject IStringLocalizer<BaseEntityResources> BaseEntityLocalizer
+
+@{
+    ViewData["Title"] =  SharedLocalizer["ViewTitle_List"]  + " " + EntityLocalizer["EntityTitle"];
+    var parentItem = ViewData["ParentItem"] as Category;
+    if (parentItem != null)
+    {
+        ViewData["Title"] = (string)ViewData["Title"] + " : " + parentItem.Code + " | " + parentItem.Name;
+    }
+}
+
+
+<div class="container">
+    <h4>
+        @SharedLocalizer["ViewTitle_List"] @EntityLocalizer["EntityTitle"]
+        @if (parentItem != null)
+        {
+            @:: <span class="text-warning">@parentItem.Code | @parentItem.Name</span>
+        }
+    </h4>
+    <hr />	
+    
+    <p>
+        <a asp-action="Create" class="btn btn-primary">@SharedLocalizer["Btn_CreateNew"]</a>
+        @if (parentItem != null)
+        {
+            <a asp-action="Sort" asp-route-id="@parentItem.Slug_Name" class="btn btn-primary">@SharedLocalizer["Btn_SortIndex"]</a>
+            <a asp-action="Index" asp-route-id="" class="btn btn-primary">@SharedLocalizer["Btn_ListAll"]</a>
+        }
+        else
+        {
+            <a asp-action="Sort" class="btn btn-primary">@SharedLocalizer["Btn_SortIndex"]</a>
+        }
+    </p>
+</div>
+
+@(Html.Kendo().Grid<CategoryDetailsViewModel>()
+    .Name("gridCategory")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Id).Title(" ").Width(180).Locked(true).Filterable(false).Sortable(false).ClientTemplate(
+            "<a class=\"btn btn-success\" data-toggle=\"tooltip\" title=\"" + SharedLocalizer["Ttip_Detail"] + "\"" +
+                "href='" + Url.Action("Details", ((string)ViewData["ControllerNameForGrid"])) + "/#= " + nameof(Category.Slug_Name) + " #'" +
+            "><i class=\"far fa-eye\"></i></a> " +
+
+            "<a class=\"btn btn-success\" data-toggle=\"tooltip\" title=\"" + SharedLocalizer["Ttip_Edit"] + "\"" +
+                "href='" + Url.Action("Edit", ((string)ViewData["ControllerNameForGrid"])) + "/#= " + nameof(Category.Slug_Name) + " #'" +
+            "><i class=\"far fa-pencil\"></i></a> " +
+
+            "<a class=\"btn btn-danger\" data-toggle=\"tooltip\" title=\"" + SharedLocalizer["Ttip_Delete"] + "\"" +
+                "href='" + Url.Action("Delete", ((string)ViewData["ControllerNameForGrid"])) + "/#= " + nameof(Category.Slug_Name) + " #'" +
+            "><i class=\"far fa-trash-alt\"></i></a> "
+        );		
+            columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Code).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Code)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Name).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Slug_Name).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Slug)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+                                //FkCategoryId
+            columns.Bound(c => c.Thumbnail_Image).Title(EntityLocalizer[nameof(Category.Thumbnail_Image)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.SortIndex).Title(EntityLocalizer[nameof(Category.SortIndex)]).Width(150).Format("{0:N0}").HtmlAttributes(new { @class = "col-align-right text-nowrap" });
+            columns.Bound(c => c.Rank_ReadOnly).Title(EntityLocalizer[nameof(Category.Rank_ReadOnly)]).Width(150).Format("{0:N0}").HtmlAttributes(new { @class = "col-align-right text-nowrap" });
+            columns.Bound(c => c.Tags).Title(EntityLocalizer[nameof(Category.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.KeyWord).Title(EntityLocalizer[nameof(Category.KeyWord)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.MetaData).Title(EntityLocalizer[nameof(Category.MetaData)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Note_Multiline).Title(EntityLocalizer[nameof(Category.Note_Multiline)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.CountChild_ReadOnly).Title(EntityLocalizer[nameof(Category.CountChild_ReadOnly)]).Width(150).Format("{0:N0}").HtmlAttributes(new { @class = "col-align-right text-nowrap" });
+            columns.Bound(c => c.CountProduct_ReadOnly).Title(EntityLocalizer[nameof(Category.CountProduct_ReadOnly)]).Width(150).Format("{0:N0}").HtmlAttributes(new { @class = "col-align-right text-nowrap" });
+            columns.Bound(c => c.CreatedDate).Title(BaseEntityLocalizer[nameof(BaseEntityResources.CreatedDate)]).Width(180).Format(SharedLocalizer["Format_DateTime"]).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.UpdatedDate).Title(BaseEntityLocalizer[nameof(BaseEntityResources.UpdatedDate)]).Width(180).Format(SharedLocalizer["Format_DateTime"]).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.CreatedBy).Title(BaseEntityLocalizer[nameof(BaseEntityResources.CreatedBy)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.UpdatedBy).Title(BaseEntityLocalizer[nameof(BaseEntityResources.UpdatedBy)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+    })
+    .HtmlAttributes(new { style = "height: 600px;" })
+    .Resizable(r => r.Columns(true))
+    .Scrollable()
+    .Groupable()
+    .Sortable()
+    .Filterable()
+    .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(new int[] { 50, 100, 200, 500, 1000 })
+        .ButtonCount(5))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("Index_Read", ((string)ViewData["ControllerNameForGrid"]), new { ParentId = parentItem?.Id }))
+        .PageSize(50)
+    )
+)
+
+<div class="container">
+    <p>
+    </p>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">@SharedLocalizer["Btn_CreateNew"]</a>
+        @if (parentItem != null)
+        {
+            <a asp-action="Sort" asp-route-id="@parentItem.Slug_Name" class="btn btn-primary">@SharedLocalizer["Btn_SortIndex"]</a>
+            <a asp-action="Index" asp-route-id="" class="btn btn-primary">@SharedLocalizer["Btn_ListAll"]</a>
+        }
+        else
+        {
+            <a asp-action="Sort" class="btn btn-primary">@SharedLocalizer["Btn_SortIndex"]</a>
+        }
+    </p>
+</div>

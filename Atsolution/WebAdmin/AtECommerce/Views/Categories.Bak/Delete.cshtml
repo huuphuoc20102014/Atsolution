@@ -1,0 +1,218 @@
+﻿@model AtECommerce.Efs.Entities.Category
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+<h4>Delete Category</h4>
+<h5 class="text-danger">Are you sure you want to delete this item?</h5>
+<hr />
+
+<form asp-action="Delete">
+    <input type="hidden" name="Id" value="@Model?.Id" />
+    <input type="hidden" asp-for="RowVersion" />
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Edit" asp-route-id="@Model.Slug_Name" class="btn btn-primary">Edit</a>
+            <a asp-action="Details" asp-route-id="@Model.Slug_Name" class="k-button">Details</a>
+            <a asp-action="Index" class="k-button">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Code) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Code)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Name) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Slug_Name) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Slug_Name)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.AutoSlug) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.AutoSlug)
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Rank) :
+    </div>
+    <div class="col-md-7">
+        @Model.Rank.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.SortIndex) :
+    </div>
+    <div class="col-md-7">
+        @Model.SortIndex.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Tags) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.KeyWord_Image) :
+    </div>
+    <div class="col-md-7">
+        <img src="@Url.Content(Model?.KeyWord_Image)" class="border border-primary" />
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.MetaData) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.MetaData)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.Note_Html) :
+    </div>
+    <div class="col-12 border border-primary">
+        @Html.Raw(Model.Note_Html)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.CreatedBy) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.CreatedDate) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.UpdatedBy) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedBy)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.UpdatedDate) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.UpdatedDate)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowVersion) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.RowVersion)
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.RowStatus) :
+    </div>
+    <div class="col-md-7">
+        @Model.RowStatus.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.CountChild_ReadOnly) :
+    </div>
+    <div class="col-md-7">
+        @Model.CountChild_ReadOnly.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.CountProduct_ReadOnly) :
+    </div>
+    <div class="col-md-7">
+        @Model.CountProduct_ReadOnly.ToString("N0")
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-md-3 text-md-right details-label">
+        @Html.DisplayNameFor(model => model.FkCategory) :
+    </div>
+    <div class="col-md-7">
+        @Html.DisplayFor(model => model.FkCategory.Name)
+    </div>
+</div>
+
+
+
+<form asp-action="Delete">
+    <input type="hidden" name="Id" value="@Model?.Id" />
+    <input type="hidden" asp-for="RowVersion" />
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Save" class="btn btn-danger" />
+            <a asp-action="Edit" asp-route-id="@Model.Slug_Name" class="btn btn-primary">Edit</a>
+            <a asp-action="Details" asp-route-id="@Model.Slug_Name" class="k-button">Details</a>
+            <a asp-action="Index" class="k-button">Back to List</a>
+        </div>
+    </div>
+</form>
+
+

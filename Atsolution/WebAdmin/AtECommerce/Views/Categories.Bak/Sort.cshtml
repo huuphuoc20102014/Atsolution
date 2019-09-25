@@ -1,0 +1,126 @@
+﻿@model List<SortIndexViewModel>
+@{
+    ViewData["Title"] = "Sort";
+    AtECommerce.Efs.Entities.Category parentItem = null;
+    if (ViewBag.ParentItem != null)
+    {
+        parentItem = (AtECommerce.Efs.Entities.Category)ViewBag.ParentItem;
+    }
+}
+
+<h4>Sort Category</h4>
+<hr />
+
+
+
+<form asp-action="Sort">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <input type="hidden" asp-for="@Model[i].Id" />
+        <input type="hidden" asp-for="@Model[i].SortIndex" id="SortIndex_@Model[i].Id" />
+    }
+
+    @if (parentItem != null)
+    {
+        <div class="row form-group">
+            <div class="col-md-3 text-md-right details-label">
+                Code :
+            </div>
+            <div class="col-md-7">
+                @parentItem?.Code
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-3 text-md-right details-label">
+                Name :
+            </div>
+            <div class="col-md-7">
+                @parentItem?.Name
+            </div>
+        </div>
+    }
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            @if (parentItem != null)
+            {
+                <label class="col-form-label">Sort children :</label>
+            }
+            else
+            {
+                <label class="col-form-label">Sort index :</label>
+            }
+        </div>
+        <div class="col-md-7">
+            @(Html.Kendo().ListBox()
+                .Name("SortListBox")
+                .HtmlAttributes(new { style = "width:100%; height: 300px;" })
+                .Toolbar(toolbar =>
+                {
+                    toolbar.Position(ListBoxToolbarPosition.Right);
+                    toolbar.Tools(tools => tools
+                        .MoveUp()
+                        .MoveDown()
+                    );
+                })
+                .BindTo(Model)
+                .Draggable(true)
+                .DataValueField("Id")
+                .DataTextField("Text")
+                .Events(e => e.Reorder("SortReorderEvent"))
+            )
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @if (parentItem != null && parentItem.FkCategory != null)
+            {
+                <a asp-action="Sort" asp-route-id="@parentItem.FkCategory.Slug_Name" class="k-button">Sort parent</a>
+            }
+            
+            <a asp-action="Index" class="k-button">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script id="SortTemplate" type="text/x-kendo-template">
+        #: data.Code # | #: data.Name #
+    </script>
+
+    <script>
+        function SortReorderEvent(e) {
+            e.preventDefault();
+            var UID = $(e.items[0]).attr("data-uid");
+            var dataSource = e.sender.dataSource;
+
+            var dataItem = e.dataItems[0]
+            var index = dataSource.indexOf(dataItem) + e.offset;
+            dataSource.remove(dataItem);
+            dataSource.insert(index, dataItem);
+
+            var data = dataSource.data();
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].Id);
+                $('#SortIndex_' + data[i].Id).val(i);
+            }
+
+
+
+            e.sender.wrapper.find("[data-uid='" + UID + "']").addClass("k-state-selected");
+        }
+
+
+    </script>
+}

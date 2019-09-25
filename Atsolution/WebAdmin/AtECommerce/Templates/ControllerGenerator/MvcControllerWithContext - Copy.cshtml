@@ -1,0 +1,597 @@
+﻿@inherits Microsoft.VisualStudio.Web.CodeGeneration.Templating.RazorTemplateBase
+@using System.Collections.Generic;
+@using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using AtECommerce.Efs.Entities;
+using FluentValidation;
+
+@{
+    foreach (var namespaceName in Model.RequiredNamespaces)
+    {
+@:using @namespaceName;
+    }
+}
+
+@{
+	
+    var listMapping = AtHelper.AtDbContextHelper.ReadMetaDbContext(Model.DbContextNamespace + "." + Model.ContextTypeName,  Model.ModelTypeName);
+}
+
+
+
+namespace @Model.ControllerNamespace
+{
+@{
+    string routePrefix;
+    if (String.IsNullOrEmpty(Model.AreaName))
+    {
+        routePrefix = Model.ControllerRootName;
+    }
+    else
+    {
+        routePrefix = Model.AreaName + "/" + Model.ControllerRootName;
+    }
+    var modelProperties = new List<string>();
+    foreach (var property in Model.ModelMetadata.Properties)
+    {
+        if (property.Scaffold)
+        {
+            modelProperties.Add(property.PropertyName);
+        }
+    }
+    var bindString = string.Join(",", modelProperties);
+    var contextTypeName = Model.ContextTypeName;
+    var entitySetName = Model.ModelMetadata.EntitySetName;
+    var entitySetVar = Model.EntitySetVariable ??
+        (String.IsNullOrEmpty(entitySetName)
+            ? entitySetName
+            : (entitySetName.Substring(0, length: 1).ToLowerInvariant() + entitySetName.Substring(1)));
+    var primaryKeyName = Model.ModelMetadata.PrimaryKeys[0].PropertyName;
+    var primaryKeyShortTypeName = Model.ModelMetadata.PrimaryKeys[0].ShortTypeName;
+    var primaryKeyType = Model.ModelMetadata.PrimaryKeys[0].TypeName;
+    var primaryKeyNullableTypeName = GetNullableTypeName(primaryKeyType, primaryKeyShortTypeName);
+    var lambdaVar = Model.ModelVariable[0];
+    var relatedProperties = new Dictionary<string, dynamic>();
+    foreach (var nav in Model.ModelMetadata.Navigations)
+    {
+        relatedProperties.Add(nav.AssociationPropertyName, nav);
+
+    }
+
+    var inlineIncludes = "";
+    foreach (var property in relatedProperties.Values)
+    {
+        inlineIncludes += string.Format("{0}                .Include({1} => {1}.{2})", Environment.NewLine, lambdaVar, property.AssociationPropertyName);
+    }
+
+    if (!string.IsNullOrEmpty(Model.AreaName))
+    {
+    @:@string.Format("[Area(\"{0}\")]", Model.AreaName)
+    }
+	
+	var _slugProperty = AtHelper.AtDbContextHelper.GetSlugProperty(modelProperties);
+}
+    public class @Model.ControllerName : AtBaseController
+    {
+        private readonly @Model.ContextTypeName _context;
+
+        public @(Model.ControllerName)(@Model.ContextTypeName context)
+        {
+            _context = context;
+        }
+
+        // GET: @routePrefix
+@{
+        @:public async Task<IActionResult> Index()
+        @:{
+    var includeExpressions = "";
+    includeExpressions = String.Join("", relatedProperties
+        .Values
+        .Select(property => String.Format(".Include({0} => {0}.{1})", lambdaVar, property.AssociationPropertyName)));
+    if (!String.IsNullOrEmpty(includeExpressions))
+    {
+            @:var @entitySetVar = _context.@entitySetName@includeExpressions;
+            @:return View(await @(entitySetVar).ToListAsync());
+    }
+    else
+    {
+            @:return View(await _context.@(entitySetName).ToListAsync());
+    }
+}        }
+
+        // GET: @routePrefix/Details/5
+        public async Task<IActionResult> Details(@primaryKeyNullableTypeName id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @Model.ModelVariable = await _context.@(entitySetName)@inlineIncludes
+                .FirstOrDefaultAsync(m => m.@primaryKeyName == id);
+            if (@Model.ModelVariable == null)
+            {
+                return NotFound();
+            }
+
+            return View(@Model.ModelVariable);
+        }
+
+        // GET: @routePrefix/Create
+        public async Task<IActionResult> Create()
+        {
+
+    @if(relatedProperties.Count > 0)
+    {
+        @: // Get list master of foreign property and set to view data
+        @: await PrepareListMasterForeignKey();
+        @:
+    }
+          return View();
+        }
+
+        // POST: @routePrefix/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(@(Model.ModelTypeName)CreateViewModel vmItem)
+        {
+            // Invalid model
+            if (!ModelState.IsValid)
+            {
+				@if(relatedProperties.Count > 0)
+				{
+					@: // Get list master of foreign property and set to view data
+					@: await PrepareListMasterForeignKey(vmItem);
+				}
+							return View(vmItem);
+            }
+            
+            // Get time stamp for table to handle concurrency conflict
+            var tableName = nameof(@Model.ModelTypeName);
+            var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
+            
+            // Trim white space
+@foreach (var property in modelProperties)
+{
+    if (property == "Code" || property == "Name")
+    {
+        @:vmItem.@property = $"{vmItem.@property}".Trim();
+    }
+    else if (property.StartsWith("Slug_"))
+    {
+		if(modelProperties.Contains("AutoSlug"))
+		{
+			@:if (vmItem.AutoSlug)
+			@:{
+				@:vmItem.@property = NormalizeSlug($"{vmItem.@(AtHelper.AtDbContextHelper.GetProperyNameOfSlug(property))}");
+			@:}
+			@:else
+			@:{
+				@:vmItem.@property = NormalizeSlug($"{vmItem.@property}");
+			@:}	
+		}
+		else {
+			@:vmItem.@property = NormalizeSlug($"{vmItem.@property}");	
+		}
+        
+    }  
+}
+        
+@if(modelProperties.Contains("Code"))
+{
+    @: // Check code is existed
+    @:if (await _context.@(entitySetName).AnyAsync(h => h.Code == vmItem.Code))
+    @:{
+    @:	ModelState.AddModelError(nameof(@(Model.ModelTypeName).Code), "The code has been existed.");
+
+    if(relatedProperties.Count > 0)
+    {
+        @: // Get list master of foreign property and set to view data
+        @: await PrepareListMasterForeignKey(vmItem);
+    }
+
+    @:	return View(vmItem);
+    @:}
+}
+
+@if(_slugProperty != "")
+{
+    @: // Check slug is existed => if existed auto get next slug
+    @:var listExistedSlug = await _context.@(entitySetName).AsNoTracking()
+    @:        .Where(h => h.@(_slugProperty).StartsWith(vmItem.@(_slugProperty)))
+    @:        .Select(h => h.@(_slugProperty)).ToListAsync();
+    @:var slug = CheckAndGenNextSlug(vmItem.@(_slugProperty), listExistedSlug);
+}
+
+            // Create save db item
+            var dbItem = new @(Model.ModelTypeName)
+            {
+                Id = Guid.NewGuid().ToString(),
+                
+@if (modelProperties.Contains("CreatedBy")) {
+                @:CreatedBy = _loginUserId,
+}
+@if (modelProperties.Contains("CreatedDate")) {
+                @:CreatedDate = DateTime.Now,
+}
+@if (modelProperties.Contains("UpdatedBy")) {
+                @:UpdatedBy = null,
+}
+@if (modelProperties.Contains("UpdatedDate")) {
+                @:UpdatedDate = null,
+}
+@if (modelProperties.Contains("RowStatus")) {
+                @:RowStatus = (int)AtRowStatus.Normal,
+}
+@if (modelProperties.Contains("RowVersion")) {
+                @:RowVersion = null,
+}
+                
+@foreach (var property in modelProperties)
+{
+    if (property == "Id" 
+        || property == "CreatedBy"
+        || property == "CreatedDate"
+        || property == "UpdatedBy"
+        || property == "UpdatedDate"
+        || property == "RowStatus"
+        || property == "RowVersion")
+    {
+        continue;
+    }
+    
+	var flagIsReadOnly = false;
+	foreach(var mapping in listMapping)
+	{
+		if (mapping.NetName == property)
+		{
+			flagIsReadOnly = mapping.IsReadOnly;
+			break;
+		}
+	}
+	if (flagIsReadOnly)
+	{
+		continue;
+	}
+	
+    @:@property = vmItem.@property,
+}
+            };
+
+            // Set time stamp for table to handle concurrency conflict
+            if (tableVersion != null)
+            {
+                tableVersion.LastModify = DateTime.Now;
+            }
+            _context.Add(dbItem);
+            await _context.SaveChangesAsync();
+            
+            @if(_slugProperty != "")
+            {
+                @:return RedirectToAction(nameof(Details), new { id = dbItem.@(_slugProperty) });	
+            }
+            else 
+            {
+                @:return RedirectToAction(nameof(Details), new { id = dbItem.Id });	
+            }
+        }
+
+        // GET: @routePrefix/Edit/5
+        public async Task<IActionResult> Edit(@primaryKeyNullableTypeName id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @Model.ModelVariable = await _context.@(entitySetName).FindAsync(id);
+            if (@Model.ModelVariable == null)
+            {
+                return NotFound();
+            }
+@{
+    foreach (var property in relatedProperties.Values)
+    {
+            @:ViewData["@(property.ForeignKeyPropertyNames[0])"] = new SelectList(_context.@property.EntitySetName, "@property.PrimaryKeyNames[0]", "@property.DisplayPropertyName", @(Model.ModelVariable).@property.ForeignKeyPropertyNames[0]);
+    }
+}
+            return View(@Model.ModelVariable);
+        }
+
+        // POST: @routePrefix/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(@primaryKeyShortTypeName id, [Bind("@bindString")] @Model.ModelTypeName @Model.ModelVariable)
+        {
+            if (id != @Model.ModelVariable.@primaryKeyName)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(@Model.ModelVariable);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!@(Model.ModelTypeName)Exists(@Model.ModelVariable.@primaryKeyName))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+@{
+    foreach (var property in relatedProperties.Values)
+    {
+            @:ViewData["@(property.ForeignKeyPropertyNames[0])"] = new SelectList(_context.@property.EntitySetName, "@property.PrimaryKeyNames[0]", "@property.DisplayPropertyName", @(Model.ModelVariable).@property.ForeignKeyPropertyNames[0]);
+    }
+}
+            return View(@Model.ModelVariable);
+        }
+
+        // GET: @routePrefix/Delete/5
+        public async Task<IActionResult> Delete(@primaryKeyNullableTypeName id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @Model.ModelVariable = await _context.@(entitySetName)@inlineIncludes
+                .FirstOrDefaultAsync(m => m.@primaryKeyName == id);
+            if (@Model.ModelVariable == null)
+            {
+                return NotFound();
+            }
+
+            return View(@Model.ModelVariable);
+        }
+
+        // POST: @routePrefix/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(@primaryKeyShortTypeName id)
+        {
+            var @Model.ModelVariable = await _context.@(entitySetName).FindAsync(id);
+            _context.@(entitySetName).Remove(@Model.ModelVariable);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool @(Model.ModelTypeName)Exists(@primaryKeyShortTypeName id)
+        {
+            return _context.@(entitySetName).Any(e => e.@primaryKeyName == id);
+        }
+        
+@{
+    if(relatedProperties.Count > 0)
+    {
+        
+        @:private async Task PrepareListMasterForeignKey(@(Model.ModelTypeName)BaseViewModel vm = null)
+        @:{
+        foreach (var property in relatedProperties.Values)
+        {
+            var displayPropertyName = modelProperties.Contains("Name") ? "Name": property.DisplayPropertyName;
+            var selectClause = "h." + property.PrimaryKeyNames[0];
+            if(displayPropertyName != property.ForeignKeyPropertyNames[0]) 
+            {
+                selectClause += ", h." + displayPropertyName;
+            }
+            
+            @:ViewData["@(property.ForeignKeyPropertyNames[0])"] = new SelectList(
+				@:await _context.@(property.EntitySetName).AsNoTracking()
+					@:.Select(h => new { @(selectClause) })
+					@:.OrderBy(h => h.@displayPropertyName)
+					@:.ToListAsync(), 
+				@:"@property.PrimaryKeyNames[0]", "@displayPropertyName", vm?.@property.ForeignKeyPropertyNames[0]);	
+        }
+            
+        @:}
+    }
+}			
+    }
+
+@{	
+	var listBaseProperty = new List<string>();
+	foreach (var property in modelProperties)
+	{
+		if (property == "Id" 
+			|| property == "CreatedBy"
+			|| property == "CreatedDate"
+			|| property == "UpdatedBy"
+			|| property == "UpdatedDate"
+			|| property == "RowStatus"
+			|| property == "RowVersion")
+		{
+			continue;
+		}	
+		
+		listBaseProperty.Add(property);
+	}
+	
+	var listEditProperty = new List<string>();
+	foreach (var property in modelProperties)
+	{
+		if (property == "Id" 
+			|| property == "RowStatus"
+			|| property == "RowVersion")
+		{
+			listEditProperty.Add(property);
+		}	
+	}
+}
+	
+	public class @(Model.ModelTypeName)BaseViewModel {
+		
+		@foreach (var property in listBaseProperty)
+		{		
+			foreach(var mapping in listMapping)
+			{
+				if (mapping.NetName == property)
+				{
+					if (!mapping.IsReadOnly)
+					{
+						@:public @mapping.DisplayType @property { get; set; }
+					}
+					break;
+				}
+			}
+			
+		}
+    }
+
+	public class @(Model.ModelTypeName)CreateViewModel : @(Model.ModelTypeName)BaseViewModel {
+
+    }
+
+	public class @(Model.ModelTypeName)EditViewModel : @(Model.ModelTypeName)BaseViewModel {
+		
+		@foreach (var property in listEditProperty)
+		{
+			if (property == "RowStatus")
+			{
+				@:public AtRowStatus @property { get; set; }
+				continue;
+			}	
+			
+			foreach(var mapping in listMapping)
+			{
+				if (mapping.NetName == property)
+				{
+					if (!mapping.IsReadOnly)
+					{
+						@:public @mapping.DisplayType @property { get; set; }
+					}
+					break;
+				}
+			}
+		}
+    }
+	
+@{
+	var listPropertyValidate = new List<List<string>>() {
+		listBaseProperty,
+		new List<string>(), // for create
+		listEditProperty
+	};
+	
+	var listDelareClassValidate = new List<string>() {
+		$"public class {Model.ModelTypeName}BaseValidator<T> : AtBaseValidator<T> where T: {Model.ModelTypeName}BaseViewModel",
+		$"public class {Model.ModelTypeName}CreateValidator : {Model.ModelTypeName}BaseValidator<{Model.ModelTypeName}CreateViewModel>",
+		$"public class {Model.ModelTypeName}EditValidator : {Model.ModelTypeName}BaseValidator<{Model.ModelTypeName}EditViewModel>"
+	};
+	
+	var listPrefixNameClassValidate = new List<string>() {
+		"Base", "Create", "Edit"
+	};
+	
+	for (int i = 0; i < listPrefixNameClassValidate.Count; i++) {
+		@:@listDelareClassValidate[i]
+		@:{
+			@:public @(Model.ModelTypeName)@(listPrefixNameClassValidate[i])Validator()
+			@:{
+				foreach (var property in listPropertyValidate[i])
+				{		
+					foreach(var mapping in listMapping)
+					{
+						if (mapping.NetName == property)
+						{
+							if (mapping.IsReadOnly)
+							{
+								break;
+							}
+							
+							@:RuleFor(h => h.@property)
+								if(mapping.MapSqlToNetType.IsString)
+								{
+									if(!mapping.AllowNull)
+									{
+										@:.NotEmpty()
+									}	
+									if (mapping.MaxLength >= 0)
+									{
+										@:.MaximumLength(@mapping.MaxLength)
+									}
+								}
+								else if (mapping.MapSqlToNetType.IsDate 
+									|| mapping.MapSqlToNetType.IsDateTime 
+									) 
+								{
+									@:.GreaterThanOrEqualTo(AtConstValidator.MIN_DATE_TIME)
+									@:.LessThanOrEqualTo(AtConstValidator.MAX_DATE_TIME)
+								}
+								else if (property == "RowStatus")
+								{
+									@:.IsInEnum()
+								}
+								else 
+								{
+									if(!mapping.AllowNull && !mapping.MapSqlToNetType.IsValueType)
+									{
+										@:.NotNull()
+									}
+								}
+								@:;
+								@:
+							break;
+						}
+					}
+				}
+			@:}
+		@:}
+		@:
+	}
+}	
+
+	
+
+    
+
+
+
+}
+@functions
+{
+    // This function converts the primary key short type name to its nullable equivalent when possible. This is required to make
+    // sure that an HTTP 400 error is thrown when the user tries to access the edit, delete, or details action with null values.
+    string GetNullableTypeName(string typeName, string shortTypeName)
+    {
+        // The exceptions are caught because if for any reason the type is user defined, then the short type name will be used.
+        // In that case the user will receive a server error if null is passed to the edit, delete, or details actions.
+        Type primaryKeyType = null;
+        try
+        {
+            primaryKeyType = Type.GetType(typeName);
+        }
+        catch
+        {
+        }
+        if (primaryKeyType != null && (!Microsoft.VisualStudio.Web.CodeGeneration.Templating.TypeUtilities.IsNullable(primaryKeyType) || IsGuid(typeName)))
+        {
+            return shortTypeName + "?";
+        }
+        return shortTypeName;
+    }
+
+    bool IsGuid(string typeName) {
+        return String.Equals("System.Guid", typeName, StringComparison.OrdinalIgnoreCase);
+    }
+}
