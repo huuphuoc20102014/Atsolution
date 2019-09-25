@@ -1,4 +1,5 @@
 ﻿using AT.Efs.Entities;
+using AT.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,17 @@ namespace AT.Helpers
 {
     public class MenuHelper
     {
-        public static async Task<List<Menu>> GetDataMenu(WebAtSolutionContext webContext)
+        public static async Task<MenuViewModel> GetDataMenu(WebAtSolutionContext webContext)
         {
-            return await webContext.Menu.ToListAsync();
+            MenuViewModel model = new MenuViewModel();
+            model.listMenu = await webContext.Menu.ToListAsync();
+            model.listService = await webContext.Service.ToListAsync();
+            return model;
         }
+
+        //public static async Task<List<Menu>> GetDataMenu(WebAtSolutionContext webContext)
+        //{
+        //    return await webContext.Menu.ToListAsync();
+        //}
     }
 }
