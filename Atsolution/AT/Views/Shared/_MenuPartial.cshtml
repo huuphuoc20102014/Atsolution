@@ -1,9 +1,25 @@
-﻿@model List<AT.Efs.Entities.Menu>
+﻿@*@model List<AT.Efs.Entities.Menu>*@
+@model MenuViewModel
 
-@foreach (var item in Model)
+@foreach (var item in Model.listMenu)
 {
     <li>
-        <a href="#"><i class="@item.IconSlug"></i><span>@item.Name</span></a>
+        <a href="~/@item.AnotherLink"><i class="@item.IconSlug"></i><span>@item.Name</span></a>
+        @if (item.SlugName == "dich-vu")
+        {
+            <ul>
+                @foreach(var item2 in Model.listService)
+                {
+                    <li><a href="#">@item2.ServiceName</a></li>
+                }
+            </ul>
+        }
+        else if(item.SlugName == "trang-chu" || item.SlugName == "gioi-thieu" || item.SlugName == "lien-he")
+        {
+
+        }
+        else
+        {
         <ul>
             <li>
                 <a href="#">Shop Products listing</a>
@@ -24,5 +40,7 @@
             <li><a href="cart.html">Shoping cart</a></li>
             <li><a href="check-out.html">Check out</a></li>
         </ul>
+        }
+
     </li>
 }
