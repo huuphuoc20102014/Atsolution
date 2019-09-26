@@ -9,7 +9,7 @@
     var parentItem = ViewData["ParentItem"] as Project;
     if (parentItem != null)
     {
-        ViewData["Title"] = (string)ViewData["Title"] + " : " + parentItem.Code + " | " + parentItem.Name;
+        ViewData["Title"] = (string)ViewData["Title"] + " : " + parentItem.Id + " | " + parentItem.Name;
     }
 }
 
@@ -19,7 +19,7 @@
 		@SharedLocalizer["ViewTitle_List"] @EntityLocalizer["EntityTitle"]
 		@if (parentItem != null)
         {
-            @:: <span class="text-warning">@parentItem.Code | @parentItem.Name</span>
+            @:: <span class="text-warning">@parentItem.Id | @parentItem.Name</span>
         }
 	</h4>
 	<hr />	
@@ -56,7 +56,7 @@
 			columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Name).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 								//FkProjectTypeId
-			columns.Bound(c => c.FkProjectType_Code).Title(EntityLocalizer[nameof(Project.FkProjectType_Code)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });								
+			columns.Bound(c => c.FkProjectTypeId).Title(EntityLocalizer[nameof(Project.FkProjectTypeId)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });								
 			columns.Bound(c => c.SlugName).Title(EntityLocalizer[nameof(Project.SlugName)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.ImageSlug).Title(EntityLocalizer[nameof(Project.ImageSlug)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.ShortDescriptionHtml).Title(EntityLocalizer[nameof(Project.ShortDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
