@@ -4,7 +4,7 @@
 @foreach (var item in Model.listMenu)
 {
     <li>
-        <a href="~/@item.AnotherLink"><i class="@item.IconSlug"></i><span>@item.Name</span></a>
+        <a href="~/@item.SlugName"><i class="@item.IconSlug"></i><span>@item.Name</span></a>
         @if (item.SlugName == "dich-vu")
         {
             <ul>
