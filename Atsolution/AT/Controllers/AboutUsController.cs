@@ -8,6 +8,7 @@ namespace AT.Controllers
 {
     public class AboutUsController : Controller
     {
+        [HttpGet("gioi-thieu")]
         public IActionResult Index()
         {
             return View();

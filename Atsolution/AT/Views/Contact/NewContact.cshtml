@@ -1,0 +1,28 @@
+﻿@model ContactViewModel
+
+<form asp-action="NewContact" id="myform" class="form-signin cform" method="post" autocomplete="on">
+    <div class="form-input">
+        <label>Họ tên<span class="red">*</span></label>
+        <input asp-for="Name" type="text" name="name" id="name">
+    </div>
+    <div class="form-input">
+        <label>Email<span class="red">*</span></label>
+        <input asp-for="Email" name="email" type="email" id="email">
+    </div>
+    <div class="form-input">
+        <label>Số điện thoại<span class="red">*</span></label>
+        <input asp-for="Phone" name="phone" type="text" id="phone">
+    </div>
+    <div class="form-input">
+        <label>Tiêu đề<span class="red">*</span></label>
+        <input asp-for="Title" type="text" name="title" id="Title">
+    </div>
+    <div class="form-input">
+        <label>Ghi chú<span class="red">*</span></label>
+        <textarea asp-for="Body" name="body" cols="40" rows="7" id="body" spellcheck="true"></textarea>
+    </div>
+    <div class="form-input">
+        <input type="submit" class="btn-send btn btn-large main-bg" value="Gửi">&nbsp;&nbsp;<input type="reset" class="btn-reset btn btn-large" value="Nhập lại" id="reset">
+    </div>
+</form>
+

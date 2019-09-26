@@ -8,6 +8,7 @@ namespace AT.Controllers
 {
     public class BlogController : Controller
     {
+        [HttpGet("tin-tuc")]
         public IActionResult Index()
         {
             return View();

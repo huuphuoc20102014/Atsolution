@@ -8,6 +8,7 @@ namespace AT.Controllers
 {
     public class ProjectController : Controller
     {
+        [HttpGet("trang-chu")]
         public IActionResult Index()
         {
             return View();
