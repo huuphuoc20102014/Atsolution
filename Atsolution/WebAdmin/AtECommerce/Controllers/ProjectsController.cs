@@ -56,6 +56,7 @@ namespace AtECommerce.Controllers
                 baseQuery = baseQuery.Where(h => h.Id == parentId);
             }
             var query = baseQuery
+                .Where(p => p.RowStatus == (int)AtRowStatus.Normal)
                 .Select(h => new ProjectDetailsViewModel
                 {
                     Id = h.Id,

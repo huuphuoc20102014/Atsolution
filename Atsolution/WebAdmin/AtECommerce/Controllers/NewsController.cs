@@ -18,9 +18,9 @@ using AtECommerce.Efs.Entities;
 
 namespace AtECommerce.Controllers
 {
-		//Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.NavigationMetadata
-		//FkNewsType
-		//FkNewsTypeId
+    //Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.NavigationMetadata
+    //FkNewsType
+    //FkNewsTypeId
     public class NewsController : AtBaseController
     {
         private readonly WebAtSolutionContext _context;
@@ -44,37 +44,39 @@ namespace AtECommerce.Controllers
             }
             ViewData["ParentItem"] = dbItem;
 
-			ViewData["ControllerNameForGrid"] = nameof(NewsController).Replace("Controller","");
-			 return View();
+            ViewData["ControllerNameForGrid"] = nameof(NewsController).Replace("Controller", "");
+            return View();
         }
 
         public async Task<IActionResult> Index_Read([DataSourceRequest] DataSourceRequest request, string parentId)
         {
-			var baseQuery = _context.News.AsNoTracking();
+            var baseQuery = _context.News.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(parentId))
             {
                 baseQuery = baseQuery.Where(h => h.Id == parentId);
             }
             var query = baseQuery
-                .Select(h => new NewsDetailsViewModel {
-		Id = h.Id,
-		FkNewsTypeId = h.FkNewsTypeId,
-			// Ford
-		Title = h.Title,
-		SlugTitle = h.SlugTitle,
-		ShortDescriptionHtml = h.ShortDescriptionHtml,
-		LongDescriptionHtml = h.LongDescriptionHtml,
-		Tags = h.Tags,
-		KeyWord = h.KeyWord,
-		MetaData = h.MetaData,
-		Note = h.Note,
-		CreatedBy = h.CreatedBy,
-		CreatedDate = h.CreatedDate,
-		UpdatedBy = h.UpdatedBy,
-		UpdatedDate = h.UpdatedDate,
-		RowVersion = h.RowVersion,
-		RowStatus = (AtRowStatus)h.RowStatus,
-		ImageSlug = h.ImageSlug,
+                .Where(p => p.RowStatus == (int)AtRowStatus.Normal)
+                .Select(h => new NewsDetailsViewModel
+                {
+                    Id = h.Id,
+                    FkNewsTypeId = h.FkNewsTypeId,
+                    // Ford
+                    Title = h.Title,
+                    SlugTitle = h.SlugTitle,
+                    ShortDescriptionHtml = h.ShortDescriptionHtml,
+                    LongDescriptionHtml = h.LongDescriptionHtml,
+                    Tags = h.Tags,
+                    KeyWord = h.KeyWord,
+                    MetaData = h.MetaData,
+                    Note = h.Note,
+                    CreatedBy = h.CreatedBy,
+                    CreatedDate = h.CreatedDate,
+                    UpdatedBy = h.UpdatedBy,
+                    UpdatedDate = h.UpdatedDate,
+                    RowVersion = h.RowVersion,
+                    RowStatus = (AtRowStatus)h.RowStatus,
+                    ImageSlug = h.ImageSlug,
 
                 });
 
@@ -91,9 +93,9 @@ namespace AtECommerce.Controllers
             }
 
             var news = await _context.News.AsNoTracking()
-				
+
                 .Include(n => n.FkNewsType)
-					.Where(h => h.Id == id)
+                    .Where(h => h.Id == id)
                 .FirstOrDefaultAsync();
             if (news == null)
             {
@@ -106,10 +108,10 @@ namespace AtECommerce.Controllers
         // GET: News/Create
         public async Task<IActionResult> Create()
         {
-             // Get list master of foreign property and set to view data
-         await PrepareListMasterForeignKey();
-        
-          return View();
+            // Get list master of foreign property and set to view data
+            await PrepareListMasterForeignKey();
+
+            return View();
         }
 
         // POST: News/Create
@@ -119,54 +121,54 @@ namespace AtECommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] NewsCreateViewModel vmItem)
         {
-			
+
             // Invalid model
             if (!ModelState.IsValid)
             {
-         // Get list master of foreign property and set to view data
-         await PrepareListMasterForeignKey(vmItem);
+                // Get list master of foreign property and set to view data
+                await PrepareListMasterForeignKey(vmItem);
                 return View(vmItem);
             }
-            
+
             // Get time stamp for table to handle concurrency conflict
             var tableName = nameof(News);
             var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
-            
+
             // Trim white space
-        
+
 
 
             // Create save db item
             var dbItem = new News
             {
                 Id = Guid.NewGuid().ToString(),
-                
+
                 CreatedBy = _loginUserId,
                 CreatedDate = DateTime.Now,
                 UpdatedBy = null,
                 UpdatedDate = null,
                 RowStatus = (int)AtRowStatus.Normal,
                 RowVersion = null,
-                
-    FkNewsTypeId = vmItem.FkNewsTypeId,
-    Title = vmItem.Title,
-    SlugTitle = vmItem.SlugTitle,
-    AutoSlug = vmItem.AutoSlug,
-    ShortDescriptionHtml = vmItem.ShortDescriptionHtml,
-    LongDescriptionHtml = vmItem.LongDescriptionHtml,
-    Tags = vmItem.Tags,
-    KeyWord = vmItem.KeyWord,
-    MetaData = vmItem.MetaData,
-    Note = vmItem.Note,
-    ImageSlug = vmItem.ImageSlug,
+
+                FkNewsTypeId = vmItem.FkNewsTypeId,
+                Title = vmItem.Title,
+                SlugTitle = vmItem.SlugTitle,
+                AutoSlug = vmItem.AutoSlug,
+                ShortDescriptionHtml = vmItem.ShortDescriptionHtml,
+                LongDescriptionHtml = vmItem.LongDescriptionHtml,
+                Tags = vmItem.Tags,
+                KeyWord = vmItem.KeyWord,
+                MetaData = vmItem.MetaData,
+                Note = vmItem.Note,
+                ImageSlug = vmItem.ImageSlug,
             };
-			_context.Add(dbItem);
+            _context.Add(dbItem);
 
             // Set time stamp for table to handle concurrency conflict
             tableVersion.LastModify = DateTime.Now;
             await _context.SaveChangesAsync();
-            
-                return RedirectToAction(nameof(Details), new { id = dbItem.Id });	
+
+            return RedirectToAction(nameof(Details), new { id = dbItem.Id });
         }
 
         // GET: News/Edit/5
@@ -176,99 +178,99 @@ namespace AtECommerce.Controllers
             {
                 return NotFound();
             }
-		
-		
+
+
             var dbItem = await _context.News.AsNoTracking()
-			
-	.Where(h => h.Id == id)
-                
+
+    .Where(h => h.Id == id)
+
                 .Select(h => new NewsEditViewModel
                 {
-						Id = h.Id,
-						FkNewsTypeId = h.FkNewsTypeId,
-						Title = h.Title,
-						SlugTitle = h.SlugTitle,
-						AutoSlug = h.AutoSlug,
-						ShortDescriptionHtml = h.ShortDescriptionHtml,
-						LongDescriptionHtml = h.LongDescriptionHtml,
-						Tags = h.Tags,
-						KeyWord = h.KeyWord,
-						MetaData = h.MetaData,
-						Note = h.Note,
-						RowVersion = h.RowVersion,
-						ImageSlug = h.ImageSlug,
+                    Id = h.Id,
+                    FkNewsTypeId = h.FkNewsTypeId,
+                    Title = h.Title,
+                    SlugTitle = h.SlugTitle,
+                    AutoSlug = h.AutoSlug,
+                    ShortDescriptionHtml = h.ShortDescriptionHtml,
+                    LongDescriptionHtml = h.LongDescriptionHtml,
+                    Tags = h.Tags,
+                    KeyWord = h.KeyWord,
+                    MetaData = h.MetaData,
+                    Note = h.Note,
+                    RowVersion = h.RowVersion,
+                    ImageSlug = h.ImageSlug,
                 })
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
                 return NotFound();
             }
-			
-				 // Get list master of foreign property and set to view data
-				 await PrepareListMasterForeignKey(dbItem);
-	
+
+            // Get list master of foreign property and set to view data
+            await PrepareListMasterForeignKey(dbItem);
+
             return View(dbItem);
         }
 
-		// POST: News/Edit/5
+        // POST: News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([FromForm] NewsEditViewModel vmItem)
         {
-			
+
             // Invalid model
             if (!ModelState.IsValid)
             {
-					 // Get list master of foreign property and set to view data
-					 await PrepareListMasterForeignKey(vmItem);
-							return View(vmItem);
-            }			
-			
-			// Get time stamp for table to handle concurrency conflict
+                // Get list master of foreign property and set to view data
+                await PrepareListMasterForeignKey(vmItem);
+                return View(vmItem);
+            }
+
+            // Get time stamp for table to handle concurrency conflict
             var tableName = nameof(News);
             var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
-			
+
             var dbItem = await _context.News
-				.Where(h => h.Id == vmItem.Id)
-                
+                .Where(h => h.Id == vmItem.Id)
+
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
                 return NotFound();
-            }			
-			
+            }
+
             // Trim white space
-        
+
 
 
             // Update db item               
-                dbItem.UpdatedBy = _loginUserId;
-                dbItem.UpdatedDate = DateTime.Now;
-                dbItem.RowVersion = vmItem.RowVersion;
-                
-    dbItem.FkNewsTypeId = vmItem.FkNewsTypeId;
-    dbItem.Title = vmItem.Title;
-    dbItem.SlugTitle = vmItem.SlugTitle;
-    dbItem.AutoSlug = vmItem.AutoSlug;
-    dbItem.ShortDescriptionHtml = vmItem.ShortDescriptionHtml;
-    dbItem.LongDescriptionHtml = vmItem.LongDescriptionHtml;
-    dbItem.Tags = vmItem.Tags;
-    dbItem.KeyWord = vmItem.KeyWord;
-    dbItem.MetaData = vmItem.MetaData;
-    dbItem.Note = vmItem.Note;
-    dbItem.ImageSlug = vmItem.ImageSlug;
+            dbItem.UpdatedBy = _loginUserId;
+            dbItem.UpdatedDate = DateTime.Now;
+            dbItem.RowVersion = vmItem.RowVersion;
 
-                _context.Entry(dbItem).Property(nameof(News.RowVersion)).OriginalValue = vmItem.RowVersion;
-			// Set time stamp for table to handle concurrency conflict
+            dbItem.FkNewsTypeId = vmItem.FkNewsTypeId;
+            dbItem.Title = vmItem.Title;
+            dbItem.SlugTitle = vmItem.SlugTitle;
+            dbItem.AutoSlug = vmItem.AutoSlug;
+            dbItem.ShortDescriptionHtml = vmItem.ShortDescriptionHtml;
+            dbItem.LongDescriptionHtml = vmItem.LongDescriptionHtml;
+            dbItem.Tags = vmItem.Tags;
+            dbItem.KeyWord = vmItem.KeyWord;
+            dbItem.MetaData = vmItem.MetaData;
+            dbItem.Note = vmItem.Note;
+            dbItem.ImageSlug = vmItem.ImageSlug;
+
+            _context.Entry(dbItem).Property(nameof(News.RowVersion)).OriginalValue = vmItem.RowVersion;
+            // Set time stamp for table to handle concurrency conflict
             tableVersion.LastModify = DateTime.Now;
             await _context.SaveChangesAsync();
-			
-                return RedirectToAction(nameof(Details), new { id = dbItem.Id });	
-        }        
 
-		// GET: News/Details/5
+            return RedirectToAction(nameof(Details), new { id = dbItem.Id });
+        }
+
+        // GET: News/Details/5
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (id == null)
@@ -277,9 +279,9 @@ namespace AtECommerce.Controllers
             }
 
             var dbItem = await _context.News.AsNoTracking()
-				
+
                 .Include(n => n.FkNewsType)
-					.Where(h => h.Id == id)
+                    .Where(h => h.Id == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
@@ -287,188 +289,192 @@ namespace AtECommerce.Controllers
             }
 
             return View(dbItem);
-        }        
+        }
 
         // POST: News/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-	public async Task<IActionResult> Delete([FromForm] string id, [FromForm] byte[] rowVersion)
+        public async Task<IActionResult> Delete([FromForm] string id, [FromForm] byte[] rowVersion)
         {
-			if (id == null)
+            if (id == null)
             {
                 return NotFound();
             }
-			
-			// Get time stamp for table to handle concurrency conflict
+
+            // Get time stamp for table to handle concurrency conflict
             var tableName = nameof(News);
             var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
-			var dbItem = await _context.News
-				
+            var dbItem = await _context.News
+
                 .Include(n => n.FkNewsType)
-				.Where(h => h.Id == id)
+                .Where(h => h.Id == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
                 return NotFound();
             }
-			
-				if(rowVersion == null)
-				{
-					ModelState.AddModelError("RowVersion", "Invalid row version, please try again.");
-					return View(dbItem);
-				}
-			
-			// Update db item               
-	if(dbItem.RowStatus != (int)AtRowStatus.Deleted)
-	{
-		dbItem.RowStatus = (int)AtRowStatus.Deleted;	
-			dbItem.UpdatedBy = _loginUserId;
-			dbItem.UpdatedDate = DateTime.Now;
-			dbItem.RowVersion = rowVersion;
-		
-                _context.Entry(dbItem).Property(nameof(News.RowVersion)).OriginalValue = rowVersion;
-		// Set time stamp for table to handle concurrency conflict
-        tableVersion.LastModify = DateTime.Now;
-		await _context.SaveChangesAsync();
-	}
 
-            
+            if (rowVersion == null)
+            {
+                ModelState.AddModelError("RowVersion", "Invalid row version, please try again.");
+                return View(dbItem);
+            }
+
+            // Update db item               
+            if (dbItem.RowStatus != (int)AtRowStatus.Deleted)
+            {
+                dbItem.RowStatus = (int)AtRowStatus.Deleted;
+                dbItem.UpdatedBy = _loginUserId;
+                dbItem.UpdatedDate = DateTime.Now;
+                dbItem.RowVersion = rowVersion;
+
+                _context.Entry(dbItem).Property(nameof(News.RowVersion)).OriginalValue = rowVersion;
+                // Set time stamp for table to handle concurrency conflict
+                tableVersion.LastModify = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
+
+
             return RedirectToAction(nameof(Index));
         }
-       
+
         private async Task PrepareListMasterForeignKey(NewsBaseViewModel vm = null)
         {
             ViewData["FkNewsTypeId"] = new SelectList(
-				await _context.NewsType.AsNoTracking()
-					.Select(h => new { h.Id, h.Name })
-					.OrderBy(h => h.Id)
-					.ToListAsync(), 
-				"Id", "Id", vm?.FkNewsTypeId);	
+                await _context.NewsType.AsNoTracking()
+                    .Select(h => new { h.Id, h.Name })
+                    .OrderBy(h => h.Id)
+                    .ToListAsync(),
+                "Id", "Id", vm?.FkNewsTypeId);
         }
     }
 
 
-	
-	public class NewsBaseViewModel {
-		
-						public String FkNewsTypeId { get; set; }
-						public String Title { get; set; }
-						public String SlugTitle { get; set; }
-						public Boolean AutoSlug { get; set; }
-						public String ShortDescriptionHtml { get; set; }
-						public String LongDescriptionHtml { get; set; }
-						public String Tags { get; set; }
-						public String KeyWord { get; set; }
-						public String MetaData { get; set; }
-						public String Note { get; set; }
-						public String ImageSlug { get; set; }
+
+    public class NewsBaseViewModel
+    {
+
+        public String FkNewsTypeId { get; set; }
+        public String Title { get; set; }
+        public String SlugTitle { get; set; }
+        public Boolean AutoSlug { get; set; }
+        public String ShortDescriptionHtml { get; set; }
+        public String LongDescriptionHtml { get; set; }
+        public String Tags { get; set; }
+        public String KeyWord { get; set; }
+        public String MetaData { get; set; }
+        public String Note { get; set; }
+        public String ImageSlug { get; set; }
     }
 
-	public class NewsDetailsViewModel : NewsBaseViewModel {
-			
-					public String Id { get; set; }
-					public String CreatedBy { get; set; }
-					public DateTime CreatedDate { get; set; }
-					public String UpdatedBy { get; set; }
-					public DateTime? UpdatedDate { get; set; }
-					public Byte[] RowVersion { get; set; }
-				public AtRowStatus RowStatus { get; set; }
-		
-			
-					public string FkNewsType_Code { get; set; }
-					public string FkNewsType_Name { get; set; }
-		
-	}
-	
-	public class NewsCreateViewModel : NewsBaseViewModel {
+    public class NewsDetailsViewModel : NewsBaseViewModel
+    {
+
+        public String Id { get; set; }
+        public String CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public String UpdatedBy { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public Byte[] RowVersion { get; set; }
+        public AtRowStatus RowStatus { get; set; }
+
+
+        public string FkNewsType_Code { get; set; }
+        public string FkNewsType_Name { get; set; }
 
     }
 
-	public class NewsEditViewModel : NewsBaseViewModel {
-		
-						public String Id { get; set; }
-						public Byte[] RowVersion { get; set; }
+    public class NewsCreateViewModel : NewsBaseViewModel
+    {
+
     }
-	
-		public class NewsBaseValidator<T> : AtBaseValidator<T> where T: NewsBaseViewModel
-		{
-			public NewsBaseValidator()
-			{
-							RuleFor(h => h.FkNewsTypeId)
-										.NotEmpty()
-										.MaximumLength(50)
-								;
-								
-							RuleFor(h => h.Title)
-										.MaximumLength(500)
-								;
-								
-							RuleFor(h => h.SlugTitle)
-										.NotEmpty()
-										.MaximumLength(500)
-								;
-								
-							RuleFor(h => h.AutoSlug)
-								;
-								
-							RuleFor(h => h.ShortDescriptionHtml)
-										.MaximumLength(1000)
-								;
-								
-							RuleFor(h => h.LongDescriptionHtml)
-								;
-								
-							RuleFor(h => h.Tags)
-										.MaximumLength(1000)
-								;
-								
-							RuleFor(h => h.KeyWord)
-										.MaximumLength(1000)
-								;
-								
-							RuleFor(h => h.MetaData)
-										.MaximumLength(1000)
-								;
-								
-							RuleFor(h => h.Note)
-										.MaximumLength(1000)
-								;
-								
-							RuleFor(h => h.ImageSlug)
-										.MaximumLength(100)
-								;
-								
-			}
-		}
-		
-		public class NewsCreateValidator : NewsBaseValidator<NewsCreateViewModel>
-		{
-			public NewsCreateValidator()
-			{
-			}
-		}
-		
-		public class NewsEditValidator : NewsBaseValidator<NewsEditViewModel>
-		{
-			public NewsEditValidator()
-			{
-							RuleFor(h => h.Id)
-										.NotEmpty()
-										.MaximumLength(50)
-								;
-								
-							RuleFor(h => h.RowVersion)
-										.NotNull()
-								;
-								
-			}
-		}
-		
 
-	
+    public class NewsEditViewModel : NewsBaseViewModel
+    {
 
-    
+        public String Id { get; set; }
+        public Byte[] RowVersion { get; set; }
+    }
+
+    public class NewsBaseValidator<T> : AtBaseValidator<T> where T : NewsBaseViewModel
+    {
+        public NewsBaseValidator()
+        {
+            RuleFor(h => h.FkNewsTypeId)
+                        .NotEmpty()
+                        .MaximumLength(50)
+                ;
+
+            RuleFor(h => h.Title)
+                        .MaximumLength(500)
+                ;
+
+            RuleFor(h => h.SlugTitle)
+                        .NotEmpty()
+                        .MaximumLength(500)
+                ;
+
+            RuleFor(h => h.AutoSlug)
+                ;
+
+            RuleFor(h => h.ShortDescriptionHtml)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.LongDescriptionHtml)
+                ;
+
+            RuleFor(h => h.Tags)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.KeyWord)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.MetaData)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.Note)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.ImageSlug)
+                        .MaximumLength(100)
+                ;
+
+        }
+    }
+
+    public class NewsCreateValidator : NewsBaseValidator<NewsCreateViewModel>
+    {
+        public NewsCreateValidator()
+        {
+        }
+    }
+
+    public class NewsEditValidator : NewsBaseValidator<NewsEditViewModel>
+    {
+        public NewsEditValidator()
+        {
+            RuleFor(h => h.Id)
+                        .NotEmpty()
+                        .MaximumLength(50)
+                ;
+
+            RuleFor(h => h.RowVersion)
+                        .NotNull()
+                ;
+
+        }
+    }
+
+
+
+
+
 
 
 
