@@ -17,6 +17,8 @@ using AtECommerce.Efs.Entities;
 using FluentValidation.AspNetCore;
 using AtECommerce.Controllers;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace AtECommerce
 {
@@ -80,6 +82,15 @@ namespace AtECommerce
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                //Key -> StaticFileSetting || Value -> "D:\\ATImage"
+                //Configuration.GetSection("StaticFileSetting").Value -> "E:\\ATImage"
+                Path.Combine(Configuration.GetSection("StaticFileSetting").Value)),
+                RequestPath = "/Image"
+            });
+
             app.UseCookiePolicy();
 
             app.UseAuthentication();

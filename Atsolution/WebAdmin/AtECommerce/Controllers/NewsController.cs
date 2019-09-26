@@ -12,9 +12,7 @@ using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Hosting;
 
 using AtECommerce.Efs.Entities;
-
-
-
+using Microsoft.Extensions.Configuration;
 
 namespace AtECommerce.Controllers
 {
@@ -95,7 +93,7 @@ namespace AtECommerce.Controllers
             var news = await _context.News.AsNoTracking()
 
                 .Include(n => n.FkNewsType)
-                    .Where(h => h.Id == id)
+                    .Where(h => h.SlugTitle == id)
                 .FirstOrDefaultAsync();
             if (news == null)
             {
@@ -108,10 +106,18 @@ namespace AtECommerce.Controllers
         // GET: News/Create
         public async Task<IActionResult> Create()
         {
-            // Get list master of foreign property and set to view data
-            await PrepareListMasterForeignKey();
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewData["ControllerNameForImageBrowser"] = nameof(ImageBrowserNewController).Replace("Controller", "");
+                // Get list master of foreign property and set to view data
+                await PrepareListMasterForeignKey();
 
-            return View();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction(nameof(ErrorController.Index), nameof(ErrorController).Replace("Controller", ""));
+            }
         }
 
         // POST: News/Create
@@ -121,6 +127,7 @@ namespace AtECommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] NewsCreateViewModel vmItem)
         {
+            ViewData["ControllerNameForImageBrowser"] = nameof(ImageBrowserNewController).Replace("Controller", "");
 
             // Invalid model
             if (!ModelState.IsValid)
@@ -135,8 +142,21 @@ namespace AtECommerce.Controllers
             var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
             // Trim white space
+            vmItem.SlugTitle = $"{vmItem.SlugTitle}".Trim();
+            if (vmItem.AutoSlug)
+            {
+                vmItem.SlugTitle = NormalizeSlug($"{vmItem.Title}");
+            }
+            else
+            {
+                vmItem.SlugTitle = NormalizeSlug($"{vmItem.SlugTitle}");
+            }
 
-
+            // Check slug is existed => if existed auto get next slug
+            var listExistedSlug = await _context.News.AsNoTracking()
+                    .Where(h => h.SlugTitle.StartsWith(vmItem.SlugTitle))
+                    .Select(h => h.SlugTitle).ToListAsync();
+            var slug = CheckAndGenNextSlug(vmItem.SlugTitle, listExistedSlug);
 
             // Create save db item
             var dbItem = new News
@@ -165,12 +185,14 @@ namespace AtECommerce.Controllers
             _context.Add(dbItem);
 
             // Set time stamp for table to handle concurrency conflict
-            tableVersion.LastModify = DateTime.Now;
+            if (tableVersion != null)
+            {
+                tableVersion.LastModify = DateTime.Now;
+            }
             await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Details), new { id = dbItem.Id });
+            return RedirectToAction(nameof(Details), new { id = dbItem.SlugTitle });
         }
-
+        
         // GET: News/Edit/5
         public async Task<IActionResult> Edit([FromRoute] string id)
         {
@@ -181,9 +203,7 @@ namespace AtECommerce.Controllers
 
 
             var dbItem = await _context.News.AsNoTracking()
-
-    .Where(h => h.Id == id)
-
+                .Where(h => h.SlugTitle == id)
                 .Select(h => new NewsEditViewModel
                 {
                     Id = h.Id,
@@ -267,7 +287,7 @@ namespace AtECommerce.Controllers
             tableVersion.LastModify = DateTime.Now;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Details), new { id = dbItem.Id });
+            return RedirectToAction(nameof(Details), new { id = dbItem.SlugTitle });
         }
 
         // GET: News/Details/5
@@ -308,7 +328,7 @@ namespace AtECommerce.Controllers
             var dbItem = await _context.News
 
                 .Include(n => n.FkNewsType)
-                .Where(h => h.Id == id)
+                .Where(h => h.SlugTitle == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
@@ -343,13 +363,48 @@ namespace AtECommerce.Controllers
         {
             ViewData["FkNewsTypeId"] = new SelectList(
                 await _context.NewsType.AsNoTracking()
-                    .Select(h => new { h.Id, h.Name })
+                    .Select(h => new { h.Id, h.Name, h.RowStatus})
+                    .Where(h=>h.RowStatus == (int)AtRowStatus.Normal)
                     .OrderBy(h => h.Id)
                     .ToListAsync(),
-                "Id", "Id", vm?.FkNewsTypeId);
-        }
+                "Id", "Name", vm?.FkNewsTypeId);
+
+                  }
     }
 
+    public class ImageBrowserNewController : EditorImageBrowserController
+    {
+        public const string FOLDER_NAME = "ImagesNews";
+        public string FOLDER_ROOTPATH;
+
+        /// <summary>
+        /// Gets the base paths from which content will be served.
+        /// </summary>
+        public override string ContentPath
+        {
+            get
+            {
+                return CreateUserFolder();
+            }
+        }
+
+        public ImageBrowserNewController(IHostingEnvironment hostingEnvironment, IConfiguration staticFileSetting)
+           : base(hostingEnvironment)
+        {
+            FOLDER_ROOTPATH = staticFileSetting.GetValue<string>("StaticFileSetting");
+        }
+        private string CreateUserFolder()
+        {
+            var virtualPath = System.IO.Path.Combine(FOLDER_NAME);
+            //var path = HostingEnvironment.WebRootFileProvider.GetFileInfo(virtualPath).PhysicalPath;
+            var path = System.IO.Path.Combine(FOLDER_ROOTPATH, FOLDER_NAME);
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            return path;
+        }
+    }
 
 
     public class NewsBaseViewModel
