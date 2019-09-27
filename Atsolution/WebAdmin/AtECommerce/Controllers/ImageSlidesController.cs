@@ -18,22 +18,22 @@ using AtECommerce.Efs.Entities;
 
 namespace AtECommerce.Controllers
 {
-    public class NewsTypesController : AtBaseController
+    public class ImageSlidesController : AtBaseController
     {
-        private readonly WebAtSolutionContext _webcontext;
+        private readonly WebAtSolutionContext _context;
 
-        public NewsTypesController(WebAtSolutionContext context)
+        public ImageSlidesController(WebAtSolutionContext context)
         {
-            _webcontext = context;
+            _context = context;
         }
 
-        // GET: NewsTypes
+        // GET: ImageSlides
         public async Task<IActionResult> Index([FromRoute]string id)
         {
-            NewsType dbItem = null;
+            ImageSlide dbItem = null;
             if (!string.IsNullOrWhiteSpace(id))
             {
-                dbItem = await _webcontext.NewsType.AsNoTracking().FirstOrDefaultAsync(h => h.Id == id);
+                dbItem = await _context.ImageSlide.AsNoTracking().FirstOrDefaultAsync(h => h.Id == id);
                 if (dbItem == null)
                 {
                     return NotFound();
@@ -41,29 +41,33 @@ namespace AtECommerce.Controllers
             }
             ViewData["ParentItem"] = dbItem;
 
-            ViewData["ControllerNameForGrid"] = nameof(NewsTypesController).Replace("Controller", "");
+            ViewData["ControllerNameForGrid"] = nameof(ImageSlidesController).Replace("Controller", "");
             return View();
         }
 
         public async Task<IActionResult> Index_Read([DataSourceRequest] DataSourceRequest request, string parentId)
         {
-            var baseQuery = _webcontext.NewsType.AsNoTracking();
+            var baseQuery = _context.ImageSlide.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(parentId))
             {
                 baseQuery = baseQuery.Where(h => h.Id == parentId);
             }
             var query = baseQuery
-                .Where(p => p.RowStatus == (int)AtRowStatus.Normal)
-                .Select(h => new NewsTypeDetailsViewModel
+                .Select(h => new ImageSlideDetailsViewModel
                 {
                     Id = h.Id,
-                    Code = h.Code,
                     Name = h.Name,
                     SlugName = h.SlugName,
+                    Extension = h.Extension,
+                    Description = h.Description,
+                    SortIndex = h.SortIndex,
+                    IsYoutube = h.IsYoutube,
+                    YoutubeLink = h.YoutubeLink,
+                    Thumbnail = h.Thumbnail,
+                    Note = h.Note,
                     Tags = h.Tags,
                     KeyWord = h.KeyWord,
                     MetaData = h.MetaData,
-                    Note = h.Note,
                     CreatedBy = h.CreatedBy,
                     CreatedDate = h.CreatedDate,
                     UpdatedBy = h.UpdatedBy,
@@ -77,7 +81,7 @@ namespace AtECommerce.Controllers
         }
 
 
-        // GET: NewsTypes/Details/5
+        // GET: ImageSlides/Details/5
         public async Task<IActionResult> Details([FromRoute] string id)
         {
             if (id == null)
@@ -85,30 +89,30 @@ namespace AtECommerce.Controllers
                 return NotFound();
             }
 
-            var newsType = await _webcontext.NewsType.AsNoTracking()
+            var imageSlide = await _context.ImageSlide.AsNoTracking()
 
                     .Where(h => h.SlugName == id)
                 .FirstOrDefaultAsync();
-            if (newsType == null)
+            if (imageSlide == null)
             {
                 return NotFound();
             }
 
-            return View(newsType);
+            return View(imageSlide);
         }
 
-        // GET: NewsTypes/Create
+        // GET: ImageSlides/Create
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
-        // POST: NewsTypes/Create
+        // POST: ImageSlides/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] NewsTypeCreateViewModel vmItem)
+        public async Task<IActionResult> Create([FromForm] ImageSlideCreateViewModel vmItem)
         {
 
             // Invalid model
@@ -118,23 +122,16 @@ namespace AtECommerce.Controllers
             }
 
             // Get time stamp for table to handle concurrency conflict
-            var tableName = nameof(NewsType);
-            var tableVersion = await _webcontext.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
+            var tableName = nameof(ImageSlide);
+            var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
             // Trim white space
-            vmItem.Code = $"{vmItem.Code}".Trim();
             vmItem.Name = $"{vmItem.Name}".Trim();
 
-            // Check code is existed
-            if (await _webcontext.NewsType.AnyAsync(h => h.Code == vmItem.Code))
-            {
-                ModelState.AddModelError(nameof(NewsType.Code), "The code has been existed.");
-                return View(vmItem);
-            }
 
 
             // Create save db item
-            var dbItem = new NewsType
+            var dbItem = new ImageSlide
             {
                 Id = Guid.NewGuid().ToString(),
 
@@ -145,25 +142,30 @@ namespace AtECommerce.Controllers
                 RowStatus = (int)AtRowStatus.Normal,
                 RowVersion = null,
 
-                Code = vmItem.Code,
                 Name = vmItem.Name,
                 SlugName = vmItem.SlugName,
                 AutoSlug = vmItem.AutoSlug,
+                Extension = vmItem.Extension,
+                Description = vmItem.Description,
+                SortIndex = vmItem.SortIndex,
+                IsYoutube = vmItem.IsYoutube,
+                YoutubeLink = vmItem.YoutubeLink,
+                Thumbnail = vmItem.Thumbnail,
+                Note = vmItem.Note,
                 Tags = vmItem.Tags,
                 KeyWord = vmItem.KeyWord,
                 MetaData = vmItem.MetaData,
-                Note = vmItem.Note,
             };
-            _webcontext.Add(dbItem);
+            _context.Add(dbItem);
 
             // Set time stamp for table to handle concurrency conflict
             tableVersion.LastModify = DateTime.Now;
-            await _webcontext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = dbItem.Id });
         }
 
-        // GET: NewsTypes/Edit/5
+        // GET: ImageSlides/Edit/5
         public async Task<IActionResult> Edit([FromRoute] string id)
         {
             if (id == null)
@@ -172,21 +174,24 @@ namespace AtECommerce.Controllers
             }
 
 
-            var dbItem = await _webcontext.NewsType.AsNoTracking()
-
-    .Where(h => h.SlugName == id)
-
-                .Select(h => new NewsTypeEditViewModel
+            var dbItem = await _context.ImageSlide.AsNoTracking()
+                .Where(h => h.SlugName == id)
+                .Select(h => new ImageSlideEditViewModel
                 {
                     Id = h.Id,
-                    Code = h.Code,
                     Name = h.Name,
                     SlugName = h.SlugName,
                     AutoSlug = h.AutoSlug,
+                    Extension = h.Extension,
+                    Description = h.Description,
+                    SortIndex = h.SortIndex,
+                    IsYoutube = h.IsYoutube,
+                    YoutubeLink = h.YoutubeLink,
+                    Thumbnail = h.Thumbnail,
+                    Note = h.Note,
                     Tags = h.Tags,
                     KeyWord = h.KeyWord,
                     MetaData = h.MetaData,
-                    Note = h.Note,
                     RowVersion = h.RowVersion,
                 })
                 .FirstOrDefaultAsync();
@@ -199,12 +204,12 @@ namespace AtECommerce.Controllers
             return View(dbItem);
         }
 
-        // POST: NewsTypes/Edit/5
+        // POST: ImageSlides/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromForm] NewsTypeEditViewModel vmItem)
+        public async Task<IActionResult> Edit([FromForm] ImageSlideEditViewModel vmItem)
         {
 
             // Invalid model
@@ -214,10 +219,10 @@ namespace AtECommerce.Controllers
             }
 
             // Get time stamp for table to handle concurrency conflict
-            var tableName = nameof(NewsType);
-            var tableVersion = await _webcontext.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
+            var tableName = nameof(ImageSlide);
+            var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
-            var dbItem = await _webcontext.NewsType
+            var dbItem = await _context.ImageSlide
                 .Where(h => h.Id == vmItem.Id)
 
                 .FirstOrDefaultAsync();
@@ -227,15 +232,8 @@ namespace AtECommerce.Controllers
             }
 
             // Trim white space
-            vmItem.Code = $"{vmItem.Code}".Trim();
             vmItem.Name = $"{vmItem.Name}".Trim();
 
-            // Check code is existed
-            if (await _webcontext.NewsType.AnyAsync(h => h.Id != vmItem.Id && h.Code == vmItem.Code))
-            {
-                ModelState.AddModelError(nameof(NewsType.Code), "The code has been existed.");
-                return View(vmItem);
-            }
 
 
             // Update db item               
@@ -243,24 +241,29 @@ namespace AtECommerce.Controllers
             dbItem.UpdatedDate = DateTime.Now;
             dbItem.RowVersion = vmItem.RowVersion;
 
-            dbItem.Code = vmItem.Code;
             dbItem.Name = vmItem.Name;
             dbItem.SlugName = vmItem.SlugName;
             dbItem.AutoSlug = vmItem.AutoSlug;
+            dbItem.Extension = vmItem.Extension;
+            dbItem.Description = vmItem.Description;
+            dbItem.SortIndex = vmItem.SortIndex;
+            dbItem.IsYoutube = vmItem.IsYoutube;
+            dbItem.YoutubeLink = vmItem.YoutubeLink;
+            dbItem.Thumbnail = vmItem.Thumbnail;
+            dbItem.Note = vmItem.Note;
             dbItem.Tags = vmItem.Tags;
             dbItem.KeyWord = vmItem.KeyWord;
             dbItem.MetaData = vmItem.MetaData;
-            dbItem.Note = vmItem.Note;
 
-            _webcontext.Entry(dbItem).Property(nameof(NewsType.RowVersion)).OriginalValue = vmItem.RowVersion;
+            _context.Entry(dbItem).Property(nameof(ImageSlide.RowVersion)).OriginalValue = vmItem.RowVersion;
             // Set time stamp for table to handle concurrency conflict
             tableVersion.LastModify = DateTime.Now;
-            await _webcontext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = dbItem.Id });
         }
 
-        // GET: NewsTypes/Details/5
+        // GET: ImageSlides/Details/5
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (id == null)
@@ -268,7 +271,7 @@ namespace AtECommerce.Controllers
                 return NotFound();
             }
 
-            var dbItem = await _webcontext.NewsType.AsNoTracking()
+            var dbItem = await _context.ImageSlide.AsNoTracking()
 
                     .Where(h => h.SlugName == id)
                 .FirstOrDefaultAsync();
@@ -280,7 +283,7 @@ namespace AtECommerce.Controllers
             return View(dbItem);
         }
 
-        // POST: NewsTypes/Delete/5
+        // POST: ImageSlides/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete([FromForm] string id, [FromForm] byte[] rowVersion)
@@ -291,10 +294,10 @@ namespace AtECommerce.Controllers
             }
 
             // Get time stamp for table to handle concurrency conflict
-            var tableName = nameof(NewsType);
-            var tableVersion = await _webcontext.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
+            var tableName = nameof(ImageSlide);
+            var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
-            var dbItem = await _webcontext.NewsType
+            var dbItem = await _context.ImageSlide
 
                 .Where(h => h.Id == id)
                 .FirstOrDefaultAsync();
@@ -317,10 +320,10 @@ namespace AtECommerce.Controllers
                 dbItem.UpdatedDate = DateTime.Now;
                 dbItem.RowVersion = rowVersion;
 
-                _webcontext.Entry(dbItem).Property(nameof(NewsType.RowVersion)).OriginalValue = rowVersion;
+                _context.Entry(dbItem).Property(nameof(ImageSlide.RowVersion)).OriginalValue = rowVersion;
                 // Set time stamp for table to handle concurrency conflict
                 tableVersion.LastModify = DateTime.Now;
-                await _webcontext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
 
 
@@ -331,20 +334,25 @@ namespace AtECommerce.Controllers
 
 
 
-    public class NewsTypeBaseViewModel
+    public class ImageSlideBaseViewModel
     {
 
-        public String Code { get; set; }
         public String Name { get; set; }
         public String SlugName { get; set; }
         public Boolean AutoSlug { get; set; }
+        public String Extension { get; set; }
+        public String Description { get; set; }
+        public Int32 SortIndex { get; set; }
+        public Boolean IsYoutube { get; set; }
+        public String YoutubeLink { get; set; }
+        public String Thumbnail { get; set; }
+        public String Note { get; set; }
         public String Tags { get; set; }
         public String KeyWord { get; set; }
         public String MetaData { get; set; }
-        public String Note { get; set; }
     }
 
-    public class NewsTypeDetailsViewModel : NewsTypeBaseViewModel
+    public class ImageSlideDetailsViewModel : ImageSlideBaseViewModel
     {
 
         public String Id { get; set; }
@@ -358,27 +366,22 @@ namespace AtECommerce.Controllers
 
     }
 
-    public class NewsTypeCreateViewModel : NewsTypeBaseViewModel
+    public class ImageSlideCreateViewModel : ImageSlideBaseViewModel
     {
 
     }
 
-    public class NewsTypeEditViewModel : NewsTypeBaseViewModel
+    public class ImageSlideEditViewModel : ImageSlideBaseViewModel
     {
 
         public String Id { get; set; }
         public Byte[] RowVersion { get; set; }
     }
 
-    public class NewsTypeBaseValidator<T> : AtBaseValidator<T> where T : NewsTypeBaseViewModel
+    public class ImageSlideBaseValidator<T> : AtBaseValidator<T> where T : ImageSlideBaseViewModel
     {
-        public NewsTypeBaseValidator()
+        public ImageSlideBaseValidator()
         {
-            RuleFor(h => h.Code)
-                        .NotEmpty()
-                        .MaximumLength(50)
-                ;
-
             RuleFor(h => h.Name)
                         .NotEmpty()
                         .MaximumLength(100)
@@ -390,6 +393,33 @@ namespace AtECommerce.Controllers
                 ;
 
             RuleFor(h => h.AutoSlug)
+                ;
+
+            RuleFor(h => h.Extension)
+                        .NotEmpty()
+                        .MaximumLength(5)
+                ;
+
+            RuleFor(h => h.Description)
+                        .MaximumLength(1000)
+                ;
+
+            RuleFor(h => h.SortIndex)
+                ;
+
+            RuleFor(h => h.IsYoutube)
+                ;
+
+            RuleFor(h => h.YoutubeLink)
+                        .MaximumLength(500)
+                ;
+
+            RuleFor(h => h.Thumbnail)
+                        .MaximumLength(500)
+                ;
+
+            RuleFor(h => h.Note)
+                        .MaximumLength(1000)
                 ;
 
             RuleFor(h => h.Tags)
@@ -404,23 +434,19 @@ namespace AtECommerce.Controllers
                         .MaximumLength(1000)
                 ;
 
-            RuleFor(h => h.Note)
-                        .MaximumLength(1000)
-                ;
-
         }
     }
 
-    public class NewsTypeCreateValidator : NewsTypeBaseValidator<NewsTypeCreateViewModel>
+    public class ImageSlideCreateValidator : ImageSlideBaseValidator<ImageSlideCreateViewModel>
     {
-        public NewsTypeCreateValidator()
+        public ImageSlideCreateValidator()
         {
         }
     }
 
-    public class NewsTypeEditValidator : NewsTypeBaseValidator<NewsTypeEditViewModel>
+    public class ImageSlideEditValidator : ImageSlideBaseValidator<ImageSlideEditViewModel>
     {
-        public NewsTypeEditValidator()
+        public ImageSlideEditValidator()
         {
             RuleFor(h => h.Id)
                         .NotEmpty()

@@ -58,6 +58,45 @@
 
 
   <ItemGroup>
+    <None Include="wwwroot\js\app.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\views\main.js" />
+    <None Include="wwwroot\vendors\css\font-awesome.css.map" />
+    <None Include="wwwroot\vendors\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\vendors\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\vendors\fonts\Simple-Line-Icons.svg" />
+    <None Include="wwwroot\vendors\fonts\Simple-Line-Icons.woff2" />
+    <None Include="wwwroot\vendors\js\bootstrap.min.js" />
+    <None Include="wwwroot\vendors\js\Chart.min.js" />
+    <None Include="wwwroot\vendors\js\codemirror.min.js" />
+    <None Include="wwwroot\vendors\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\vendors\js\daterangepicker.min.js" />
+    <None Include="wwwroot\vendors\js\fullcalendar.min.js" />
+    <None Include="wwwroot\vendors\js\gauge.min.js" />
+    <None Include="wwwroot\vendors\js\gcal.min.js" />
+    <None Include="wwwroot\vendors\js\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\vendors\js\jquery-ui.min.js" />
+    <None Include="wwwroot\vendors\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\vendors\js\jquery.maskedinput.min.js" />
+    <None Include="wwwroot\vendors\js\jquery.min.js" />
+    <None Include="wwwroot\vendors\js\jquery.min.map" />
+    <None Include="wwwroot\vendors\js\jquery.validate.min.js" />
+    <None Include="wwwroot\vendors\js\ladda.min.js" />
+    <None Include="wwwroot\vendors\js\markdown.min.js" />
+    <None Include="wwwroot\vendors\js\moment.min.js" />
+    <None Include="wwwroot\vendors\js\pace.min.js" />
+    <None Include="wwwroot\vendors\js\popper.min.js" />
+    <None Include="wwwroot\vendors\js\popper.min.js.map" />
+    <None Include="wwwroot\vendors\js\quill.min.js" />
+    <None Include="wwwroot\vendors\js\quill.min.js.map" />
+    <None Include="wwwroot\vendors\js\select2.min.js" />
+    <None Include="wwwroot\vendors\js\spin.min.js" />
+    <None Include="wwwroot\vendors\js\toastr.min.js" />
+    <None Include="wwwroot\vendors\js\xml.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <ProjectReference Include="..\AtHelper\AtHelper.csproj" />
   </ItemGroup>
 
