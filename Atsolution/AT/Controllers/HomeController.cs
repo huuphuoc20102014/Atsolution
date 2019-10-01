@@ -15,7 +15,7 @@ namespace AT.Controllers
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             HomeViewModel model = new HomeViewModel();
-            model.listdocgia = _webcontext.AboutCustomer.ToList();
+            model.listdoitac = _webcontext.AboutCustomer.ToList();
             model.listProj = _webcontext.Project.ToList();
             
             model.listBlog = _webcontext.News

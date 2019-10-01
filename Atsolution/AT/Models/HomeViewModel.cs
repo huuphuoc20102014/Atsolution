@@ -11,6 +11,6 @@ namespace AT.Models
         public List<Project> listProj { get; set; }
         public List<News> listBlog { get; set; }
 
-        public List<AboutCustomer> listdocgia{ get; set; }
+        public List<AboutCustomer> listdoitac{ get; set; }
     }
 }

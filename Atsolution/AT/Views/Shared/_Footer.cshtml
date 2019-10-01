@@ -15,24 +15,11 @@
                 <div class="cell-3">
                     <h3 class="block-head">Menu chính</h3>
                     <ul class="footer-menu">
-                        @{ int tam = 0;
-                            var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
-
-                            foreach (var item in menuModel.listMenu)
-                            {
-                                tam += 1;
-                                if (tam != 6)
-                                {
-                                    <li><a href="~/@item.SlugName">@item.Name</a></li>
-                                }
-                                else
-                                {
-                                    break;
-                                }
-
-                            }
-                        }
-
+                        <li><a href="home.html">Trang chủ</a></li>
+                        <li><a href="about-us.html">Liên hệ</a></li>
+                        <li><a href="blog.html">Bài đăng</a></li>
+                        <li><a href="portfolio-4-cols.html">Dự án</a></li>
+                        <li><a href="~/FAQ">FAQ</a></li>
                     </ul>
                 </div>
                 <!-- main menu footer cell start -->
@@ -41,7 +28,7 @@
                     <h3 class="block-head">Đối tác</h3>
                     <ul class="footer-menu">
                         @{
-                            @foreach (var item in Model.listdocgia)
+                            @foreach (var item in Model.listdoitac)
                             {
 
                                 <li><a href="#">@item.Name</a></li>
@@ -58,7 +45,7 @@
                 <!-- Our Friends footer cell start -->
                 <!-- Useful Links footer cell start -->
                 <div class="cell-3">
-                    <h3 class="block-head">Liên kết</h3>
+                    <h3 class="block-head">dự án</h3>
                     <ul class="footer-menu">
                         <li><a href="privacy.html">Liên kết 1</a></li>
                         <li><a href="terms.html">Liên kết 1</a></li>
@@ -94,17 +81,10 @@
                 <div class="cell-3">
                     <h3 class="block-head">Liên hệ</h3>
                     <ul>
-                        @{
-                            var footerContact = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
-
-                            @foreach (var item in footerContact.listContact)
-                            {
-                                <li class="footer-contact"><i class="fa fa-home"></i><span>@item.Adress</span></li>
-                                <li class="footer-contact"><i class="fa fa-globe"></i><span><a href="">@item.Link</a></span></li>
-                                <li class="footer-contact"><i class="fa fa-phone"></i><span>@item.Phone</span></li>
-                                <li class="footer-contact"><i class="fa fa-envelope"></i><span>@item.Email</span></li>
-                            }
-                        }
+                        <li class="footer-contact"><i class="fa fa-home"></i><span>50 Lê Văn Việt, phường Hiệp Phú, quận 9, TP.HCM.</span></li>
+                        <li class="footer-contact"><i class="fa fa-globe"></i><span><a href="#">https://www.atsolution.info/</a></span></li>
+                        <li class="footer-contact"><i class="fa fa-phone"></i><span>+84 934 090 231</span></li>
+                        <li class="footer-contact"><i class="fa fa-map-marker"></i><span><a href="contact.html#map_canvas">Bản đồ</a></span></li>
                     </ul>
                 </div>
                 <!-- contact us footer cell end -->
