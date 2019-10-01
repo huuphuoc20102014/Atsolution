@@ -222,47 +222,58 @@
                                 @*<li><a href="#" class="skew25 filter" data-filter=".seo">SEO Management</a></li>*@
                             </ul>
                         </div>
-                        <div class="portfolio-items" id="container">
-                            @foreach (var item in Model.listProj)
-                            {
 
-                                <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="gallery portfolio-img-slick">
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
+                        <div class="portfolio-items" id="container">
+
+                            @{
+                                int dem = 0;
+                                @foreach (var item in Model.listProj)
+                                {
+
+                                    if (++dem <= 8)
+                                    {
+                                        <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
+                                            <div class="portfolio-item">
+                                                <div class="img-holder">
+                                                    <div class="gallery portfolio-img-slick">
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
+                                                <div class="name-holder">
+                                                    <a href="#" class="project-name">@item.Name</a>
+                                                    <span class="project-options">@item.FkProjectTypeId</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">@item.Name</a>
-                                            <span class="project-options">@item.FkProjectTypeId</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    }
+                                    
+
+
+                                }
                             }
                             @*<div class="cell-3 develop seo" data-category="develop">
                                     <div class="portfolio-item">
