@@ -11,6 +11,7 @@ namespace AT.Controllers
         [HttpGet("trang-chu")]
         public IActionResult Index()
         {
+
             return View();
         }
     }

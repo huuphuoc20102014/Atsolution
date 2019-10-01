@@ -1,0 +1,138 @@
+﻿@model PortfolioSingleViewModel
+@{
+    ViewBag.Title = "Portfolio Single";
+}
+
+<div id="contentWrapper">
+    <div class="page-title title-1">
+        <div class="container">
+            <div class="row">
+                <div class="cell-12">
+                    <h1 class="fx" data-animate="fadeInLeft">Portfolio <span>Single</span></h1>
+                    <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
+                        <span class="bold">You Are In:</span><a href="#">Home</a><span class="line-separate">/</span><a href="#">Portfolio </a><span class="line-separate">/</span><span>Portfolio Single</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sectionWrapper">
+        <div class="container fx" data-animate="fadeInDown">
+            <div class="portfolio-img-slick">
+                <div>
+                    <a href="~/Images/Project/@Model.proj.ImageSlug" class="zoom" data-gal="prettyPhoto" title="Project image 1"><img alt="" src="~/Images/Project/@Model.proj.ImageSlug"></a>
+                </div>
+                <div>
+                    <a href="~/Images/Project/@Model.proj.ImageSlug" class="zoom" data-gal="prettyPhoto" title="Project image 2"><img alt="" src="~/Images/Project/@Model.proj.ImageSlug"></a>
+                </div>
+                <div>
+                    <a href="~/Images/Project/@Model.proj.ImageSlug" class="zoom" data-gal="prettyPhoto" title="Project image 3"><img alt="" src="~/Images/Project/@Model.proj.ImageSlug"></a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="sectionWrapper gry-bg">
+        <div class="container">
+            <div class="row">
+                <div class="cell-3 fx" data-animate="fadeInLeft">
+                    <h3 class="block-head">Project Details</h3>
+                    <ul class="list-details">
+                        <li>
+                            <i class="fa fa-tag"></i> <span class="main-color">Category:</span> @Model.proj.Name
+                        </li>
+                        <li>
+                            <i class="fa fa-user"></i> <span class="main-color">Added By:</span> @Model.proj.SlugName
+                        </li>
+                        <li>
+                            <i class="fa fa-calendar"></i> <span class="main-color">Date Added:</span> @Model.proj.CreatedDate
+                        </li>
+                        <li>
+                            <i class="fa fa-clock-o"></i> <span class="main-color">Due Date:</span> @Model.proj.UpdatedDate
+                        </li>
+                        <li>
+                            <i class="fa fa-check"></i> <span class="main-color">Customer:</span>  @Model.proj.Tags
+                        </li>
+                    </ul>
+                </div>
+                <div class="cell-6 fx project-info" data-animate="fadeInDown">
+                    <h3 class="block-head">Project Info</h3>
+                    <p>
+                        @Model.proj.LongDescriptionHtml
+                    </p>
+                </div>
+                <div class="cell-3 porto-stats fx" data-animate="fadeInRight">
+                    <h3 class="block-head">Project Stats</h3>
+                    <div class="staff-3">
+                        <div class="cell-6 fx" data-animate="bounceIn">
+                            <div class="white-bg">
+                                <div class="fun-number main-color">1962</div>
+                                <div class="fun-text">Favourites</div>
+                            </div>
+                        </div>
+                        <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="200">
+                            <div class="white-bg">
+                                <div class="fun-number main-color">136</div>
+                                <div class="fun-text">Likes</div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="400">
+                            <div class="white-bg">
+                                <div class="fun-number main-color">2350</div>
+                                <div class="fun-text">Views</div>
+                            </div>
+                        </div>
+                        <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="600">
+                            <div class="white-bg">
+                                <div class="fun-number main-color">985</div>
+                                <div class="fun-text">Reports</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Portfolio projects -->
+    <div class="sectionWrapper">
+        <div class="container">
+            <h3 class="block-head">Similar projects</h3>
+            <div class="portfolioGallery portfolio">
+                @foreach (var item in Model.listproj)
+                {
+
+                    <div>
+                        <div class="portfolio-item">
+                            <div class="img-holder">
+                                <div class="img-over">
+                                    <a href="~/chi-tiet-du-an?id=@item.Id" class="fx link"><b class="fa fa-link"></b></a>
+                                    <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                </div>
+                                <img alt="" src="~/Images/Project/@item.ImageSlug">
+                            </div>
+                            <div class="name-holder">
+                                <a href="#" class="project-name">@item.Name</a>
+                                @foreach (var item1 in Model.listprojType)
+                                {
+                                    if (item1.Id == item.FkProjectTypeId)
+                                    {
+                                        <span class="project-options">@item1.Name</span>
+                                    }
+                                    else { }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>
+
