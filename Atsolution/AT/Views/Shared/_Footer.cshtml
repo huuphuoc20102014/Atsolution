@@ -1,4 +1,9 @@
 ﻿<!-- Footer start -->
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
+
 <footer id="footWrapper">
     <div class="footer-top">
         <div class="container">
@@ -7,11 +12,26 @@
                 <div class="cell-3">
                     <h3 class="block-head">Menu chính</h3>
                     <ul class="footer-menu">
-                        <li><a href="home.html">Trang chủ</a></li>
-                        <li><a href="about-us.html">Liên hệ</a></li>
-                        <li><a href="blog.html">Bài đăng</a></li>
-                        <li><a href="portfolio-4-cols.html">Dự án</a></li>
-                        <li><a href="~/FAQ">FAQ</a></li>
+
+                        
+                        @{  int tam = 0;
+                            var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+                            
+                            foreach (var item in menuModel.listMenu)
+                            {
+                                tam += 1;
+                                if (tam != 6)
+                                {
+                                    <li><a href="~/@item.SlugName">@item.Name</a></li>
+                                }
+                                else
+                                {
+                                    break;
+                                }
+
+                            }
+                        }
+
                     </ul>
                 </div>
                 <!-- main menu footer cell start -->
@@ -95,7 +115,8 @@
                 <!-- latest tweets footer cell start -->
                 <div class="cell-3">
                     <h3 class="block-head">Fanpage</h3>
-                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNguoiTungThuong1607%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>                </div>
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNguoiTungThuong1607%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                </div>
                 <!-- latest tweets footer cell start -->
                 <!-- flickr stream footer cell start -->
                 <div class="cell-3 flickr-stream-w">
@@ -104,7 +125,7 @@
                 </div>
 
             </div>
-                <!-- flickr stream footer cell start -->
+            <!-- flickr stream footer cell start -->
         </div>
     </div>
 
