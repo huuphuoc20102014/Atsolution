@@ -103,47 +103,74 @@
 
     <div class="sectionWrapper">
         <div class="container">
+
             @{
+                int dem = 0;
                 foreach (var item in Model.listBlog)
                 {
-                    <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
-                        <div class="box-head">
-                            <i class="icon main-bg fa fa-apple"></i>
-                            <h4 class="main-color"><span data-hover="@item.Title">@item.Title</span></h4>
+
+                    if (++dem >= 15)
+                    {
+                        <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
+                            <div class="box-head">
+                                <i class="icon main-bg fa fa-apple"></i>
+                                <h4 class="main-color"><span data-hover="@item.Title">@item.Title</span></h4>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class="mediumFont">@item.LongDescriptionHtml</p>
+                            <a class="r-more main-color" href="services.html">Read More</a>
                         </div>
-                        <div class="clearfix"></div>
-                        <p class="mediumFont">@item.LongDescriptionHtml</p>
-                        <a class="r-more main-color" href="services.html">Read More</a>
-                    </div>
+                    }
                 }
+
+            }
+            @{
+                int dems = 0;
+                foreach (var item in Model.listBlog)
+                {
+
+                    if (++dems <=2)
+                    {
+                        <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
+                            <div class="box-head">
+                                <i class="icon main-bg fa fa-apple"></i>
+                                <h4 class="main-color"><span data-hover="@item.Title">@item.Title</span></h4>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class="mediumFont">@item.LongDescriptionHtml</p>
+                            <a class="r-more main-color" href="services.html">Read More</a>
+                        </div>
+                    }
+                }
+
             }
             @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-android"></i>
-                        <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>
-                <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-bell"></i>
-                        <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>
-                <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-lightbulb-o"></i>
-                        <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>*@
+            <div class="box-head">
+                <i class="icon main-bg fa fa-android"></i>
+                <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
+            </div>
+            <div class="clearfix"></div>
+            <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+            <a class="r-more main-color" href="services.html">Read More</a>
+        </div>
+        <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
+            <div class="box-head">
+                <i class="icon main-bg fa fa-bell"></i>
+                <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
+            </div>
+            <div class="clearfix"></div>
+            <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor.</p>
+            <a class="r-more main-color" href="services.html">Read More</a>
+        </div>
+        <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
+            <div class="box-head">
+                <i class="icon main-bg fa fa-lightbulb-o"></i>
+                <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
+            </div>
+            <div class="clearfix"></div>
+            <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+            <a class="r-more main-color" href="services.html">Read More</a>
+        </div>*@
         </div>
     </div>
 
@@ -195,58 +222,47 @@
                                 @*<li><a href="#" class="skew25 filter" data-filter=".seo">SEO Management</a></li>*@
                             </ul>
                         </div>
-
                         <div class="portfolio-items" id="container">
+                            @foreach (var item in Model.listProj)
+                            {
 
-                            @{
-                                int dem = 0;
-                                @foreach (var item in Model.listProj)
-                                {
-
-                                    if (++dem <= 8)
-                                    {
-                                        <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
-                                            <div class="portfolio-item">
-                                                <div class="img-holder">
-                                                    <div class="gallery portfolio-img-slick">
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
+                                    <div class="portfolio-item">
+                                        <div class="img-holder">
+                                            <div class="gallery portfolio-img-slick">
+                                                <div>
+                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                        <img src="images/portfolio/1.jpg" alt="">
+                                                    </a>
                                                 </div>
-                                                <div class="name-holder">
-                                                    <a href="#" class="project-name">@item.Name</a>
-                                                    <span class="project-options">@item.FkProjectTypeId</span>
+                                                <div>
+                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                        <img src="images/portfolio/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                        <img src="images/portfolio/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                        <img src="images/portfolio/1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                        <img src="images/portfolio/1.jpg" alt="">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    }
-                                    
-
-
-                                }
+                                        <div class="name-holder">
+                                            <a href="#" class="project-name">@item.Name</a>
+                                            <span class="project-options">@item.FkProjectTypeId</span>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             @*<div class="cell-3 develop seo" data-category="develop">
                                     <div class="portfolio-item">

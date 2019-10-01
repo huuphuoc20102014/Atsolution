@@ -1,8 +1,9 @@
-﻿<!-- Footer start -->
-@using Microsoft.AspNetCore.Http
-@inject IHttpContextAccessor HttpContextAccessor
-@inject AT.Efs.Entities.WebAtSolutionContext webContext
+﻿@model AT.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
 
+<!-- Footer start -->
 <footer id="footWrapper">
     <div class="footer-top">
         <div class="container">
@@ -36,11 +37,19 @@
                 <div class="cell-3">
                     <h3 class="block-head">Đối tác</h3>
                     <ul class="footer-menu">
-                        <li><a href="#">Golden Sea</a></li>
-                        <li><a href="#">POS</a></li>
-                        <li><a href="#">Golden Sea</a></li>
-                        <li><a href="#">Golden Sea</a></li>
-                        <li><a href="#">Golden Sea</a></li>
+                        @{
+                            @foreach (var item in Model.listdocgia)
+                            {
+
+                                <li><a href="#">@item.Name</a></li>
+                            }
+
+                        }
+                        @*<li><a href="#">Golden Sea</a></li>
+        <li><a href="#">POS</a></li>
+        <li><a href="#">Golden Sea</a></li>
+        <li><a href="#">Golden Sea</a></li>
+        <li><a href="#">Golden Sea</a></li>*@
                     </ul>
                 </div>
                 <!-- Our Friends footer cell start -->
