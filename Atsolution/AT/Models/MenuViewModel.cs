@@ -10,5 +10,6 @@ namespace AT.Models
     {
         public List<Menu> listMenu { get; set; }
         public List<Service> listService { get; set; }
+        public List<Contact> listContact { get; set; }
     }
 }

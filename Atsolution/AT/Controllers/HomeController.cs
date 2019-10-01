@@ -19,7 +19,6 @@ namespace AT.Controllers
             model.listBlog = _webcontext.News
                 .OrderByDescending(p => p.CreatedDate)
                 .ToList();
-           
             return View(model);
         }
     }

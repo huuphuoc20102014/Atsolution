@@ -15,6 +15,7 @@ namespace AT.Helpers
             MenuViewModel model = new MenuViewModel();
             model.listMenu = await webContext.Menu.ToListAsync();
             model.listService = await webContext.Service.ToListAsync();
+            model.listContact = await webContext.Contact.ToListAsync();
             return model;
         }
 
