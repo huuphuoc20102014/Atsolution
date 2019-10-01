@@ -1,4 +1,7 @@
 ﻿@model AT.Models.HomeViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewData["Title"] = "Trang chủ";
 }
@@ -46,10 +49,10 @@
 
                         }
                         @*<li><a href="#">Golden Sea</a></li>
-        <li><a href="#">POS</a></li>
-        <li><a href="#">Golden Sea</a></li>
-        <li><a href="#">Golden Sea</a></li>
-        <li><a href="#">Golden Sea</a></li>*@
+                            <li><a href="#">POS</a></li>
+                            <li><a href="#">Golden Sea</a></li>
+                            <li><a href="#">Golden Sea</a></li>
+                            <li><a href="#">Golden Sea</a></li>*@
                     </ul>
                 </div>
                 <!-- Our Friends footer cell start -->

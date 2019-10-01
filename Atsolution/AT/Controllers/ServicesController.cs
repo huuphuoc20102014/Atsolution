@@ -13,12 +13,7 @@ namespace AT.Controllers
         [HttpGet("dich-vu")]
         public IActionResult Index()
         {
-            WebAtSolutionContext _webcontext = new WebAtSolutionContext();
-            ServicesViewModel model = new ServicesViewModel();
-            model.listService = _webcontext.Service.ToList();
-            model.listProj = _webcontext.Project.ToList();
-            model.listProjType = _webcontext.ProjectType.ToList();
-            return View(model);
+            return View();
         }
     }
 }

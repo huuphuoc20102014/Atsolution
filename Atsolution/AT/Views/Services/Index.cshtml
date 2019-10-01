@@ -1,4 +1,6 @@
-﻿@model ServicesViewModel
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewBag.Title = "Services";
 }
@@ -20,17 +22,20 @@
     <div class="sectionWrapper">
         <div class="container">
             <div class="row">
-                @foreach (var item in Model.listService)
-                {
-                    <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
-                        <div class="box-2-cont">
-                            <i class="fa @item.Icon"></i>
-                            <h4>@item.ServiceName</h4>
-                            <div class="center sub-title main-color">sub title</div>
-                            <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                            <a class="r-more main-color" href="#">Read More</a>
+                @{
+                    var servicesModel = await AT.Helpers.ServicesHelper.GetDataServices(webContext);
+                    foreach (var item in servicesModel.listService)
+                    {
+                        <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
+                            <div class="box-2-cont">
+                                <i class="fa @item.Icon"></i>
+                                <h4>@item.ServiceName</h4>
+                                <div class="center sub-title main-color">sub title</div>
+                                <p class="mediumFont">@item.ShortDescriptionHtml</p>
+                                <a class="r-more main-color" href="#">Read More</a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
                 @*<div class="cell-3 service-box-2 fx" data-animate="fadeInDown" data-animation-delay="200">
                         <div class="box-2-cont">
@@ -73,7 +78,7 @@
                         <p>
                             “Responsive Web Design” đây có thể nói là khái niệm rất hot và đang phát triển rất mạnh mẽ hiện nay, hiển nhiên Responsive Web Design là một công nghệ web mới và đang là 1 trong những xu hướng web hiện nay, nếu bạn vẫn còn chưa thực sụ tin điều này có thể kiểm chứng Google với keyword: “xu hướng web”. Với những điều tôi nói trên thì bạn có thực sự muốn biết nó là gì và nó mang lại lợi ích thiết thực gì đối với việc phát triển web?
                         </p>
-                       <ul class="list alt list-ok">
+                        <ul class="list alt list-ok">
                             <li class="fx" data-animate="fadeInLeft">Website có thể truy cập dễ dàng bằng tất cả các thiết bị (đáp ứng được nhu cầu của người sử dụng di động).</li>
                             <li class="fx" data-animate="fadeInLeft" data-animation-delay="200">Thu hút những khách hàng truy cập website trên đường đi, quản lí nhiều hiển thị chỉ với một lần chỉnh sửa.</li>
                             <li class="fx" data-animate="fadeInLeft" data-animation-delay="400">Giảm chi phí và thời gian thiết kế cho nhiều loại màn hình, cải thiện seo cho website.</li>
@@ -91,106 +96,108 @@
         <div class="container">
             <h3 class="block-head">Recent projects</h3>
             <div class="portfolioGallery portfolio">
-                @foreach (var item in Model.listProj)
-                {
+                @{
+                    foreach (var item in servicesModel.listProj)
+                    {
+                        <div>
+                            <div class="portfolio-item">
+                                <div class="img-holder">
+                                    <div class="img-over">
+                                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
+                                        <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                    </div>
+                                    <img alt="" src="~/Images/Project/@item.ImageSlug">
+                                </div>
+                                <div class="name-holder">
+                                    <a href="#" class="project-name">@item.Name</a>
+                                    @foreach (var item1 in servicesModel.listProjType)
+                                    {
+                                        if (item1.Id == item.FkProjectTypeId)
+                                        {
+                                            <span class="project-options">@item1.Name</span>
+                                        }
+                                        else { }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @*<div>
+                        <div class="portfolio-item">
+                            <div class="img-holder">
+                                <div class="img-over">
+                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
+                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                </div>
+                                <img alt="" src="images/portfolio/1.jpg">
+                            </div>
+                            <div class="name-holder">
+                                <a href="#" class="project-name">Project Title</a>
+                                <span class="project-options">Project Category</span>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <div class="portfolio-item">
                             <div class="img-holder">
                                 <div class="img-over">
                                     <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
                                 </div>
-                                <img alt="" src="~/Images/Project/@item.ImageSlug">
+                                <img alt="" src="images/portfolio/1.jpg">
                             </div>
                             <div class="name-holder">
-                                <a href="#" class="project-name">@item.Name</a>
-                                @foreach (var item1 in Model.listProjType)
-                                {
-                                    if(item1.Id == item.FkProjectTypeId)
-                                    {  
-                                    <span class="project-options">@item1.Name</span>
-                                    }
-                                    else { }
-                                }
+                                <a href="#" class="project-name">Project Title</a>
+                                <span class="project-options">Project Category</span>
                             </div>
                         </div>
                     </div>
-                    }
-                @*<div>
-            <div class="portfolio-item">
-                <div class="img-holder">
-                    <div class="img-over">
-                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                        <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                    <div>
+                        <div class="portfolio-item">
+                            <div class="img-holder">
+                                <div class="img-over">
+                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
+                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                </div>
+                                <img alt="" src="images/portfolio/1.jpg">
+                            </div>
+                            <div class="name-holder">
+                                <a href="#" class="project-name">Project Title</a>
+                                <span class="project-options">Project Category</span>
+                            </div>
+                        </div>
                     </div>
-                    <img alt="" src="images/portfolio/1.jpg">
-                </div>
-                <div class="name-holder">
-                    <a href="#" class="project-name">Project Title</a>
-                    <span class="project-options">Project Category</span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="portfolio-item">
-                <div class="img-holder">
-                    <div class="img-over">
-                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                        <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                    <div>
+                        <div class="portfolio-item">
+                            <div class="img-holder">
+                                <div class="img-over">
+                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
+                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                </div>
+                                <img alt="" src="images/portfolio/1.jpg">
+                            </div>
+                            <div class="name-holder">
+                                <a href="#" class="project-name">Project Title</a>
+                                <span class="project-options">Project Category</span>
+                            </div>
+                        </div>
                     </div>
-                    <img alt="" src="images/portfolio/1.jpg">
-                </div>
-                <div class="name-holder">
-                    <a href="#" class="project-name">Project Title</a>
-                    <span class="project-options">Project Category</span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="portfolio-item">
-                <div class="img-holder">
-                    <div class="img-over">
-                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                        <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                    </div>
-                    <img alt="" src="images/portfolio/1.jpg">
-                </div>
-                <div class="name-holder">
-                    <a href="#" class="project-name">Project Title</a>
-                    <span class="project-options">Project Category</span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="portfolio-item">
-                <div class="img-holder">
-                    <div class="img-over">
-                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                        <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                    </div>
-                    <img alt="" src="images/portfolio/1.jpg">
-                </div>
-                <div class="name-holder">
-                    <a href="#" class="project-name">Project Title</a>
-                    <span class="project-options">Project Category</span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="portfolio-item">
-                <div class="img-holder">
-                    <div class="img-over">
-                        <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                        <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                    </div>
-                    <img alt="" src="images/portfolio/1.jpg">
-                </div>
-                <div class="name-holder">
-                    <a href="#" class="project-name">Project Title</a>
-                    <span class="project-options">Project Category</span>
-                </div>
-            </div>
-        </div>*@
+                    <div>
+                        <div class="portfolio-item">
+                            <div class="img-holder">
+                                <div class="img-over">
+                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
+                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                </div>
+                                <img alt="" src="images/portfolio/1.jpg">
+                            </div>
+                            <div class="name-holder">
+                                <a href="#" class="project-name">Project Title</a>
+                                <span class="project-options">Project Category</span>
+                            </div>
+                        </div>
+                    </div>*@
             </div>
             <div class="clearfix"></div>
         </div>
@@ -199,7 +206,7 @@
     <div class="sectionWrapper gry-pattern">
         <div class="container">
             <h3 class="block-head">We Also offer</h3>
-            @foreach (var item in Model.listService)
+            @foreach (var item in servicesModel.listService)
             {
                 <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
                     <div class="box-head">
@@ -212,35 +219,36 @@
                 </div>
             }
             @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-android"></i>
-                    <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-bell"></i>
-                    <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-lightbulb-o"></i>
-                    <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-        </div>*@
+                        <div class="box-head">
+                            <i class="icon main-bg fa fa-android"></i>
+                            <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                        <a class="r-more main-color" href="#">Read More</a>
+                    </div>
+                    <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
+                        <div class="box-head">
+                            <i class="icon main-bg fa fa-bell"></i>
+                            <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                        <a class="r-more main-color" href="#">Read More</a>
+                    </div>
+                    <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
+                        <div class="box-head">
+                            <i class="icon main-bg fa fa-lightbulb-o"></i>
+                            <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                        <a class="r-more main-color" href="#">Read More</a>
+                    </div>
+                </div>*@
+        </div>
+
+
     </div>
-
-
 </div>
 
