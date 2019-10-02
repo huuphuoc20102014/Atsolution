@@ -9,88 +9,92 @@
 <!-- Footer start -->
 <footer id="footWrapper">
     <div class="footer-top">
-        <div class="container">
+        @**@<div class="container">
             <div class="row">
-                <!-- main menu footer cell start -->
-                <div class="cell-3">
-                    <h3 class="block-head">Menu chính</h3>
-                    <ul class="footer-menu">
-                        @{ int tam = 0;
-                            var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+                @*main menu footer cell start
+                    <div class="cell-3">
+                        <h3 class="block-head">Menu chính</h3>
+                        <ul class="footer-menu">
+                            @{ int tam = 0;
+                                var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
 
-                            foreach (var item in menuModel.listMenu)
-                            {
-                                tam += 1;
-                                if (tam != 6)
+                                foreach (var item in menuModel.listMenu)
                                 {
-                                    <li><a href="~/@item.SlugName">@item.Name</a></li>
-                                }
-                                else
-                                {
-                                    break;
-                                }
+                                    tam += 1;
+                                    if (tam != 6)
+                                    {
+                                        <li><a href="~/@item.SlugName">@item.Name</a></li>
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
 
+                                }
                             }
-                        }
 
-                    </ul>
-                </div>
-                <!-- main menu footer cell start -->
-                <!-- Our Friends footer cell start -->
-                <div class="cell-3">
-                    <h3 class="block-head">Đối tác</h3>
-                    <ul class="footer-menu">
-                        
-                        @*<li><a href="#">Golden Sea</a></li>
+                        </ul>
+                    </div>
+                    main menu footer cell start
+                    Our Friends footer cell start
+                    <div class="cell-3">
+                        <h3 class="block-head">Đối tác</h3>
+                        <ul class="footer-menu">
+                            @{
+                                foreach (var item in menuModel.listPartner)
+                                {
+                                    <li><a href="#">@item.Name</a></li>
+                                }
+                            }
+
                             <li><a href="#">POS</a></li>
                             <li><a href="#">Golden Sea</a></li>
                             <li><a href="#">Golden Sea</a></li>
-                            <li><a href="#">Golden Sea</a></li>*@
-                    </ul>
-                </div>
-                <!-- Our Friends footer cell start -->
-                <!-- Useful Links footer cell start -->
-                <div class="cell-3">
-                    <h3 class="block-head">Liên kết</h3>
-                    <ul class="footer-menu">
-                        <li><a href="privacy.html">Liên kết 1</a></li>
-                        <li><a href="terms.html">Liên kết 1</a></li>
-                        <li><a href="#">Liên kết 1</a></li>
-                        <li><a href="#">Liên kết 1</a></li>
-                        <li><a href="#">Liên kết 1</a></li>
-                    </ul>
-                </div>
-                <!-- Useful Links footer cell start -->
-                <!-- Tags Cloud footer cell start -->
-                <div class="cell-3">
-                    <h3 class="block-head">Tags</h3>
-                    <div class="tags">
-                        <a href="#">Design</a>
-                        <a href="#">User interface</a>
-                        <a href="#">Performance</a>
-                        <a href="#">Development</a>
-                        <a href="#">WordPress</a>
-                        <a href="#">SEO</a>
-                        <a href="#">Joomla</a>
-                        <a href="#">ASP.Net</a>
-                        <a href="#">SharePoint</a>
-                        <a href="#">Bootstrap</a>
+                            <li><a href="#">Golden Sea</a></li>
+                        </ul>
                     </div>
-                </div>
-                <!-- Tags Cloud footer cell start -->
+                    Our Friends footer cell start
+                    Useful Links footer cell start
+                    <div class="cell-3">
+                        <h3 class="block-head">Liên kết</h3>
+                        <ul class="footer-menu">
+                            <li><a href="privacy.html">Liên kết 1</a></li>
+                            <li><a href="terms.html">Liên kết 1</a></li>
+                            <li><a href="#">Liên kết 1</a></li>
+                            <li><a href="#">Liên kết 1</a></li>
+                            <li><a href="#">Liên kết 1</a></li>
+                        </ul>
+                    </div>
+                    Useful Links footer cell start
+                    Tags Cloud footer cell start
+                    <div class="cell-3">
+                        <h3 class="block-head">Tags</h3>
+                        <div class="tags">
+                            <a href="#">Design</a>
+                            <a href="#">User interface</a>
+                            <a href="#">Performance</a>
+                            <a href="#">Development</a>
+                            <a href="#">WordPress</a>
+                            <a href="#">SEO</a>
+                            <a href="#">Joomla</a>
+                            <a href="#">ASP.Net</a>
+                            <a href="#">SharePoint</a>
+                            <a href="#">Bootstrap</a>
+                        </div>
+                    </div>
+                    Tags Cloud footer cell start
 
-                <div class="clearfix"></div>
-                <hr class="hr-style5">
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                    <hr class="hr-style5">
+                    <div class="clearfix"></div>
 
-                <!-- contact us footer cell start -->
+                    contact us footer cell start*@
                 <div class="cell-3">
                     <h3 class="block-head">Liên hệ</h3>
                     <ul>
                         @{
-                            var footerContact = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
-
-                            @foreach (var item in footerContact.listContact)
+                            var menuModel = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+                            @foreach (var item in menuModel.listContact)
                             {
                                 <li class="footer-contact"><i class="fa fa-home"></i><span>@item.Adress</span></li>
                                 <li class="footer-contact"><i class="fa fa-globe"></i><span><a href="">@item.Link</a></span></li>
@@ -100,7 +104,7 @@
                         }
                     </ul>
                 </div>
-                <!-- contact us footer cell end -->
+                <!--  contact us footer cell end -->
                 <!-- Newsletters footer cell start -->
                 <div class="cell-3">
                     <div class="foot-logo"></div>
@@ -121,7 +125,7 @@
                     </form>
                 </div>
                 <!-- Newsletters footer cell start -->
-                <!-- latest tweets footer cell start -->
+                <!--latest tweets footer cell start -->
                 <div class="cell-3">
                     <h3 class="block-head">Fanpage</h3>
                     <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FNguoiTungThuong1607%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -134,7 +138,7 @@
                 </div>
 
             </div>
-            <!-- flickr stream footer cell start -->
+            <!--flickr stream footer cell start-->
         </div>
     </div>
 
@@ -149,7 +153,7 @@
                 <div class="cell-7">
                     <ul class="social-list right">
                         <li class="skew-25"><a href="#" data-title="dribbble" data-tooltip="true"><span class="fa fa-dribbble skew25"></span></a></li>
-                        <li class="skew-25"><a href="#" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
+                        <li class="skew-25"><a href="https://www.facebook.com/NguoiTungThuong1607/" data-title="facebook" data-tooltip="true"><span class="fa fa-facebook skew25"></span></a></li>
                         <li class="skew-25"><a href="#" data-title="linkedin" data-tooltip="true"><span class="fa fa-linkedin skew25"></span></a></li>
                         <li class="skew-25"><a href="#" data-title="skype" data-tooltip="true"><span class="fa fa-skype skew25"></span></a></li>
                         <li class="skew-25"><a href="#" data-title="tumbler" data-tooltip="true"><span class="fa fa-tumblr skew25"></span></a></li>

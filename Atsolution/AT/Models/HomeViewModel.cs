@@ -10,7 +10,9 @@ namespace AT.Models
     {
         public List<Project> listProj { get; set; }
         public List<News> listBlog { get; set; }
-
+        public List<NewsType> listBlogT { get; set; }
+        public News Blog { get; set; }
+        public NewsType BlogT { get; set; }
         public List<AboutCustomer> listdoitac{ get; set; }
     }
 }

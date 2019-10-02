@@ -16,6 +16,7 @@ namespace AT.Helpers
             model.listMenu = await webContext.Menu.ToListAsync();
             model.listService = await webContext.Service.ToListAsync();
             model.listContact = await webContext.Contact.ToListAsync();
+            model.listPartner = await webContext.AboutCustomer.ToListAsync();
             return model;
         }
 
