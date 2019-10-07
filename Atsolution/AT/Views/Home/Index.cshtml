@@ -1,4 +1,4 @@
-﻿@model AT.Models.HomeViewModel
+@model AT.Models.HomeViewModel
 @{
     ViewData["Title"] = "Trang chủ";
 }
@@ -118,7 +118,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <p class="mediumFont">@item.LongDescriptionHtml</p>
-                            <a class="r-more main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">Read More</a>
+                            <a class="r-more main-color" href="services.html">Read More</a>
                         </div>
                     }
                 }
@@ -138,7 +138,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <p class="mediumFont">@item.LongDescriptionHtml</p>
-                            <a class="r-more main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">Read More</a>
+                            <a class="r-more main-color" href="services.html">Read More</a>
                         </div>
                     }
                 }
@@ -223,33 +223,52 @@
                             </ul>
                         </div>
                         <div class="portfolio-items" id="container">
-                            @{ dem = 0;
-                                foreach (var item in Model.listProj)
+                            @{
+
+                                int a = 0;
+                                @foreach (var item in Model.listProj)
                                 {
-                                    dem += 1;
-                                    if(dem<9)
-                                    { 
-                                    <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
-                                        <div class="portfolio-item">
-                                            <div class="img-holder">
-                                                <div class="gallery portfolio-img-slick">
-                                                    <div>
+                                    if (++a <= 8)
+                                    {
 
-                                                        <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                            <img src="~/Images/Project/@item.ImageSlug" alt="">
-                                                        </a>
+                                        <div class="cell-3 @item.FkProjectTypeId" data-category="@item.FkProjectTypeId">
+                                            <div class="portfolio-item">
+                                                <div class="img-holder">
+                                                    <div class="gallery portfolio-img-slick">
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                            </a>
+                                                        </div>
                                                     </div>
-
+                                                </div>
+                                                <div class="name-holder">
+                                                    <a href="#" class="project-name">@item.Name</a>
+                                                    <span class="project-options">@item.FkProjectTypeId</span>
                                                 </div>
                                             </div>
-                                            <div class="name-holder">
-                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
-                                                <span class="project-options">@item.FkProjectTypeId</span>
-                                            </div>
                                         </div>
-                                    </div>
                                     }
-                                    else { break; }
                                 }
                             }
                             @*<div class="cell-3 develop seo" data-category="develop">
