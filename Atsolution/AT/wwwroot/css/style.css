@@ -5013,11 +5013,11 @@ img.loader{
 	margin-top: 10px;
 }
 .title-1 {
-	background: #fff url('../images/page-titles/Page-title-1.jpg') no-repeat 50% 50%;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-webkit-background-size: cover;
-	background-size: cover;
+    background: #fff url('../Images/1.jpg') no-repeat 50% 50%;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 .title-1 h1 {
 	margin-top: 30px;
