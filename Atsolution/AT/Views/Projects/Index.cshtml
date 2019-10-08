@@ -11,7 +11,7 @@
                 <div class="cell-12">
                     <h1 class="fx" data-animate="fadeInLeft">Dự <span>án</span></h1>
                     <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
-                        <span class="bold">You Are In:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="#">Project</a>@*<span class="line-separate">/</span><span>Portfolio full</span>*@
+                        <span class="bold">Trang:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="#">Dự án</a>@*<span class="line-separate">/</span><span>Portfolio full</span>*@
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                         <span class="skew25 left filter-by">Lọc:</span>
                         <ul id="filters">
                             <li class="active"><a href="#" class="skew25 filter" data-filter="*">Tất cả</a></li>
-                            <li><a href="#" class="skew25 filter" data-filter=".design">Website</a></li>
-                            <li><a href="#" class="skew25 filter" data-filter=".develop">Phần mềm</a></li>
+                            <li><a href="#" class="skew25 filter" data-filter=".DS01">Website</a></li>
+                            <li><a href="#" class="skew25 filter" data-filter=".DL01">Phần mềm</a></li>
                             @*<li><a href="#" class="skew25 filter" data-filter=".seo">SEO Management</a></li>*@
                         </ul>
                     </div>
@@ -46,8 +46,15 @@
                                         <img alt="" src="~/Images/Project/@item.ImageSlug">
                                     </div>
                                     <div class="name-holder">
-                                        <a href="#" class="project-name">@item.Name</a>
-                                        <span class="project-options">@item.FkProjectTypeId</span>
+                                        <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
+                                        @foreach (var item1 in projectsModel.listProjType)
+                                        {
+                                            if (item1.Id == item.FkProjectTypeId)
+                                            {
+                                                <span class="project-options">@item1.Name</span>
+                                            }
+                                            else { }
+                                        }
                                     </div>
                                 </div>
                             </div>
