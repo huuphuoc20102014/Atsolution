@@ -37,57 +37,57 @@
         <div class="container">
             <div class="row">
                 <div class="cell-3 fx" data-animate="fadeInLeft">
-                    <h3 class="block-head">Project Details</h3>
+                    <h3 class="block-head">Chi Tiết Dự Án</h3>
                     <ul class="list-details">
                         <li>
-                            <i class="fa fa-tag"></i> <span class="main-color">Category:</span> @Model.proj.Name
+                            <i class="fa fa-tag"></i> <span class="main-color">Thể loại:</span> @Model.proj.Name
                         </li>
                         <li>
-                            <i class="fa fa-user"></i> <span class="main-color">Added By:</span> @Model.proj.SlugName
+                            <i class="fa fa-user"></i> <span class="main-color">Được tạo bởi:</span> @Model.proj.SlugName
                         </li>
                         <li>
-                            <i class="fa fa-calendar"></i> <span class="main-color">Date Added:</span> @Model.proj.CreatedDate
+                            <i class="fa fa-calendar"></i> <span class="main-color">Ngày tạo:</span> @Model.proj.CreatedDate
                         </li>
                         <li>
-                            <i class="fa fa-clock-o"></i> <span class="main-color">Due Date:</span> @Model.proj.UpdatedDate
+                            <i class="fa fa-clock-o"></i> <span class="main-color">Ngày giao:</span> @Model.proj.UpdatedDate
                         </li>
                         <li>
-                            <i class="fa fa-check"></i> <span class="main-color">Customer:</span>  @Model.proj.Tags
+                            <i class="fa fa-check"></i> <span class="main-color">Khách hàng:</span>  @Model.proj.Tags
                         </li>
                     </ul>
                 </div>
                 <div class="cell-6 fx project-info" data-animate="fadeInDown">
-                    <h3 class="block-head">Project Info</h3>
+                    <h3 class="block-head">Thông Tin Dự Án</h3>
                     <p>
                         @Model.proj.LongDescriptionHtml
                     </p>
                 </div>
                 <div class="cell-3 porto-stats fx" data-animate="fadeInRight">
-                    <h3 class="block-head">Project Stats</h3>
+                    <h3 class="block-head">Chỉ Số Dự Án</h3>
                     <div class="staff-3">
                         <div class="cell-6 fx" data-animate="bounceIn">
                             <div class="white-bg">
                                 <div class="fun-number main-color">1962</div>
-                                <div class="fun-text">Favourites</div>
+                                <div class="fun-text"><button type="button" class="btn">Yêu thích</button></div>
                             </div>
                         </div>
                         <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="200">
                             <div class="white-bg">
                                 <div class="fun-number main-color">136</div>
-                                <div class="fun-text">Likes</div>
+                                <div class="fun-text"><button type="button" class="btn">Thích</button></div>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="400">
                             <div class="white-bg">
                                 <div class="fun-number main-color">2350</div>
-                                <div class="fun-text">Views</div>
+                                <div class="fun-text"><button type="button" class="btn">Lượt xem</button></div>
                             </div>
                         </div>
                         <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="600">
                             <div class="white-bg">
                                 <div class="fun-number main-color">985</div>
-                                <div class="fun-text">Reports</div>
+                                <div class="fun-text"><button type="button" class="btn">Báo cáo</button></div>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
     <!-- Recent Portfolio projects -->
     <div class="sectionWrapper">
         <div class="container">
-            <h3 class="block-head">Similar projects</h3>
+            <h3 class="block-head">Dự Án Tương Tự</h3>
             <div class="portfolioGallery portfolio">
                 @foreach (var item in Model.listproj)
                 {
