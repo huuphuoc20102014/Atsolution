@@ -1,4 +1,5 @@
-﻿	<!-- Content Start -->
+﻿@model OperationHistoryViewModel
+	<!-- Content Start -->
 <div id="contentWrapper">
     <div class="page-title title-1">
         <div class="container">
@@ -15,13 +16,12 @@
     <div class="sectionWrapper">
         <div class="container">
             <div class="fx" data-animate="fadeInUp">
-                <h3 class="block-head">Introduction</h3>
+                <h3 class="block-head">@Model.about.Title</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus sit amet neque posuere aliquet. In interdum nisl sapien, vel dignissim nulla porta at. Sed accumsan nunc vitae mollis consequat. Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean porttitor.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean porttitor, lectus at dapibus egestas.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus sit amet neque posuere aliquet. In interdum nisl sapien, vel dignissim nulla porta at. Sed accumsan nunc vitae mollis consequat. Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                    Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi. Aenean
+                    @Model.about.ShortDescriptionHtml
+                </p>
+                <p>
+                    @Model.about.LongDescriptionHtml
                 </p>
             </div>
 
@@ -85,62 +85,72 @@
     <div class="block-bg-4 our-plan">
         <div class="container">
             <div class="cell-5 plan-block lft-plan">
-                <div class="block fx" data-animate="fadeInRight">
-                    <h3>Our Startup Year</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2011</span></div>
-                </div>
-                <div class="block fx" data-animate="fadeInRight">
-                    <h3>Plan for Large Portals</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2013</span></div>
-                </div>
-                <div class="block fx" data-animate="fadeInRight">
-                    <h3>Improve Our Employees</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2015</span></div>
-                </div>
+                @foreach (var item in Model.listOperation)
+                {
+                    if ((item.CreateDate.Year % 2) == 0)
+                    {
+                        <div class="block fx" data-animate="fadeInRight">
+                            <h3>@item.Title</h3>
+                            <p>
+                               @item.HistoryDescription
+                            </p>
+                            <div class="plan-year"><span>@item.CreateDate.Year</span></div>
+                        </div>
+                    }
+                }
+                @*<div class="block fx" data-animate="fadeInRight">
+                        <h3>Plan for Large Portals</h3>
+                        <p>
+                            Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                            Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+                        </p>
+                        <div class="plan-year"><span>2013</span></div>
+                    </div>
+                    <div class="block fx" data-animate="fadeInRight">
+                        <h3>Improve Our Employees</h3>
+                        <p>
+                            Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                            Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+                        </p>
+                        <div class="plan-year"><span>2015</span></div>
+                    </div>*@
             </div>
             <div class="cell-2 plan-title">
                 <div class="main-color extraBold">
-                    Our <br>
-                    <span>Plan</span>
+                    Lịch <br>
+                    <span>sử</span>
                 </div>
             </div>
             <div class="cell-5 plan-block rit-plan">
-                <div class="block fx" data-animate="fadeInLeft">
-                    <h3>We Hire People</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2012</span></div>
-                </div>
-                <div class="block fx" data-animate="fadeInLeft">
-                    <h3>Larger Achievments</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2014</span></div>
-                </div>
-                <div class="block fx" data-animate="fadeInLeft">
-                    <h3>Enlarge Our Scope</h3>
-                    <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-                    </p>
-                    <div class="plan-year"><span>2016</span></div>
-                </div>
+                @foreach (var item in Model.listOperation)
+                {
+                    if ((item.CreateDate.Year % 2) != 0)
+                    {
+                        <div class="block fx" data-animate="fadeInRight">
+                            <h3>@item.Title</h3>
+                            <p>
+                                @item.HistoryDescription
+                            </p>
+                            <div class="plan-year"><span>@item.CreateDate.Year</span></div>
+                        </div>
+                    }
+                }
+                @*<div class="block fx" data-animate="fadeInLeft">
+            <h3>Larger Achievments</h3>
+            <p>
+                Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+            </p>
+            <div class="plan-year"><span>2014</span></div>
+        </div>
+        <div class="block fx" data-animate="fadeInLeft">
+            <h3>Enlarge Our Scope</h3>
+            <p>
+                Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+            </p>
+            <div class="plan-year"><span>2016</span></div>
+        </div>*@
             </div>
         </div>
     </div>
@@ -149,10 +159,9 @@
         <div class="container">
             <div class="row">
                 <div class="cell-7 fx" data-animate="fadeInLeft">
-                    <h3 class="block-head">Our Skills</h3>
+                    <h3 class="block-head">Kỷ Năng Chúng Tôi</h3>
                     <p>
-                        Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                        Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+                        @Model.about.Skill
                     </p>
                     <ul class="levels-2">
                         <li>
@@ -165,7 +174,7 @@
                         </li>
                         <li>
                             <div class="level-out-2">
-                                <span class="chart" data-percent="60">
+                                <span class="chart" data-percent="50">
                                     <span class="percent"></span>
                                 </span>
                             </div>
@@ -191,32 +200,32 @@
                 </div>
                 <div class="cell-1"><br></div>
                 <div class="cell-4">
-                    <h3 class="block-head">Statistics</h3>
+                    <h3 class="block-head">Số liệu thống kê</h3>
                     <div class="porto-stats">
                         <div class="staff-3">
                             <div class="cell-6 fx" data-animate="bounceIn">
                                 <div class="gry-bg">
                                     <div class="fun-number">1962</div>
-                                    <div class="fun-text">Traffic</div>
+                                    <div class="fun-text">Giao thông</div>
                                 </div>
                             </div>
                             <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="100">
                                 <div class="gry-bg">
                                     <div class="fun-number">136</div>
-                                    <div class="fun-text">Working Hours</div>
+                                    <div class="fun-text">Giờ làm việc</div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="200">
                                 <div class="gry-bg">
                                     <div class="fun-number">2350</div>
-                                    <div class="fun-text">Users</div>
+                                    <div class="fun-text">Người dùng</div>
                                 </div>
                             </div>
                             <div class="cell-6 fx" data-animate="bounceIn" data-animation-delay="300">
                                 <div class="gry-bg">
                                     <div class="fun-number">985</div>
-                                    <div class="fun-text">Notifications</div>
+                                    <div class="fun-text">Thông báo</div>
                                 </div>
                             </div>
                         </div>
@@ -228,95 +237,98 @@
 
     <div class="sectionWrapper gry-pattern">
         <div class="container team-boxes">
-            <h3 class="block-head">Meet Our Team</h3>
-            <div class="cell-3 fx" data-animate="bounceIn">
-                <div class="team-box">
-                    <div class="team-img">
-                        <img alt="" src="images/people/1.jpg">
-                        <h3>Alicia Stewark</h3>
-                    </div>
-                    <div class="team-details">
-                        <h3 class="gry-bg">Alicia Stewark</h3>
-                        <div class="t-position">Company CEO.</div>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                        <div class="team-socials">
-                            <ul>
-                                <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                            </ul>
+            <h3 class="block-head">Thành Viên Công Ty</h3>
+            @foreach (var item in Model.listPeople)
+            {
+                <div class="cell-3 fx" data-animate="bounceIn">
+                    <div class="team-box">
+                        <div class="team-img">
+                            <img alt="" src="images/people/@item.Img">
+                            <h3>@item.Name</h3>
+                        </div>
+                        <div class="team-details">
+                            <h3 class="gry-bg">@item.Name</h3>
+                            <div class="t-position">@item.Job</div>
+                            <p>@item.JobIntroduction</p>
+                            <div class="team-socials">
+                                <ul>
+                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="200">
-                <div class="team-box">
-                    <div class="team-img">
-                        <img alt="" src="images/people/1.jpg">
-                        <h3>John Martin</h3>
-                    </div>
-                    <div class="team-details">
-                        <h3 class="gry-bg">John Martin</h3>
-                        <div class="t-position">Chair Man.</div>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                        <div class="team-socials">
-                            <ul>
-                                <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                            </ul>
-                        </div>
+                }
+            @*<div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="200">
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>John Martin</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">John Martin</h3>
+                    <div class="t-position">Chair Man.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="400">
-                <div class="team-box">
-                    <div class="team-img">
-                        <img alt="" src="images/people/1.jpg">
-                        <h3>Alex Henry</h3>
-                    </div>
-                    <div class="team-details">
-                        <h3 class="gry-bg">Alex Henry</h3>
-                        <div class="t-position">General Manager.</div>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                        <div class="team-socials">
-                            <ul>
-                                <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                            </ul>
-                        </div>
+        </div>
+        <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="400">
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>Alex Henry</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">Alex Henry</h3>
+                    <div class="t-position">General Manager.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="600">
-                <div class="team-box">
-                    <div class="team-img">
-                        <img alt="" src="images/people/1.jpg">
-                        <h3>Maria Adams</h3>
-                    </div>
-                    <div class="team-details">
-                        <h3 class="gry-bg">Maria Adams</h3>
-                        <div class="t-position">Company CEO.</div>
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                        <div class="team-socials">
-                            <ul>
-                                <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                            </ul>
-                        </div>
+        </div>
+        <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="600">
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>Maria Adams</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">Maria Adams</h3>
+                    <div class="t-position">Company CEO.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </div>*@
         </div>
     </div>
 

@@ -11,8 +11,6 @@ namespace AT.Efs.Entities
         public string Phone { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-        public string Adress { get; set; }
-        public string Link { get; set; }
         public bool IsRead { get; set; }
         public string FkProductCommentId { get; set; }
         public string Note { get; set; }
@@ -22,5 +20,7 @@ namespace AT.Efs.Entities
         public DateTime? UpdatedDate { get; set; }
         public byte[] RowVersion { get; set; }
         public int RowStatus { get; set; }
+        public string Adress { get; set; }
+        public string Link { get; set; }
     }
 }

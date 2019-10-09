@@ -1,16 +1,18 @@
-﻿@model HomeViewModel
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
+@model ServicesViewModel
 @{
-    ViewBag.Title = "Chi Tiết Tin Tức";
+    ViewBag.Title = "Chi Tiết Dịch Vụ";
 }
-
 <div id="contentWrapper">
     <div class="page-title title-1">
         <div class="container">
             <div class="row">
                 <div class="cell-12">
-                    <h1 class="fx" data-animate="fadeInLeft">Bài <span>Đăng</span></h1>
+                    <h1 class="fx" data-animate="fadeInLeft">Chi Tiết <span>Dịch Vụ</span></h1>
                     <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
-                        <span class="bold">You Are In:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="~/Blog">Tin Tức</a><span class="line-separate">/</span><span>Bài Đăng</span>
+                        <span class="bold">You Are In:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="~/dich-vu">Dịch Vụ</a><span class="line-separate">/</span><span>Chi Tiết Dịch Vụ</span>
                     </div>
                 </div>
             </div>
@@ -31,28 +33,28 @@
                                 </div>*@
                             <article class="post-content">
                                 <div class="post-info-container">
-                                    <h1 class="main-color">@Model.Blog.Title</h1>
+                                    <h1 class="main-color">@Model.service.ServiceName</h1>
 
                                     <div class="post-info">
                                         <ul class="post-meta">
-                                            <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@Model.Blog.CreatedBy</a></li>
-                                            <li><i class="fa fa-folder-open"></i>Category: <a href="#">@Model.BlogT.Name</a></li>
+                                            <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@Model.service.CreatedBy</a></li>
+                                            @*<li><i class="fa fa-folder-open"></i>Category: <a href="#">@Model.BlogT.Name</a></li>*@
                                             @*<li class="meta-comments"><i class="fa fa-comments"></i>Comments: <a href="blog-single.html">5</a></li>*@
                                         </ul>
                                     </div>
                                 </div>
                                 <p>
-                                    @Model.Blog.ShortDescriptionHtml
+                                    @Model.service.ShortDescriptionHtml
                                 </p>
                                 <blockquote>
                                     <p>aaaaaaaaaaaaaaaaaa</p>
-                                    <span>- @Model.Blog.CreatedBy"</span>
+                                    <span>- @Model.service.CreatedBy"</span>
                                 </blockquote>
                                 <p>
-                                    @Model.Blog.LongDescriptionHtml
+                                    @Model.service.LongDescriptionHtml
                                 </p>
                                 <div class="post-tags">
-                                    <i class="fa fa-tags"></i><span>Tags: </span><a href="#">@Model.Blog.Tags</a>
+                                    <i class="fa fa-tags"></i><span>Tags: </span><a href="#">@Model.service.Tags</a>
                                 </div>
                                 <div class="share-post">
                                     <span class="sh">Share this post on:</span>
@@ -224,19 +226,16 @@
                             <h3 class="widget-head">Recent Posts</h3>
                             <div class="widget-content">
                                 <ul>
-                                   
-                                    @foreach (var item in Model.listBlog.Take(3))
-                                    {
-                                       
-                                       
+                                    @foreach (var item in Model.listService.Take(3))
+                                    {  
                                             <li>
                                                 <div class="post-img">
                                                     <img src="~/Images/News/@item.ImageSlug" alt="">
                                                 </div>
                                                 <div class="widget-post-info">
                                                     <h4>
-                                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                            @item.Title
+                                                        <a href="~/chi-tiet-dich-vu?id=@item.Id">
+                                                            @item.ServiceName
                                                         </a>
                                                     </h4>
                                                     <div class="meta">
@@ -280,7 +279,7 @@
                             </div>
                         </li>
 
-                        <li class="widget blog-cat-w fx" data-animate="fadeInRight">
+                        @*<li class="widget blog-cat-w fx" data-animate="fadeInRight">
                             <h3 class="widget-head">Blog Categories</h3>
                             <div class="widget-content">
                                 <ul class="list list-ok alt">
@@ -299,13 +298,13 @@
                                             </li>
                                         }
                                     }
-                                    @*<li><a href="blog-single.html">Web development</a><span>[3]</span></li>
+                                    <li><a href="blog-single.html">Web development</a><span>[3]</span></li>
                                         <li><a href="blog-single.html">Sports News</a><span>[25]</span></li>
-                                        <li><a href="blog-single.html">Corporate news</a><span>[12]</span></li>*@
+                                        <li><a href="blog-single.html">Corporate news</a><span>[12]</span></li>
 
                                 </ul>
                             </div>
-                        </li>
+                        </li>*@
 
                         @*<li class="widget r-comments-w fx" data-animate="fadeInRight">
                                 <h3 class="widget-head">Recent Comments</h3>

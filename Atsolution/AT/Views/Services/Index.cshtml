@@ -26,15 +26,18 @@
                     var servicesModel = await AT.Helpers.ServicesHelper.GetDataServices(webContext);
                     foreach (var item in servicesModel.listService)
                     {
+                        if(item.AutoSlug == true)
+                        {
                         <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
                             <div class="box-2-cont">
                                 <i class="fa @item.Icon"></i>
                                 <h4>@item.ServiceName</h4>
                                 <div class="center sub-title main-color">sub title</div>
                                 <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                                <a class="r-more main-color" href="#">Read More</a>
+                                <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
                             </div>
-                        </div>
+                        </div> 
+                        }
                     }
                 }
                 @*<div class="cell-3 service-box-2 fx" data-animate="fadeInDown" data-animation-delay="200">
@@ -215,7 +218,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                    <a class="r-more main-color" href="#">Read More</a>
+                    <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
                 </div>
             }
             @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">

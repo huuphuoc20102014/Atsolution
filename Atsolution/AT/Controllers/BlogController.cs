@@ -22,7 +22,7 @@ namespace AT.Controllers
                 pageNumber = 1;
             }
 
-            var students = from s in _context.News
+            var students = from s in _context.News.OrderByDescending(p => p.CreatedDate)
                            select s;
 
             int pageSize = 3;

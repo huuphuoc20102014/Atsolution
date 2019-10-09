@@ -13,8 +13,11 @@ namespace AT.Helpers
         public static async Task<HomeViewModel> GetDataBlog (WebAtSolutionContext webContext)
         {
             HomeViewModel model = new HomeViewModel();
-            model.listBlog = webContext.News.ToList();
+            model.listBlog = webContext.News
+                 .OrderByDescending(p => p.CreatedDate)
+                 .ToList();
             model.listBlogT = webContext.NewsType.ToList();
+
             return model;
         }
 

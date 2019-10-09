@@ -13,7 +13,9 @@ namespace AT.Helpers
         public static async Task<ServicesViewModel> GetDataServices(WebAtSolutionContext webContext)
         {
             ServicesViewModel model = new ServicesViewModel();
-            model.listService = webContext.Service.ToList();
+            model.listService = webContext.Service
+                .OrderByDescending(p => p.CreatedDate)
+                .ToList(); ;
             model.listProj = webContext.Project.ToList();
             model.listProjType = webContext.ProjectType.ToList();
             return model;

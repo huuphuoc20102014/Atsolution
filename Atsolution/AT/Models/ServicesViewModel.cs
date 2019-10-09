@@ -9,6 +9,7 @@ namespace AT.Models
     public class ServicesViewModel
     {
         public List<Service> listService { get; set; }
+        public Service service  { get; set; }
         public List<Project> listProj { get; set; }
         public List<ProjectType> listProjType { get; set; }
     }

@@ -23,6 +23,7 @@ namespace AT.Efs.Entities
         public byte[] RowVersion { get; set; }
         public int RowStatus { get; set; }
         public string ImageSlug { get; set; }
+        public string Coment { get; set; }
 
         public virtual NewsType FkNewsType { get; set; }
     }
