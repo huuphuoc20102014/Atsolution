@@ -14,5 +14,6 @@ namespace AT.Models
         public News Blog { get; set; }
         public NewsType BlogT { get; set; }
         public List<AboutCustomer> listdoitac{ get; set; }
+        public List<Service> listservice { get; set; }
     }
 }

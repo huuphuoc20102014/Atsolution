@@ -105,45 +105,25 @@
         <div class="container">
 
             @{
-                int dem = 0;
-                foreach (var item in Model.listBlog)
+                foreach (var item in Model.listservice)
                 {
 
-                    if (++dem >= 15)
+                    if (item.AutoSlug == true)
                     {
                         <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
                             <div class="box-head">
                                 <i class="icon main-bg fa fa-apple"></i>
-                                <h4 class="main-color"><span data-hover="@item.Title">@item.Title</span></h4>
+                                <h4 class="main-color"><span data-hover="@item.ServiceName">@item.ServiceName</span></h4>
                             </div>
                             <div class="clearfix"></div>
-                            <p class="mediumFont">@item.LongDescriptionHtml</p>
-                            <a class="r-more main-color" href="services.html">Read More</a>
+                            <p class="mediumFont">@item.ShortDescriptionHtml</p>
+                            <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
                         </div>
                     }
                 }
 
             }
-            @{
-                int dems = 0;
-                foreach (var item in Model.listBlog)
-                {
-
-                    if (++dems <= 2)
-                    {
-                        <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
-                            <div class="box-head">
-                                <i class="icon main-bg fa fa-apple"></i>
-                                <h4 class="main-color"><span data-hover="@item.Title">@item.Title</span></h4>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="mediumFont">@item.LongDescriptionHtml</p>
-                            <a class="r-more main-color" href="services.html">Read More</a>
-                        </div>
-                    }
-                }
-
-            }
+           
             @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
                     <div class="box-head">
                         <i class="icon main-bg fa fa-android"></i>
@@ -263,7 +243,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="name-holder">
-                                                    <a href="#" class="project-name">@item.Name</a>
+                                                    <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
                                                     <span class="project-options">@item.FkProjectTypeId</span>
                                                 </div>
                                             </div>

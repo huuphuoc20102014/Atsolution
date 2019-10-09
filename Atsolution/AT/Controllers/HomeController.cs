@@ -20,6 +20,7 @@ namespace AT.Controllers
             model.listBlog = _webcontext.News
                 .OrderByDescending(p => p.CreatedDate)
                 .ToList();
+            model.listservice= _webcontext.Service.ToList();
             return View(model);
         }
     }

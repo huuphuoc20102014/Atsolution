@@ -10,7 +10,7 @@
                 <div class="cell-12">
                     <h1 class="fx" data-animate="fadeInLeft">Chi tiết <span>dự án</span></h1>
                     <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
-                        <span class="bold">Trang:</span><a href="~/Home">Trang chủ</a><span class="line-separate">/</span><a href="#">Dự Án </a><span class="line-separate">/</span><span>Chi Tiết Dự Án</span>
+                        <span class="bold">Trang:</span><a href="~/Home">Trang chủ</a><span class="line-separate">/</span><a href="~/du-an">Dự Án </a><span class="line-separate">/</span><span>Chi Tiết Dự Án</span>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                                 <img alt="" src="~/Images/Project/@item.ImageSlug">
                             </div>
                             <div class="name-holder">
-                                <a href="#" class="project-name">@item.Name</a>
+                                <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
                                 @foreach (var item1 in Model.listprojType)
                                 {
                                     if (item1.Id == item.FkProjectTypeId)
