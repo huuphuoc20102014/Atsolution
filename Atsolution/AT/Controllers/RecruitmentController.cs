@@ -17,8 +17,12 @@ namespace AT.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-          
-            return View();
+            WebAtSolutionContext _webcontext = new WebAtSolutionContext();
+            RecruitementViewModel model = new RecruitementViewModel();
+            model.Recruitement = _webcontext.News
+                 .OrderByDescending(p => p.CreatedDate)
+                 .ToList();
+            return View(model);
         }
     }
 }

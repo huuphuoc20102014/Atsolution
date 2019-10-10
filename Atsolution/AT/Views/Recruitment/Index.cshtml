@@ -4,7 +4,7 @@
 @inject AT.Efs.Entities.WebAtSolutionContext webContext
 
 @{
-    ViewData["Title"] = "TUyển dụng";
+    ViewData["Title"] = "Tuyển dụng";
 }
 
 <!-- Content Start -->
@@ -39,7 +39,7 @@
                                             <a href="blog-single.html">
                                                 <div class="mask"></div>
                                                 <div class="post-lft-info">
-                                                    <div class="main-bg">15<br>Jan<br>2014</div>
+                                                    <div class="main-bg">@item.CreatedDate</div>
                                                 </div>
                                                 <img src="images/blog/small/1.jpg" alt="Our Blog post image goes here">
                                             </a>
@@ -47,18 +47,15 @@
                                         <article class="post-content">
                                             <div class="post-info-container">
                                                 <div class="post-info">
-                                                    <h2><a class="main-color" href="~/chi-tiet-tuyen-dung">@item.Title</a></h2>
+                                                    <h2><a class="main-color" href="~/chi-tiet-tuyen-dung?id=@item.Id=@item.FkNewsTypeId">@item.Title</a></h2>
+
                                                     <ul class="post-meta">
                                                         <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">John Martin</a></li>
                                                         <li><i class="fa fa-folder-open"></i>Category: <a href="#">Corporate News</a></li>
-
                                                     </ul>
                                                 </div>
                                             </div>
                                             <p>
-                                                @*Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vestibulum a velit eu ante scelerisque vulputate.Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisierra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate. <a class="read-more" href="blog-single.html">
-                                                        Read more
-                                                    </a>*@
                                                 @item.SlugTitle
                                             </p>
                                         </article>
@@ -108,7 +105,7 @@
                                             {
                                                 <li>
                                                     <div class="post-img">
-                                                        <img src="images/people/1.jpg" alt="">
+                                                        <img src="images/people/@item.ImageSlug" alt="">
                                                     </div>
                                                     <div class="widget-post-info">
                                                         <h4>
