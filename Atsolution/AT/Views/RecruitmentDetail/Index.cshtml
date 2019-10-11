@@ -1,11 +1,9 @@
-﻿@model RecruitmentDetailViewModel
+﻿@model HomeViewModel
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @inject AT.Efs.Entities.WebAtSolutionContext webContext
-
-
 @{
-    ViewBag.Title = "Chi Tiết tuyển dụng";
+    ViewBag.Title = "Chi Tiết Tuyển Dụng";
 }
 
 <div id="contentWrapper">
@@ -15,7 +13,7 @@
                 <div class="cell-12">
                     <h1 class="fx" data-animate="fadeInLeft">Bài <span>Đăng</span></h1>
                     <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
-                        <span class="bold">You Are In:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="~/tuyen-dung">Tuyển Dụng</a><span class="line-separate">/</span><span>Bài Đăng</span>
+                        <span class="bold">You Are In:</span><a href="~/Home">Trang Chủ</a><span class="line-separate">/</span><a href="~/Blog">Tin Tức</a><span class="line-separate">/</span><span>Bài Đăng</span>
                     </div>
                 </div>
             </div>
@@ -28,125 +26,311 @@
                 <div class="cell-9">
                     <div class="blog-posts">
                         <div class="post-item fx" data-animate="fadeInLeft">
-                            @{
-                                var recruitementModel = await AT.Helpers.RecruitementHelper.GetDataRecruitement(webContext);
-                                int dems = 0;
-                                foreach (var item in Model.listRecruitement)
-                                {
-
-                                    if (++dems ==13)
-                                    {
-                                        <article class="post-content">
-                                            <div class="post-info-container">
-                                                <h1 class="main-color"><a class="main-color" href="~/chi-tiet-tuyen-dung">@item.Title</a> </h1>
-                                                <div class="post-info">
-                                                    <ul class="post-meta">
-                                                        <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.Tags</a></li>
-                                                        <li><i class="fa fa-folder-open"></i>Category: <a href="#">@item.SlugTitle</a></li>
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <blockquote>
-                                                <p>@item.Note</p>
-                                                <span> @item.MetaData"</span>
-                                            </blockquote>
-
-                                            <div class="share-post">
-                                                <span class="sh">Share this post on:</span>
-                                                <div id="shareme" data-text="Share this post"></div>
-                                            </div>
-
-
-                                        </article>
-                                    }
-                                }
-                            }
+                            @*<div class="details-img">
+                                    <div class="post-lft-info">
+                                        <div class="main-bg">15<br>Jan<br>2014<span class="tri-col"></span></div>
+                                    </div>
+                                    <img src="images/blog/1.jpg" alt="Our Blog post image goes here">
+                                </div>*@
+                            <article class="post-content">
+                                <div class="post-info-container">
+                                    <h1 class="main-color">@Model.Blog.Title</h1>
+                                    <div class="post-info">
+                                        <ul class="post-meta">
+                                            <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@Model.Blog.CreatedBy</a></li>
+                                            <li><i class="fa fa-folder-open"></i>Category: <a href="#">@Model.BlogT.Name</a></li>
+                                            @*<li class="meta-comments"><i class="fa fa-comments"></i>Comments: <a href="blog-single.html">5</a></li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p>
+                                    @Model.Blog.ShortDescriptionHtml
+                                </p>
+                                <blockquote>
+                                    <p>aaaaaaaaaaaaaaaaaa</p>
+                                    <span>- @Model.Blog.CreatedBy"</span>
+                                </blockquote>
+                                <p>
+                                    @Model.Blog.LongDescriptionHtml
+                                </p>
+                                <div class="post-tags">
+                                    <i class="fa fa-tags"></i><span>Tags: </span><a href="#">@Model.Blog.Tags</a>
+                                </div>
+                                <div class="share-post">
+                                    <span class="sh">Share this post on:</span>
+                                    <div id="shareme" data-text="Share this post"></div>
+                                </div>
+                            </article>
                         </div><!-- .post-item end -->
-
+                        @*<div class="comments">
+                                <h3 class="block-head">Comments</h3>
+                                <p class="hint marginBottom bold">There are <span class="main-color">5</span> comments on this post</p>
+                                <ul class="comment-list">
+                                    <li>
+                                        <article class="comment">
+                                            <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                            <div class="comment-content">
+                                                <h5 class="comment-author skew-25">
+                                                    <span class="author-name skew25">John Martin</span>
+                                                    <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                    <span class="comment-date skew25">Jan 15, 2014</span>
+                                                </h5>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipisicing elit.
+                                                    Corporis accusamus alias doloribus
+                                                    aliquam voluptas cupiditate animi
+                                                    officia temporibus dicta iure.
+                                                </p>
+                                            </div>
+                                        </article> End .comment
+                                        <ul class="child-comment">
+                                            <li>
+                                                <article class="comment">
+                                                    <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                                    <div class="comment-content">
+                                                        <h5 class="comment-author skew-25">
+                                                            <span class="author-name skew25">John Martin</span>
+                                                            <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                            <span class="comment-date skew25">Jan 15, 2014</span>
+                                                        </h5>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit.
+                                                            Corporis accusamus alias doloribus
+                                                            aliquam voluptas cupiditate animi
+                                                            officia temporibus dicta iure.
+                                                        </p>
+                                                    </div>
+                                                </article> End .comment
+                                            </li>
+                                            <li>
+                                                <article class="comment">
+                                                    <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                                    <div class="comment-content">
+                                                        <h5 class="comment-author skew-25">
+                                                            <span class="author-name skew25">John Martin</span>
+                                                            <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                            <span class="comment-date skew25">Jan 15, 2014</span>
+                                                        </h5>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit.
+                                                            Corporis accusamus alias doloribus
+                                                            aliquam voluptas cupiditate animi
+                                                            officia temporibus dicta iure.
+                                                        </p>
+                                                    </div>
+                                                </article> End .comment
+                                            </li>
+                                            <li>
+                                                <article class="comment">
+                                                    <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                                    <div class="comment-content">
+                                                        <h5 class="comment-author skew-25">
+                                                            <span class="author-name skew25">John Martin</span>
+                                                            <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                            <span class="comment-date skew25">Jan 15, 2014</span>
+                                                        </h5>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit.
+                                                            Corporis accusamus alias doloribus
+                                                            aliquam voluptas cupiditate animi
+                                                            officia temporibus dicta iure.
+                                                        </p>
+                                                    </div>
+                                                </article> End .comment
+                                            </li>
+                                        </ul> End .child-comment
+                                    </li>
+                                    <li>
+                                        <article class="comment">
+                                            <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                            <div class="comment-content">
+                                                <h5 class="comment-author skew-25">
+                                                    <span class="author-name skew25">John Martin</span>
+                                                    <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                    <span class="comment-date skew25">Jan 15, 2014</span>
+                                                </h5>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipisicing elit.
+                                                    Corporis accusamus alias doloribus
+                                                    aliquam voluptas cupiditate animi
+                                                    officia temporibus dicta iure.
+                                                </p>
+                                            </div>
+                                        </article> End .comment
+                                    </li>
+                                    <li>
+                                        <article class="comment">
+                                            <img src="images/people/1.jpg" alt="avatar" class="comment-avatar">
+                                            <div class="comment-content">
+                                                <h5 class="comment-author skew-25">
+                                                    <span class="author-name skew25">John Martin</span>
+                                                    <a href="#" class="comment-reply main-bg"><span class="skew25"><i class="fa fa-comment"></i>reply</span></a>
+                                                    <span class="comment-date skew25">Jan 15, 2014</span>
+                                                </h5>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipisicing elit.
+                                                    Corporis accusamus alias doloribus
+                                                    aliquam voluptas cupiditate animi
+                                                    officia temporibus dicta iure.
+                                                </p>
+                                            </div>
+                                        </article> End .comment
+                                    </li>
+                                </ul> End .comment-list
+                            </div>
+                            <form action="#" class="leave-comment contact-form">
+                                <h3 class="block-head">Leave A Comment</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet purus quis metus imperdiet fermentum. Suspendisse hendrerit id lacus id lobortis. Morbi accumsan nulla ac urna elementum dapibus. Phasellus eu felis orci, sit amet placerat eros. Sed aliquet iaculis nisi id convallis. Quisque nec ligula ut felis hendrerit iaculis quis sed neque.</p>
+                                <div class="row">
+                                    <div class="cell-6">
+                                        <div class="form-input">
+                                            <input type="text" placeholder="Full name" required>
+                                        </div>
+                                    </div>
+                                    <div class="cell-6">
+                                        <div class="form-input">
+                                            <input type="email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="cell-12">
+                                        <div class="form-input">
+                                            <textarea class="txt-box textArea" name="message" cols="40" rows="7" id="messageTxt" placeholder="Message" spellcheck="true" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="cell-12">
+                                        <input type="submit" class="btn btn-large main-bg" value="Comment">
+                                    </div>
+                                </div>
+                            </form>*@
                     </div>
                 </div>
                 <aside class="cell-3 right-sidebar">
                     <ul class="sidebar_widgets">
-
+                        @*li class="widget search-w fx" data-animate="fadeInRight">
+                                <h3 class="widget-head">Blog Search</h3>
+                                <div class="widget-content">
+                                    <form action="#" method="get">
+                                        <input type="text" name="t" id="t2-search" class="txt-box" placeholder="Enter search keyword..." />
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </li>*@
 
                         <li class="widget r-posts-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">chi tiết tuyển dụng</h3>
+                            <h3 class="widget-head">Recent Posts</h3>
                             <div class="widget-content">
                                 <ul>
-                                    @{ int maxDay = 0;
-                                        int maxMonth = 0;
-                                        int maxYear = 0;
-                                        foreach (var item in Model.listRecruitement)
-                                        {
-                                            if (item.CreatedDate.Day > maxDay)
-                                            {
-                                                maxDay = item.CreatedDate.Day;
-                                            }
-                                            if (item.CreatedDate.Month > maxMonth)
-                                            {
-                                                maxMonth = item.CreatedDate.Month;
-                                            }
-                                            if (item.CreatedDate.Year > maxYear)
-                                            {
-                                                maxYear = item.CreatedDate.Year;
-                                            }
-                                        }
-                                    }
-                                    @foreach (var item in Model.listRecruitement)
+
+                                    @foreach (var item in Model.listBlog.Take(3))
                                     {
-                                        if (item.CreatedDate.Day > (maxDay - 3) && item.CreatedDate.Month == maxMonth && item.CreatedDate.Year == maxYear)
-                                        {
-                                            <li>
-                                                <div class="post-img">
-                                                    <img src="~/Images/News/@item.ImageSlug" alt="">
-                                                </div>
-                                                <div class="widget-post-info">
-                                                    <h4>
-                                                        <a href="~/chi-tiet-tuyen-dung?id=@item.Id=@item.FkNewsTypeId">
-                                                            @item.Title
-                                                        </a>
-                                                    </h4>
-                                                    <div class="meta">
-                                                        <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
 
-                                                    </div>
+
+                                        <li>
+                                            <div class="post-img">
+                                                <img src="~/Images/News/@item.ImageSlug" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="~/chi-tiet-tuyen-dung?id=@item.Id&type=@item.FkNewsTypeId">
+                                                        @item.Title
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
+
                                                 </div>
-                                            </li>
-                                        }
+                                            </div>
+                                        </li>
                                     }
-
+                                    @*<li>
+                                            <div class="post-img">
+                                                <img src="images/people/1.jpg" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="blog-single.html">
+                                                        Blog post title
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>Dec 28, 2013,</span><a href="blog-single.html"></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="post-img">
+                                                <img src="images/people/1.jpg" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="blog-single.html">
+                                                        Blog post title with Image
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>Dec 28, 2013,</span><a href="blog-single.html"></a>
+                                                </div>
+                                            </div>
+                                        </li>*@
                                 </ul>
                             </div>
                         </li>
 
                         <li class="widget blog-cat-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">thông tin và tuyển dụng</h3>
+                            <h3 class="widget-head">Blog Categories</h3>
                             <div class="widget-content">
                                 <ul class="list list-ok alt">
                                     @{
-                                        foreach (var item in Model.listRecruitement)
+                                        foreach (var item in Model.listBlogT)
                                         {
                                             int dem = 0;
                                             <li>
 
-                                                @foreach (var item1 in Model.listRecruitement)
+                                                @foreach (var item1 in Model.listBlog)
                                                 {
                                                     if (item.Id == item1.FkNewsTypeId)
                                                     { dem += 1; }
                                                 }
-                                                <a href="blog-single.html">@item.Title</a><span>[@dem]</span>
+                                                <a href="blog-single.html">@item.Name</a><span>[@dem]</span>
                                             </li>
                                         }
                                     }
-
+                                    @*<li><a href="blog-single.html">Web development</a><span>[3]</span></li>
+                                        <li><a href="blog-single.html">Sports News</a><span>[25]</span></li>
+                                        <li><a href="blog-single.html">Corporate news</a><span>[12]</span></li>*@
 
                                 </ul>
                             </div>
                         </li>
 
-
+                        @*<li class="widget r-comments-w fx" data-animate="fadeInRight">
+                                <h3 class="widget-head">Recent Comments</h3>
+                                <div class="widget-content">
+                                    <ul>
+                                        <li>
+                                            <div class="left"><i class="fa fa-comments"></i></div>
+                                            <h5>admin on <a href="blog-single.html">Blog Post with Video</a></h5>
+                                            <span><i class="fa fa-clock-o"></i>Dec 28, 2013</span>
+                                        </li>
+                                        <li>
+                                            <div class="left"><i class="fa fa-comments"></i></div>
+                                            <h5>admin on <a href="blog-single.html">Blog post title with Image</a></h5>
+                                            <span><i class="fa fa-clock-o"></i>Dec 24, 2013</span>
+                                        </li>
+                                        <li>
+                                            <div class="left"><i class="fa fa-comments"></i></div>
+                                            <h5>admin on <a href="blog-single.html">Blog post title with Image</a></h5>
+                                            <span><i class="fa fa-clock-o"></i>Dec 22, 2013</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>*@
 
                         <li class="widget tags-w fx" data-animate="fadeInRight">
                             <h3 class="widget-head">Tag Cloud</h3>
@@ -178,4 +362,3 @@
     </div>
 
 </div>
-

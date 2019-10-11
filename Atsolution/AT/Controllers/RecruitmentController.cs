@@ -16,11 +16,6 @@ namespace AT.Controllers
         [HttpGet("tuyen-dung")]
         public async Task<IActionResult> Index(int? pageNumber)
         {
-            WebAtSolutionContext _webcontext = new WebAtSolutionContext();
-            RecruitementViewModel model = new RecruitementViewModel();
-            model.Recruitement = _webcontext.News
-                 .OrderByDescending(p => p.CreatedDate)
-                 .ToList();
             if (pageNumber == null)
             {
                 pageNumber = 1;
@@ -31,7 +26,6 @@ namespace AT.Controllers
 
             int pageSize = 3;
             return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
-
         }
     }
 }
