@@ -104,6 +104,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #151b1e;
+    
     text-align: left;
     background-color: #e4e5e6;
 }
@@ -11442,6 +11443,7 @@ button.bg-gray-900:hover {
 
 .text-center {
     text-align: center !important;
+    height:682px;
 }
 
 @media (min-width: 576px) {
@@ -14692,6 +14694,7 @@ base-chart.chart {
     -ms-flex-direction: column;
     flex-direction: column;
     padding: 0;
+    min-height: 100%;
     color: #fff;
     background: #29363d;
 }
@@ -17489,9 +17492,12 @@ app-root {
     z-index: 1020;
     height: 50px;
 }
-
+.footer{
+    height:70px;
+}
 .footer-fixed .app-body {
     margin-bottom: 50px;
+
 }
 
 .app-header,
@@ -18230,3 +18236,4 @@ hr.transparent {
             flex: 0 0 100%;
         }
 }
+

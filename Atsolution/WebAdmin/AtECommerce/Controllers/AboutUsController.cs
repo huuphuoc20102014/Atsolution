@@ -10,8 +10,6 @@ using FluentValidation;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Hosting;
-
-using AtECommerce.Efs.Entities;
 using Microsoft.Extensions.Configuration;
 
 namespace AtECommerce.Controllers
