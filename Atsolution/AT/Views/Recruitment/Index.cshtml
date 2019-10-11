@@ -36,7 +36,7 @@
                                 {
                                     <div class="post-item fx" data-animate="fadeInLeft">
                                         <div class="post-image">
-                                            <a href="blog-single.html">
+                                            <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
                                                 <div class="mask"></div>
                                                 <div class="post-lft-info">
                                                     <div class="main-bg">@item.CreatedDate</div>
@@ -44,6 +44,16 @@
                                                 <img src="images/blog/small/1.jpg" alt="Our Blog post image goes here">
                                             </a>
                                         </div>
+                                        @*<div class="post-item fx" data-animate="fadeInLeft">
+                                            <div class="post-image">
+                                                <a href="blog-single.html">
+                                                    <div class="mask"></div>
+                                                    <div class="post-lft-info">
+                                                        <div class="main-bg">15<br>Jan<br>2014</div>
+                                                    </div>
+                                                    <img src="images/blog/small/1.jpg" alt="Our Blog post image goes here">
+                                                </a>
+                                            </div>*@
                                         <article class="post-content">
                                             <div class="post-info-container">
                                                 <div class="post-info">
@@ -64,9 +74,33 @@
                             }
                         }
 
-
-
                         <div class="pager skew-25">
+
+
+                            @{
+                                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                            }
+
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @prevDisabled">
+                                Previous
+                            </a>
+
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled">
+                                Next
+                            </a>
+
+                        </div>
+
+                        @*<div class="pager skew-25">
                             <ul>
                                 <li><a class="skew25" href="#"><i class="fa fa-angle-left"></i></a></li>
                                 <li class="selected"><span class="skew25">1</span></li>
@@ -78,20 +112,20 @@
                                 <li><a class="skew25" href="#">10</a></li>
                                 <li><a class="skew25" href="#"><i class="fa fa-angle-right"></i></a></li>
                             </ul>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
                 <aside class="cell-3 right-sidebar">
                     <ul class="sidebar_widgets">
-                        <li class="widget search-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Tìm Kiếm</h3>
-                            <div class="widget-content">
-                                <form action="#" method="get">
-                                    <input type="text" name="t" id="t2-search" class="txt-box" placeholder="Enter search keyword..." />
-                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                                </form>
-                            </div>
-                        </li>
+                        @*<li class="widget search-w fx" data-animate="fadeInRight">
+                                <h3 class="widget-head">Tìm Kiếm</h3>
+                                <div class="widget-content">
+                                    <form action="#" method="get">
+                                        <input type="text" name="t" id="t2-search" class="txt-box" placeholder="Enter search keyword..." />
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </li>*@
 
                         <li class="widget r-posts-w fx" data-animate="fadeInRight">
                             <h3 class="widget-head">Thông tin tuyển dụng</h3>

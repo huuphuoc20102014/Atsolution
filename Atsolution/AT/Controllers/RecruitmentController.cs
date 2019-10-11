@@ -5,24 +5,33 @@ using System.Threading.Tasks;
 using AT.Efs.Entities;
 using AT.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-
-//// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AT.Controllers
 {
     public class RecruitmentController : Controller
     {
+        WebAtSolutionContext _context = new WebAtSolutionContext();
         [HttpGet("tuyen-dung")]
-        // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             RecruitementViewModel model = new RecruitementViewModel();
             model.Recruitement = _webcontext.News
                  .OrderByDescending(p => p.CreatedDate)
                  .ToList();
-            return View(model);
+            if (pageNumber == null)
+            {
+                pageNumber = 1;
+            }
+
+            var students = from s in _context.News.OrderByDescending(p => p.CreatedDate)
+                           select s;
+
+            int pageSize = 3;
+            return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
     }
 }
