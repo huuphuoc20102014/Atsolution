@@ -10,13 +10,16 @@ namespace AT.Helpers
 {
     public class RecruitementHelper
     {
-        public static async Task<RecruitementViewModel> GetDataRecruitement (WebAtSolutionContext webContext)
+        public static async Task<HomeViewModel> GetDataRecruitement(WebAtSolutionContext webContext)
         {
-            RecruitementViewModel model = new RecruitementViewModel();
-            model.Recruitement = await webContext.News.ToListAsync();
+            HomeViewModel model = new HomeViewModel();
+            model.listBlog = webContext.News
+                 .OrderByDescending(p => p.CreatedDate)
+                 .ToList();
+            model.listBlogT = webContext.NewsType.ToList();
+
             return model;
         }
 
-       
     }
 }

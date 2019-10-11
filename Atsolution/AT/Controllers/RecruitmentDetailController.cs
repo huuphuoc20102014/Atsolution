@@ -12,13 +12,15 @@ namespace AT.Controllers
 {
     public class RecruitmentDetailController : Controller
     {
-        [HttpGet("chi-tiet-tuyen-dung")]       
-        public IActionResult Index( string id)
+        [HttpGet("chi-tiet-tuyen-dung")]
+        public IActionResult Index(string id, string type)
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
-            RecruitmentDetailViewModel model = new RecruitmentDetailViewModel();
-            model.Recuit = _webcontext.News.SingleOrDefault(p => p.Id == id);
-            model.listRecruitement = _webcontext.News.ToList();
+            HomeViewModel model = new HomeViewModel();
+            model.BlogT = _webcontext.NewsType.SingleOrDefault(p => p.Id == type);
+            model.Blog = _webcontext.News.SingleOrDefault(p => p.Id == id);
+            model.listBlog = _webcontext.News.ToList();
+            model.listBlogT = _webcontext.NewsType.ToList();
             return View(model);
         }
     }

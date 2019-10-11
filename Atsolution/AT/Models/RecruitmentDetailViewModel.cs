@@ -8,10 +8,10 @@ namespace AT.Models
 {
     public class RecruitmentDetailViewModel
     {
+        public News Recuit { get; set; }
         public List<News> listRecruitement { get; set; }
 
-        public News Recuit { get; set; }
-        
+    
 
     }
 }
