@@ -45,13 +45,17 @@
                                                 <h2><a class="main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">@item.Title</a></h2>
                                                 <ul class="post-meta">
                                                     <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.CreatedBy</a></li>
-                                                    <li><i class="fa fa-folder-open"></i>Category: <a href="#">
-                                                        @{foreach (var item1 in loaitinModel.listBlogT)
-                                                            {
-                                                                if(item.FkNewsTypeId == item1.Id)
-                                                                     { @item1.Name; break; }
+                                                    <li>
+                                                        <i class="fa fa-folder-open"></i>Category: <a href="#">
+                                                            @{foreach (var item1 in loaitinModel.listBlogT)
+                                                                {
+                                                                    if (item.FkNewsTypeId == item1.Id)
+                                                                    { @item1.Name; break;
+                                                                }
                                                             }
-                                                        }</a></li>
+                                                            }
+                                                        </a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -75,16 +79,20 @@
 
                             <a asp-action="Index"
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-Trang="@(Model.PageIndex - 1)"
+                               asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               
                                class="btn btn-default @prevDisabled">
                                 Previous
                             </a>
 
                             <a asp-action="Index"
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-Trang="@(Model.PageIndex + 1)"
+                               asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+
                                class="btn btn-default @nextDisabled">
                                 Next
                             </a>
@@ -94,52 +102,34 @@
                 </div>
                 <aside class="cell-3 right-sidebar">
                     <ul class="sidebar_widgets">
-                       
+
 
                         <li class="widget r-posts-w fx" data-animate="fadeInRight">
                             <h3 class="widget-head">Recent Posts</h3>
                             <div class="widget-content">
                                 <ul>
                                     @{ var menuModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
-                                        int maxDay = 0;
-                                        int maxMonth = 0;
-                                        int maxYear = 0;
-                                        foreach (var item in menuModel.listBlog)
-                                        {
-                                            if (item.CreatedDate.Day > maxDay)
-                                            {
-                                                maxDay = item.CreatedDate.Day;
-                                            }
-                                            if (item.CreatedDate.Month > maxMonth)
-                                            {
-                                                maxMonth = item.CreatedDate.Month;
-                                            }
-                                            if (item.CreatedDate.Year > maxYear)
-                                            {
-                                                maxYear = item.CreatedDate.Year;
-                                            }
-                                        }
-                                    }
-                                    @foreach (var item in menuModel.listBlog)
-                                    {
-                                        if (item.CreatedDate.Day > (maxDay - 3) && item.CreatedDate.Month == maxMonth && item.CreatedDate.Year == maxYear)
-                                        {
-                                            <li>
-                                                <div class="post-img">
-                                                    <img src="~/Images/News/@item.ImageSlug" alt="">
-                                                </div>
-                                                <div class="widget-post-info">
-                                                    <h4>
-                                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                            @item.Title
-                                                        </a>
-                                                    </h4>
-                                                    <div class="meta">
-                                                        <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
 
+                                        foreach (var item in menuModel.listBlog.Take(3))
+                                        {
+                                           
+                                                <li>
+                                                    <div class="post-img">
+                                                        <img src="~/Images/News/@item.ImageSlug" alt="">
                                                     </div>
-                                                </div>
-                                            </li>
+                                                    <div class="widget-post-info">
+                                                        <h4>
+                                                            <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                                @item.Title
+                                                            </a>
+                                                        </h4>
+                                                        <div class="meta">
+                                                            <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
                                         }
                                     }
                                     @*<li>
@@ -191,7 +181,7 @@
                                                     if (item.Id == item1.FkNewsTypeId)
                                                     { dem += 1; }
                                                 }
-                                                <a href="blog-single.html">@item.Name</a><span>[@dem]</span>
+                                                <a href="~/tin-tuc?id=@item.Id">@item.Name</a><span>[@dem]</span>
                                             </li>
                                         }
                                     }

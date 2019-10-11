@@ -14,7 +14,7 @@ namespace AT.Controllers
     {
         WebAtSolutionContext _context = new WebAtSolutionContext();
         [HttpGet("tuyen-dung")]
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber,string id)
         {
             if (pageNumber == null)
             {
@@ -25,7 +25,7 @@ namespace AT.Controllers
                            select s;
 
             int pageSize = 3;
-            return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize,id));
         }
     }
 }
