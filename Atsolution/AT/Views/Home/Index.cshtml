@@ -1,4 +1,7 @@
 @model AT.Models.HomeViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewData["Title"] = "Trang chủ";
 }
@@ -105,7 +108,7 @@
         <div class="container">
 
             @{
-                foreach (var item in Model.listservice)
+                foreach (var item in Model.Listservice)
                 {
 
                     if (item.AutoSlug == true)
@@ -123,7 +126,7 @@
                 }
 
             }
-           
+
             @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
                     <div class="box-head">
                         <i class="icon main-bg fa fa-android"></i>
@@ -204,7 +207,7 @@
                         </div>
                         <div class="portfolio-items" id="container">
                             @{
-
+                                var projectsModel = await AT.Helpers.ProjectsHelper.GetDataProjects(webContext);
                                 int a = 0;
                                 @foreach (var item in Model.listProj)
                                 {
@@ -217,34 +220,41 @@
                                                     <div class="gallery portfolio-img-slick">
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="images/portfolio/1.jpg" alt="">
+                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="name-holder">
                                                     <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
-                                                    <span class="project-options">@item.FkProjectTypeId</span>
+                                                    @foreach (var item1 in projectsModel.listProjType)
+                                                    {
+                                                        if (item1.Id == item.FkProjectTypeId)
+                                                        {
+                                                            <span class="project-options">@item1.Name</span>
+                                                        }
+                                                        else { }
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
