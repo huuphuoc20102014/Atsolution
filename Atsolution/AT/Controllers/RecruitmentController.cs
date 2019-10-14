@@ -21,11 +21,11 @@ namespace AT.Controllers
                 pageNumber = 1;
             }
 
-            var students = from s in _context.News.OrderByDescending(p => p.CreatedDate)
+            var students = from s in _context.News.OrderByDescending(p => p.CreatedDate).Where(a=>a.FkNewsTypeId == id)
                            select s;
 
             int pageSize = 3;
-            return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize,id));
+            return View(await PaginatedList<News>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize, id));
         }
     }
 }
