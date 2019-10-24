@@ -675,6 +675,10 @@ namespace AT.Efs.Entities
 
                 entity.Property(e => e.Gmail).HasMaxLength(100);
 
+                entity.Property(e => e.Img)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Job)
                     .IsRequired()
                     .HasMaxLength(20);
@@ -1151,6 +1155,8 @@ namespace AT.Efs.Entities
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Description).HasMaxLength(200);
+
+                entity.Property(e => e.Id2).HasMaxLength(50);
 
                 entity.Property(e => e.Value).IsRequired();
             });

@@ -1,15 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext _webContext
+<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Atsolution</title>
+    @{
+        var settingModel = await AT.Helpers.SettingHelper.GetDataSetting(_webContext);
+        foreach (var item in settingModel.listSetting.Where(p => p.Id2 == "1"))
+        {
+            if (item.IsManual == true)
+            {
+                <title>@ViewData["Title"] - @item.Description</title>
 
-
+                <link rel="shortcut icon" href="~/@item.Value">
+            }
+        }
+    }
 
     <!-- Put favicon.ico and apple-touch-icon(s).png in the images folder -->
-    <link rel="shortcut icon" href="~/images/logo1.png">
-
     <!-- CSS StyleSheets -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&amp;amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -19,6 +30,8 @@
     <link rel="stylesheet" href="~/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="css/ie.css">
         <script type="text/javascript" src="js/html5.js"></script>
@@ -52,7 +65,7 @@
         <div id="to-top" class="main-bg"><span class="fa fa-chevron-up"></span></div>
 
     </div>
-
+    
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- Load JS siles -->
     <script src="~/js/jquery.min.js"></script>
@@ -94,6 +107,7 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
+    <script src="~/js/swiper.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

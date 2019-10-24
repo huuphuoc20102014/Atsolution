@@ -22,6 +22,8 @@ namespace AtECommerce.Efs.Entities
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsType> NewsType { get; set; }
+        public virtual DbSet<OperationHistory> OperationHistory { get; set; }
+        public virtual DbSet<People> People { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductComment> ProductComment { get; set; }
         public virtual DbSet<ProductImage> ProductImage { get; set; }
@@ -145,6 +147,8 @@ namespace AtECommerce.Efs.Entities
                     .HasColumnName("ShortDescription_Html")
                     .HasMaxLength(1000);
 
+                entity.Property(e => e.Skill).HasMaxLength(500);
+
                 entity.Property(e => e.SlugTitle)
                     .IsRequired()
                     .HasColumnName("Slug_Title")
@@ -259,6 +263,8 @@ namespace AtECommerce.Efs.Entities
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
+                entity.Property(e => e.Img).HasMaxLength(100);
+
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
@@ -330,6 +336,8 @@ namespace AtECommerce.Efs.Entities
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.Adress).HasMaxLength(1000);
+
                 entity.Property(e => e.Body).IsRequired();
 
                 entity.Property(e => e.CreatedBy)
@@ -347,6 +355,8 @@ namespace AtECommerce.Efs.Entities
                 entity.Property(e => e.FkProductCommentId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Link).HasMaxLength(1000);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -524,6 +534,10 @@ namespace AtECommerce.Efs.Entities
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.Coment)
+                    .HasColumnName("coment")
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -625,6 +639,57 @@ namespace AtECommerce.Efs.Entities
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<OperationHistory>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.HistoryDescription)
+                    .IsRequired()
+                    .HasMaxLength(300);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<People>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.BirthDay).HasColumnType("datetime");
+
+                entity.Property(e => e.Gmail).HasMaxLength(100);
+
+                entity.Property(e => e.Img)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Job)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.JobIntroduction)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -1035,6 +1100,10 @@ namespace AtECommerce.Efs.Entities
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
+                entity.Property(e => e.Icon)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ImageSlug).HasMaxLength(100);
 
                 entity.Property(e => e.KeyWord).HasMaxLength(1000);
@@ -1081,6 +1150,8 @@ namespace AtECommerce.Efs.Entities
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Description).HasMaxLength(200);
+
+                entity.Property(e => e.Id2).HasMaxLength(50);
 
                 entity.Property(e => e.Value).IsRequired();
             });

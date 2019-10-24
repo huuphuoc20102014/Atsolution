@@ -7,22 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using AtECommerce.Models;
 using AtHelper;
 using AtECommerce.Efs.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AtECommerce.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
-           
             return View();
+          
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

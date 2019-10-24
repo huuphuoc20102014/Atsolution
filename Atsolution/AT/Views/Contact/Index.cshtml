@@ -1,4 +1,7 @@
 ﻿@model ContactViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewBag.Title = "Liên hệ";
 }
@@ -96,7 +99,20 @@
 </div>
 
 @section scripts{
-
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "lien-he")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
     <script src="~/js/_pages/ContactValidate.js"></script>
 }
 

@@ -1,4 +1,7 @@
 ﻿@model HomeViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewBag.Title = "Chi Tiết Tin Tức";
 }
@@ -224,27 +227,27 @@
                             <h3 class="widget-head">Recent Posts</h3>
                             <div class="widget-content">
                                 <ul>
-                                   
+
                                     @foreach (var item in Model.listBlog.Take(3))
                                     {
-                                       
-                                       
-                                            <li>
-                                                <div class="post-img">
-                                                    <img src="~/Images/News/@item.ImageSlug" alt="">
-                                                </div>
-                                                <div class="widget-post-info">
-                                                    <h4>
-                                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                            @item.Title
-                                                        </a>
-                                                    </h4>
-                                                    <div class="meta">
-                                                        <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
 
-                                                    </div>
+
+                                        <li>
+                                            <div class="post-img">
+                                                <img src="~/Images/News/@item.ImageSlug" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                        @item.Title
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
+
                                                 </div>
-                                            </li>
+                                            </div>
+                                        </li>
                                     }
                                     @*<li>
                                             <div class="post-img">
@@ -360,3 +363,19 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "tin-tuc")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}

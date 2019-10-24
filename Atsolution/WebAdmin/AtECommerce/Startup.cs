@@ -48,6 +48,7 @@ namespace AtECommerce
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WebAtSolutionContext")));
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -56,9 +57,8 @@ namespace AtECommerce
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AtRegisterValidator>())
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
-                .AddViewLocalization()
-                ;
-
+                .AddViewLocalization();
+            
             services.AddDbContext<WebAtSolutionContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WebAtSolutionContext")));

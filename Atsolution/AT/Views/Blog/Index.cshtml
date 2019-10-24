@@ -29,46 +29,50 @@
                         @{ var loaitinModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
                             foreach (var item in Model)
                             {
-                                <div class="post-item fx" data-animate="fadeInLeft">
-                                    <div class="post-image">
-                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                            <div class="mask"></div>
-                                            <div class="post-lft-info">
-                                                <div class="main-bg">@item.CreatedDate.Day<br>@item.CreatedDate.Month<br>@item.CreatedDate.Year</div>
-                                            </div>
-                                            <img src="~/Images/blog/small/@item.ImageSlug" alt="Our Blog post image goes here">
-                                        </a>
-                                    </div>
-                                    <article class="post-content">
-                                        <div class="post-info-container">
-                                            <div class="post-info">
-                                                <h2><a class="main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">@item.Title</a></h2>
-                                                <ul class="post-meta">
-                                                    <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.CreatedBy</a></li>
-                                                    <li>
-                                                        <i class="fa fa-folder-open"></i>Category: <a href="#">
-                                                            @{foreach (var item1 in loaitinModel.listBlogT)
-                                                                {
-                                                                    if (item.FkNewsTypeId == item1.Id)
-                                                                    { @item1.Name; break;
-                                                                }
-                                                            }
-                                                            }
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            @item.ShortDescriptionHtml
-                                            <a class="read-more" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                Read more
+                                if (item.RowStatus != 1)
+                                {
+                                    <div class="post-item fx" data-animate="fadeInLeft">
+                                        <div class="post-image">
+                                            <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                <div class="mask"></div>
+                                                <div class="post-lft-info">
+                                                    <div class="main-bg">@item.CreatedDate.Day<br>@item.CreatedDate.Month<br>@item.CreatedDate.Year</div>
+                                                </div>
+                                                <img src="~/Images/blog/small/@item.ImageSlug" alt="Our Blog post image goes here">
                                             </a>
-                                        </p>
-                                    </article>
-                                </div>
-                            } }
+                                        </div>
+                                        <article class="post-content">
+                                            <div class="post-info-container">
+                                                <div class="post-info">
+                                                    <h2><a class="main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">@item.Title</a></h2>
+                                                    <ul class="post-meta">
+                                                        <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.CreatedBy</a></li>
+                                                        <li>
+                                                            <i class="fa fa-folder-open"></i>Category: <a href="#">
+                                                                @{foreach (var item1 in loaitinModel.listBlogT)
+                                                                    {
+                                                                        if (item.FkNewsTypeId == item1.Id)
+                                                                        { @item1.Name; break;
+                                                                    }
+                                                                }
+                                                                }
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                @item.ShortDescriptionHtml
+                                                <a class="read-more" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                    Read more
+                                                </a>
+                                            </p>
+                                        </article>
+                                    </div>
+                                }
+                            }
+                        }
                         <div class="pager skew-25">
 
 
@@ -82,7 +86,6 @@
                                asp-route-Trang="@(Model.PageIndex - 1)"
                                asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                               
                                class="btn btn-default @prevDisabled">
                                 Previous
                             </a>
@@ -92,7 +95,6 @@
                                asp-route-Trang="@(Model.PageIndex + 1)"
                                asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-
                                class="btn btn-default @nextDisabled">
                                 Next
                             </a>
@@ -112,24 +114,25 @@
 
                                         foreach (var item in menuModel.listBlog.Take(3))
                                         {
-                                           
-                                                <li>
-                                                    <div class="post-img">
-                                                        <img src="~/Images/News/@item.ImageSlug" alt="">
-                                                    </div>
-                                                    <div class="widget-post-info">
-                                                        <h4>
-                                                            <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                                @item.Title
-                                                            </a>
-                                                        </h4>
-                                                        <div class="meta">
-                                                            <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
+                                            if(item.RowStatus !=1)
+                                            { 
+                                            <li>
+                                                <div class="post-img">
+                                                    <img src="~/Images/News/@item.ImageSlug" alt="">
+                                                </div>
+                                                <div class="widget-post-info">
+                                                    <h4>
+                                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                            @item.Title
+                                                        </a>
+                                                    </h4>
+                                                    <div class="meta">
+                                                        <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
 
-                                                        </div>
                                                     </div>
-                                                </li>
-                                            
+                                                </div>
+                                            </li>
+                                            }
                                         }
                                     }
                                     @*<li>
@@ -220,4 +223,20 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "tin-tuc")
+            {
+                <style>
+                .title-1 {
+            background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}
 <!-- Content End -->

@@ -15,7 +15,7 @@ namespace AT.Controllers
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             ServicesViewModel model = new ServicesViewModel();
-            model.service = _webcontext.Service.SingleOrDefault(p => p.Id == id);
+            model.service = _webcontext.Service.SingleOrDefault(p => p.Id == id && p.RowStatus !=1);
             model.listService = _webcontext.Service
                  .OrderByDescending(p => p.CreatedDate)
                  .ToList();

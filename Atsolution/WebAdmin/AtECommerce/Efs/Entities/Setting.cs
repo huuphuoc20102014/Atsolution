@@ -9,5 +9,6 @@ namespace AtECommerce.Efs.Entities
         public string Value { get; set; }
         public string Description { get; set; }
         public bool? IsManual { get; set; }
+        public string Id2 { get; set; }
     }
 }

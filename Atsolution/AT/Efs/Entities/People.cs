@@ -9,9 +9,10 @@ namespace AT.Efs.Entities
         public string Name { get; set; }
         public DateTime BirthDay { get; set; }
         public string Job { get; set; }
-        public string Img { get; set; }
         public string JobIntroduction { get; set; }
         public string Phone { get; set; }
         public string Gmail { get; set; }
+        public string Img { get; set; }
+        public int? RowStatus { get; set; }
     }
 }

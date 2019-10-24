@@ -22,5 +22,6 @@ namespace AtECommerce.Efs.Entities
         public DateTime? UpdatedDate { get; set; }
         public byte[] RowVersion { get; set; }
         public int RowStatus { get; set; }
+        public string Skill { get; set; }
     }
 }
