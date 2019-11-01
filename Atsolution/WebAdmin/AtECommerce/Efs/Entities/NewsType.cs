@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class NewsType : AtBaseECommerceEntity
+    public partial class NewsType
     {
         public NewsType()
         {

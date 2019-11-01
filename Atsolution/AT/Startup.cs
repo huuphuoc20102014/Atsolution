@@ -14,6 +14,8 @@ using AT.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AT.Efs.Entities;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace AT
 {
@@ -47,7 +49,7 @@ namespace AT
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddKendo();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -65,13 +67,18 @@ namespace AT
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+               //Key -> StaticFileSetting || Value -> "D:\\ATImage"
+               //Configuration.GetSection("StaticFileSetting").Value -> "E:\\ATImage"
+               Path.Combine(Configuration.GetSection("StaticFileSetting").Value)),
+                RequestPath = "/Image"
+            });
             app.UseCookiePolicy();
-
             app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

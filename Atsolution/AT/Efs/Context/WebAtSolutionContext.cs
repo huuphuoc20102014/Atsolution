@@ -41,6 +41,7 @@ namespace AT.Efs.Entities
         public virtual DbSet<ProjectType> ProjectType { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Setting> Setting { get; set; }
+        public virtual DbSet<SettingType> SettingType { get; set; }
         public virtual DbSet<TableVersion> TableVersion { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -667,7 +668,7 @@ namespace AT.Efs.Entities
             modelBuilder.Entity<People>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(10)
+                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
@@ -692,9 +693,12 @@ namespace AT.Efs.Entities
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Phone)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -1156,9 +1160,33 @@ namespace AT.Efs.Entities
 
                 entity.Property(e => e.Description).HasMaxLength(200);
 
-                entity.Property(e => e.Id2).HasMaxLength(50);
+                entity.Property(e => e.ImageSlug).HasMaxLength(200);
+
+                entity.Property(e => e.RowVersion).IsRowVersion();
+
+                entity.Property(e => e.Style).HasMaxLength(200);
 
                 entity.Property(e => e.Value).IsRequired();
+
+                entity.HasOne(d => d.StyleNavigation)
+                    .WithMany(p => p.Setting)
+                    .HasForeignKey(d => d.Style)
+                    .HasConstraintName("FK_Setting_SettingType");
+            });
+
+            modelBuilder.Entity<SettingType>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(200)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
             });
 
             modelBuilder.Entity<TableVersion>(entity =>

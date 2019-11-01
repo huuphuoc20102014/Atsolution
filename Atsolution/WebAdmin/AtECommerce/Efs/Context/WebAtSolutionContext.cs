@@ -6,6 +6,17 @@ namespace AtECommerce.Efs.Entities
 {
     public partial class WebAtSolutionContext : DbContext
     {
+
+        internal string LoginUserId { get; set; }
+        public WebAtSolutionContext()
+        {
+        }
+
+        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<AboutCustomer> AboutCustomer { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -32,11 +43,9 @@ namespace AtECommerce.Efs.Entities
         public virtual DbSet<ProjectType> ProjectType { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Setting> Setting { get; set; }
+        public virtual DbSet<SettingType> SettingType { get; set; }
         public virtual DbSet<TableVersion> TableVersion { get; set; }
-
-        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options) : base(options)
-        {
-        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -662,7 +671,7 @@ namespace AtECommerce.Efs.Entities
             modelBuilder.Entity<People>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasMaxLength(10)
+                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
@@ -687,9 +696,12 @@ namespace AtECommerce.Efs.Entities
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Phone)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -1151,9 +1163,33 @@ namespace AtECommerce.Efs.Entities
 
                 entity.Property(e => e.Description).HasMaxLength(200);
 
-                entity.Property(e => e.Id2).HasMaxLength(50);
+                entity.Property(e => e.ImageSlug).HasMaxLength(200);
+
+                entity.Property(e => e.RowVersion).IsRowVersion();
+
+                entity.Property(e => e.Style).HasMaxLength(200);
 
                 entity.Property(e => e.Value).IsRequired();
+
+                entity.HasOne(d => d.StyleNavigation)
+                    .WithMany(p => p.Setting)
+                    .HasForeignKey(d => d.Style)
+                    .HasConstraintName("FK_Setting_SettingType");
+            });
+
+            modelBuilder.Entity<SettingType>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(200)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion();
             });
 
             modelBuilder.Entity<TableVersion>(entity =>
@@ -1169,10 +1205,6 @@ namespace AtECommerce.Efs.Entities
                     .IsRequired()
                     .IsRowVersion();
             });
-
-            OnModelCreatingExt(modelBuilder);
         }
-
-        partial void OnModelCreatingExt(ModelBuilder modelBuilder);
     }
 }

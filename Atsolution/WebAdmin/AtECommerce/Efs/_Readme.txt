@@ -1,1 +1,0 @@
-﻿Scaffold-DbContext "Server=101.99.32.48,8899;Database=AtECommerce;User Id=sa;Password=1@qweQAZ" Microsoft.EntityFrameworkCore.SqlServer -force -context "AtECommerceContext" -ContextDir "Efs/Context" -OutputDir "Efs/Entities" -UseDatabaseNames

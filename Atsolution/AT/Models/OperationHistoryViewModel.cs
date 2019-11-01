@@ -11,5 +11,6 @@ namespace AT.Models
         public List<OperationHistory> listOperation { get; set; }
         public List<People> listPeople { get; set; }
         public AboutUs about { get; set; }
-    }
+        public string a { get; set; }
+     }
 }

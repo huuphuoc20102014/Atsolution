@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class OperationHistory : AtBaseECommerceEntity
+    public partial class OperationHistory
     {
         public string Id { get; set; }
         public string Title { get; set; }

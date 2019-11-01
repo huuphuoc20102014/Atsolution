@@ -10,6 +10,7 @@ namespace AtECommerce.Areas.Admin.Controllers
 {
     public class BaseAdminController : Controller
     {
+       
         protected WebAtSolutionContext AtSolutionContext { get; }
 
         public BaseAdminController(WebAtSolutionContext atSolutionContext)

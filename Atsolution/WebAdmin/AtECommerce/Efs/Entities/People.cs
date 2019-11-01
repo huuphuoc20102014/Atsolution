@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class People : AtBaseECommerceEntity
+    public partial class People
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -13,6 +13,7 @@ namespace AtECommerce.Efs.Entities
         public string Phone { get; set; }
         public string Gmail { get; set; }
         public string Img { get; set; }
-        public int? RowStatus { get; set; }
+        public int RowStatus { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }

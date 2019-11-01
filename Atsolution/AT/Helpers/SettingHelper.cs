@@ -15,6 +15,7 @@ namespace AT.Helpers
             HomeViewModel model = new HomeViewModel();
             model.listSetting =  webContext.Setting.ToList();
             model.listimg = webContext.ImageSlide.ToList();
+            model.listsetingtitle = webContext.SettingType.ToList();
             return model;
         }
 

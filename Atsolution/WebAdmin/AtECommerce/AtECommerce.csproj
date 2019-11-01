@@ -1,39 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-AtECommerce-29DB0A69-ED86-44C9-AB9B-64D6ACAA388F</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Efs\**" />
     <Compile Remove="Templates\**" />
-    <Compile Remove="Views\Categories.Bak\**" />
-    <Compile Remove="Views\Categories\**" />
-    <Compile Remove="Views\Products\**" />
+    <Content Remove="Efs\**" />
     <Content Remove="Templates\**" />
-    <Content Remove="Views\Categories.Bak\**" />
-    <Content Remove="Views\Categories\**" />
-    <Content Remove="Views\Products\**" />
+    <EmbeddedResource Remove="Efs\**" />
     <EmbeddedResource Remove="Templates\**" />
-    <EmbeddedResource Remove="Views\Categories.Bak\**" />
-    <EmbeddedResource Remove="Views\Categories\**" />
-    <EmbeddedResource Remove="Views\Products\**" />
+    <None Remove="Efs\**" />
     <None Remove="Templates\**" />
-    <None Remove="Views\Categories.Bak\**" />
-    <None Remove="Views\Categories\**" />
-    <None Remove="Views\Products\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\CategoriesController - Copy.cs" />
-    <Compile Remove="Controllers\CategoriesController.cs" />
-    <Compile Remove="Controllers\ProductsController.cs" />
-    <Compile Remove="Efs\Context\AtECommerceContext.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Controllers\CategoriesController.cs~RF58b44f2.TMP" />
+    <Compile Include="Efs\Context\AtECommerceContextExt.cs" />
+    <Compile Include="Efs\Context\WebAtSolutionContext.cs" />
+    <Compile Include="Efs\Entities\AboutCustomer.cs" />
+    <Compile Include="Efs\Entities\AboutUs.cs" />
+    <Compile Include="Efs\Entities\AspNetRoleClaims.cs" />
+    <Compile Include="Efs\Entities\AspNetRoles.cs" />
+    <Compile Include="Efs\Entities\AspNetUserClaims.cs" />
+    <Compile Include="Efs\Entities\AspNetUserLogins.cs" />
+    <Compile Include="Efs\Entities\AspNetUserRoles.cs" />
+    <Compile Include="Efs\Entities\AspNetUsers.cs" />
+    <Compile Include="Efs\Entities\AspNetUserTokens.cs" />
+    <Compile Include="Efs\Entities\Category.cs" />
+    <Compile Include="Efs\Entities\Contact.cs" />
+    <Compile Include="Efs\Entities\Faq.cs" />
+    <Compile Include="Efs\Entities\ImageSlide.cs" />
+    <Compile Include="Efs\Entities\Menu.cs" />
+    <Compile Include="Efs\Entities\News.cs" />
+    <Compile Include="Efs\Entities\NewsType.cs" />
+    <Compile Include="Efs\Entities\OperationHistory.cs" />
+    <Compile Include="Efs\Entities\People.cs" />
+    <Compile Include="Efs\Entities\Product.cs" />
+    <Compile Include="Efs\Entities\ProductComment.cs" />
+    <Compile Include="Efs\Entities\ProductImage.cs" />
+    <Compile Include="Efs\Entities\Project.cs" />
+    <Compile Include="Efs\Entities\ProjectImage.cs" />
+    <Compile Include="Efs\Entities\ProjectType.cs" />
+    <Compile Include="Efs\Entities\Service.cs" />
+    <Compile Include="Efs\Entities\Setting.cs" />
+    <Compile Include="Efs\Entities\SettingType.cs" />
+    <Compile Include="Efs\Entities\TableVersion.cs" />
   </ItemGroup>
 
 
@@ -58,6 +72,82 @@
 
 
   <ItemGroup>
+    <None Include="Views\AboutUs\Create.cshtml" />
+    <None Include="Views\AboutUs\Delete.cshtml" />
+    <None Include="Views\AboutUs\Details.cshtml" />
+    <None Include="Views\AboutUs\Edit.cshtml" />
+    <None Include="Views\AboutUs\Index.cshtml" />
+    <None Include="Views\Contacts\Create.cshtml" />
+    <None Include="Views\Contacts\Delete.cshtml" />
+    <None Include="Views\Contacts\Details.cshtml" />
+    <None Include="Views\Contacts\Edit.cshtml" />
+    <None Include="Views\Contacts\Index.cshtml" />
+    <None Include="Views\Error\Index.cshtml" />
+    <None Include="Views\GrantRights\Create.cshtml" />
+    <None Include="Views\GrantRights\Delete.cshtml" />
+    <None Include="Views\GrantRights\Details.cshtml" />
+    <None Include="Views\GrantRights\Edit.cshtml" />
+    <None Include="Views\GrantRights\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\ImageSlides\Create.cshtml" />
+    <None Include="Views\ImageSlides\Delete.cshtml" />
+    <None Include="Views\ImageSlides\Details.cshtml" />
+    <None Include="Views\ImageSlides\Edit.cshtml" />
+    <None Include="Views\ImageSlides\Index.cshtml" />
+    <None Include="Views\News\Create.cshtml" />
+    <None Include="Views\News\Delete.cshtml" />
+    <None Include="Views\News\Details.cshtml" />
+    <None Include="Views\News\Edit.cshtml" />
+    <None Include="Views\News\Index.cshtml" />
+    <None Include="Views\News\NewsTypes\Create.cshtml" />
+    <None Include="Views\News\NewsTypes\Delete.cshtml" />
+    <None Include="Views\News\NewsTypes\Details.cshtml" />
+    <None Include="Views\News\NewsTypes\Edit.cshtml" />
+    <None Include="Views\News\NewsTypes\Index.cshtml" />
+    <None Include="Views\People\Create.cshtml" />
+    <None Include="Views\People\Delete.cshtml" />
+    <None Include="Views\People\Details.cshtml" />
+    <None Include="Views\People\Edit.cshtml" />
+    <None Include="Views\People\Index.cshtml" />
+    <None Include="Views\Projects\Create.cshtml" />
+    <None Include="Views\Projects\Delete.cshtml" />
+    <None Include="Views\Projects\Details.cshtml" />
+    <None Include="Views\Projects\Edit.cshtml" />
+    <None Include="Views\Projects\Index.cshtml" />
+    <None Include="Views\ProjectType\Create.cshtml" />
+    <None Include="Views\ProjectType\Delete.cshtml" />
+    <None Include="Views\ProjectType\Details.cshtml" />
+    <None Include="Views\ProjectType\Edit.cshtml" />
+    <None Include="Views\ProjectType\Index.cshtml" />
+    <None Include="Views\Role\Create.cshtml" />
+    <None Include="Views\Role\Delete.cshtml" />
+    <None Include="Views\Role\Details.cshtml" />
+    <None Include="Views\Role\Edit.cshtml" />
+    <None Include="Views\Role\Index.cshtml" />
+    <None Include="Views\Service\Create.cshtml" />
+    <None Include="Views\Service\Delete.cshtml" />
+    <None Include="Views\Service\Details.cshtml" />
+    <None Include="Views\Service\Edit.cshtml" />
+    <None Include="Views\Service\Index.cshtml" />
+    <None Include="Views\SettingType\Create.cshtml" />
+    <None Include="Views\SettingType\Delete.cshtml" />
+    <None Include="Views\SettingType\Details.cshtml" />
+    <None Include="Views\SettingType\Edit.cshtml" />
+    <None Include="Views\SettingType\Index.cshtml" />
+    <None Include="Views\Setting\Create.cshtml" />
+    <None Include="Views\Setting\Delete.cshtml" />
+    <None Include="Views\Setting\Details.cshtml" />
+    <None Include="Views\Setting\Edit.cshtml" />
+    <None Include="Views\Setting\Index.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_CookieConsentPartial.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\img\logo.png" />
     <None Include="wwwroot\js\app.js" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\views\main.js" />

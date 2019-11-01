@@ -58,7 +58,7 @@ namespace AtECommerce
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AtRegisterValidator>())
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .AddViewLocalization();
-            
+
             services.AddDbContext<WebAtSolutionContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WebAtSolutionContext")));

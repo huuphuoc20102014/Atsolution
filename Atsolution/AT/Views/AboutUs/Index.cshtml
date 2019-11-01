@@ -22,15 +22,15 @@
     <div class="sectionWrapper">
         <div class="container">
             <div class="fx" data-animate="fadeInUp">
-                @if(Model.about.RowStatus !=1)
-                { 
-                <h3 class="block-head">@Model.about.Title</h3>
-                <p>
-                    @Model.about.ShortDescriptionHtml
-                </p>
-                <p>
-                    @Model.about.LongDescriptionHtml
-                </p>
+                @if (Model.about.RowStatus != 1)
+                {
+                    <h3 class="block-head">@Model.about.Title</h3>
+                    <p>
+                        @Model.about.ShortDescriptionHtml
+                    </p>
+                    <p>
+                        @Model.about.LongDescriptionHtml
+                    </p>
                 }
             </div>
 
@@ -243,104 +243,103 @@
             </div>
         </div>
     </div>
-
     <div class="sectionWrapper gry-pattern">
         <div class="container team-boxes">
             <h3 class="block-head">Thành Viên Công Ty</h3>
             @foreach (var item in Model.listPeople)
             {
-                if(item.RowStatus !=1)
-                { 
-                <div class="cell-3 fx" data-animate="bounceIn">
-                    <div class="team-box">
-                        <div class="team-img">
-                            <img alt="" src="images/people/@item.Img">
-                            <h3>@item.Name</h3>
-                        </div>
-                        <div class="team-details">
-                            <h3 class="gry-bg">@item.Name</h3>
-                            <div class="t-position">@item.Job</div>
-                            <p>@item.JobIntroduction</p>
-                            <div class="team-socials">
-                                <ul>
-                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                                </ul>
+                if (item.RowStatus != 1)
+                {
+                    <div class="cell-3 fx" data-animate="bounceIn">
+                        <div class="team-box">
+                            <div class="team-img">
+                                <img alt="" src="~/Image/@Url.Content(@item.Img)">
+                                <h3>@item.Name</h3>
+                            </div>
+                            <div class="team-details">
+                                <h3 class="gry-bg">@item.Name</h3>
+                                <div class="t-position">@item.Job</div>
+                                <p>@item.JobIntroduction</p>
+                                <div class="team-socials">
+                                    <ul>
+                                        <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                                        <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                                        <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                                        <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                                        <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 }
             }
             @*<div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="200">
-                    <div class="team-box">
-                        <div class="team-img">
-                            <img alt="" src="images/people/1.jpg">
-                            <h3>John Martin</h3>
-                        </div>
-                        <div class="team-details">
-                            <h3 class="gry-bg">John Martin</h3>
-                            <div class="t-position">Chair Man.</div>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                            <div class="team-socials">
-                                <ul>
-                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>John Martin</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">John Martin</h3>
+                    <div class="t-position">Chair Man.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="400">
-                    <div class="team-box">
-                        <div class="team-img">
-                            <img alt="" src="images/people/1.jpg">
-                            <h3>Alex Henry</h3>
-                        </div>
-                        <div class="team-details">
-                            <h3 class="gry-bg">Alex Henry</h3>
-                            <div class="t-position">General Manager.</div>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                            <div class="team-socials">
-                                <ul>
-                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="400">
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>Alex Henry</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">Alex Henry</h3>
+                    <div class="t-position">General Manager.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="600">
-                    <div class="team-box">
-                        <div class="team-img">
-                            <img alt="" src="images/people/1.jpg">
-                            <h3>Maria Adams</h3>
-                        </div>
-                        <div class="team-details">
-                            <h3 class="gry-bg">Maria Adams</h3>
-                            <div class="t-position">Company CEO.</div>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
-                            <div class="team-socials">
-                                <ul>
-                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        <div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="600">
+            <div class="team-box">
+                <div class="team-img">
+                    <img alt="" src="images/people/1.jpg">
+                    <h3>Maria Adams</h3>
+                </div>
+                <div class="team-details">
+                    <h3 class="gry-bg">Maria Adams</h3>
+                    <div class="t-position">Company CEO.</div>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolre eu feugiat nula faciisis at vero eros.</p>
+                    <div class="team-socials">
+                        <ul>
+                            <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                            <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                            <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                        </ul>
                     </div>
-                </div>*@
+                </div>
+            </div>
+        </div>*@
         </div>
     </div>
 

@@ -9,14 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @{
         var settingModel = await AT.Helpers.SettingHelper.GetDataSetting(_webContext);
-        foreach (var item in settingModel.listSetting.Where(p => p.Id2 == "1"))
+        foreach (var item in settingModel.listSetting)
         {
-            if (item.IsManual == true)
+            foreach (var item1 in settingModel.listsetingtitle)
             {
-                <title>@ViewData["Title"] - @item.Description</title>
-
-                <link rel="shortcut icon" href="~/@item.Value">
+                if (item.Style == item1.Id && item.IsManual == true && item.RowStatus!=1)
+                {
+                    <title>@ViewData["Title"] - @item.Description</title>
+                    <link rel="shortcut icon" href="~/Image/@Url.Content(item.ImageSlug)">
+                }
             }
+
         }
     }
 
@@ -31,7 +34,7 @@
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
     <link href="~/css/swiper.min.css" rel="stylesheet" />
-    
+
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="css/ie.css">
         <script type="text/javascript" src="js/html5.js"></script>
@@ -65,7 +68,7 @@
         <div id="to-top" class="main-bg"><span class="fa fa-chevron-up"></span></div>
 
     </div>
-    
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- Load JS siles -->
     <script src="~/js/jquery.min.js"></script>

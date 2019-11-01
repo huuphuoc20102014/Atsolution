@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class AspNetUserRoles : AtBaseECommerceEntity
+    public partial class AspNetUserRoles
     {
         public string UserId { get; set; }
         public string RoleId { get; set; }

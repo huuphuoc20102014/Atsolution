@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GOLDENSEA</title>
-
+    <title>@ViewData["Title"] - ATSOLUTION</title>
+    <link rel="shortcut icon" href="~/img/logo.png">
     <link rel="stylesheet" href="~/lib/regular.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome.min.css" />
     <link rel="stylesheet" href="~/lib/kendo.bootstrap-v4.min.css" />
@@ -55,18 +55,33 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                 <ul class="nav">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index"><i class="icon-speedometer"></i>Quyền</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="GrantRights" asp-action="Index"><i class="icon-speedometer"></i>Cấp Quyền</a>
+                        </li>
+                    }
+
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="ProjectType" asp-action="Index"><i class="icon-speedometer"></i>Loại dịch vụ</a>
+                        <a class="nav-link text-white" asp-area="" asp-controller="ProjectType" asp-action="Index"><i class="icon-speedometer"></i>Loại dự án</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" asp-area="" asp-controller="Projects" asp-action="Index"><i class="icon-speedometer"></i>Dự án</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="NewsTypes" asp-action="Index"><i class="icon-speedometer"></i>Loại bài đăng</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" asp-area="" asp-controller="News" asp-action="Index"><i class="icon-speedometer"></i>Bài đăng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="NewsTypes" asp-action="Index"><i class="icon-speedometer"></i>Loại bài đăng</a>
+                        <a class="nav-link text-white" asp-area="" asp-controller="Service" asp-action="Index"><i class="icon-speedometer"></i>Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="People" asp-action="Index"><i class="icon-speedometer"></i>Nhân Viên</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" asp-area="" asp-controller="AboutUs" asp-action="Index"><i class="icon-speedometer"></i>Giới thiệu</a>
@@ -78,14 +93,17 @@
                         <a class="nav-link text-white" asp-area="" asp-controller="ImageSlides" asp-action="Index"><i class="icon-speedometer"></i>Hình ảnh</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Service" asp-action="Index"><i class="icon-speedometer"></i>Dịch vụ</a>
+                        <a class="nav-link text-white" asp-area="" asp-controller="SettingType" asp-action="Index"><i class="icon-speedometer"></i>Loại Setting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Setting" asp-action="Index"><i class="icon-speedometer"></i>Setting</a>
                     </li>
                 </ul>
                 }
             </nav>
             <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
-       
+
         <!-- Main content -->
         <div class="main">
             <div class="container-fluid">
@@ -96,7 +114,7 @@
             </div>
         </div>
     </div>
-   <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2019 - At E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

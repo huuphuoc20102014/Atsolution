@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class ProjectType : AtBaseECommerceEntity
+    public partial class ProjectType
     {
         public ProjectType()
         {
