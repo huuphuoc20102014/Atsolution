@@ -53,10 +53,10 @@
                 "href='" + Url.Action("Delete", ((string)ViewData["ControllerNameForGrid"])) + "/#= " + nameof(AspNetUserRoles.UserId) + " #'" +
             "><i class=\"far fa-trash-alt\"></i></a> "
         );
-
-        columns.Bound(c => c.UserId).Title(EntityLocalizer[nameof(AspNetUserRoles.UserId)]).Width(400).HtmlAttributes(new { @class = "text-nowrap" });
         
-        columns.Bound(c => c.RoleId).Title(EntityLocalizer[nameof(AspNetUserRoles.RoleId)]).Width(400).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.TenNguoiDung).Title(EntityLocalizer[nameof(ViewUserRole.TenNguoiDung)]).Width(400).HtmlAttributes(new { @class = "text-nowrap" });
+
+        columns.Bound(c => c.TenQuyen).Title(EntityLocalizer[nameof(ViewUserRole.TenQuyen)]).Width(400).HtmlAttributes(new { @class = "text-nowrap" });
 
     })
     .HtmlAttributes(new { style = "height: 600px;" })

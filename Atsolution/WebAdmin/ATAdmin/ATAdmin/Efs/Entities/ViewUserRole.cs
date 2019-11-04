@@ -7,5 +7,7 @@ namespace ATAdmin.Efs.Entities
     {
         public string TenQuyen { get; set; }
         public string TenNguoiDung { get; set; }
+        public string IdUser { get; set; }
+        public string IdRole { get; set; }
     }
 }

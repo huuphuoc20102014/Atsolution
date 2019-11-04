@@ -61,9 +61,9 @@ namespace ATAdmin
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-           
 
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AtRegisterValidator>())
                .AddJsonOptions(o =>
@@ -100,7 +100,6 @@ namespace ATAdmin
                 RequestPath = "/Image"
             });
             app.UseRouting();
-            
             app.UseAuthentication();
             app.UseAuthorization();
             

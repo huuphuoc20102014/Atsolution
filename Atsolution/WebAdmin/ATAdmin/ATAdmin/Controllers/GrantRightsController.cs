@@ -45,17 +45,18 @@ namespace ATAdmin.Controllers
 
         public async Task<IActionResult> Index_Read([DataSourceRequest] DataSourceRequest request, string parentId)
         {
-            var baseQuery = _context.AspNetUserRoles.AsNoTracking();
+            var baseQuery = _context.ViewUserRole.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(parentId))
             {
-                baseQuery = baseQuery.Where(h => h.UserId == parentId);
+                baseQuery = baseQuery.Where(h => h.IdUser == parentId);
             }
             var query = baseQuery
                 .Select(h => new AspNetUserRolesDetailsViewModel
                 {
-                    UserId = h.UserId,
-                    RoleId = h.RoleId,
-
+                    UserId = h.IdUser,
+                    RoleId = h.IdRole,
+                    TenNguoiDung = h.TenNguoiDung,
+                    TenQuyen = h.TenQuyen
                 });
 
             return Json(await query.ToDataSourceResultAsync(request));
@@ -70,8 +71,8 @@ namespace ATAdmin.Controllers
                 return NotFound();
             }
 
-            var aspNetUserRoles = await _context.AspNetUserRoles.AsNoTracking()
-                    .Where(h => h.UserId == id)
+            var aspNetUserRoles = await _context.ViewUserRole.AsNoTracking()
+                    .Where(h => h.IdUser == id)
                 .FirstOrDefaultAsync();
             if (aspNetUserRoles == null)
             {
@@ -140,7 +141,9 @@ namespace ATAdmin.Controllers
                  .Where(h => h.UserId == id)
                 .Select(h => new AspNetUserRolesEditViewModel
                 {
+                    UserId = h.UserId,
                     RoleId = h.RoleId,
+                    
                 })
                 .FirstOrDefaultAsync();
             if (dbItem == null)
@@ -159,36 +162,39 @@ namespace ATAdmin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromForm] AspNetUserRolesEditViewModel vmItem)
+        public async Task<IActionResult> Edit([FromForm] AspNetUserRolesEditViewModel vmItem, [FromRoute] string id)
         {
-
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return View(vmItem);
+                return NotFound();
             }
 
-
+            // Get time stamp for table to handle concurrency conflict
             var tableName = nameof(AspNetUserRoles);
             var tableVersion = await _context.TableVersion.FirstOrDefaultAsync(h => h.Id == tableName);
 
             var dbItem = await _context.AspNetUserRoles
-                .Where(h => h.UserId == vmItem.UserId)
+
+                .Where(h => h.UserId == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
                 return NotFound();
             }
-
-            // Trim white space
-
-            dbItem.RoleId = vmItem.RoleId;
-
-            _context.Entry(dbItem);
-            // Set time stamp for table to handle concurrency conflict
-           
+            _context.Remove(dbItem);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Details), new { id = dbItem.UserId });
+           
+            var dbItem1 = new AspNetUserRoles
+            {
+                UserId = id,
+                RoleId = vmItem.RoleId,
+
+            };
+            _context.Add(dbItem1);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details), new { id = dbItem1.UserId });
         }
 
         // GET: News/Details/5
@@ -199,9 +205,9 @@ namespace ATAdmin.Controllers
                 return NotFound();
             }
 
-            var dbItem = await _context.AspNetUserRoles.AsNoTracking()
+            var dbItem = await _context.ViewUserRole.AsNoTracking()
 
-                .Where(h => h.UserId == id)
+                .Where(h => h.IdUser == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
@@ -227,26 +233,14 @@ namespace ATAdmin.Controllers
 
             var dbItem = await _context.AspNetUserRoles
 
-               
                 .Where(h => h.UserId == id)
                 .FirstOrDefaultAsync();
             if (dbItem == null)
             {
                 return NotFound();
             }
-
-       
-
-            // Update db item               
-
-
-                _context.Entry(dbItem);
-                // Set time stamp for table to handle concurrency conflict
-               
-                await _context.SaveChangesAsync();
-            
-
-
+            _context.Remove(dbItem);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -254,14 +248,14 @@ namespace ATAdmin.Controllers
         {
             ViewData["UserId"] = new SelectList(
                 await _context.AspNetUsers.AsNoTracking()
-                    .Select(h => new { h.Id, h.UserName})
+                    .Select(h => new {h.Id, h.UserName})
                     .ToListAsync(),
                  "Id", "UserName", vm?.UserId);
             ViewData["RoleId"] = new SelectList(
                await _context.AspNetRoles.AsNoTracking()
-                   .Select(h => new {h.Id, h.Name })
+                   .Select(h => new {h.Name,h.Id })
                    .ToListAsync(),
-                "Id", "Name", vm?.RoleId);
+                  "Id","Name", vm?.RoleId);
 
         }
     }
@@ -278,9 +272,8 @@ namespace ATAdmin.Controllers
 
     public class AspNetUserRolesDetailsViewModel : AspNetUserRolesBaseViewModel
     {
-
-       
-
+        public String TenQuyen { get; set; }
+        public String TenNguoiDung { get; set; }
     }
 
     public class AspNetUserRolesCreateViewModel : AspNetUserRolesBaseViewModel
@@ -290,7 +283,8 @@ namespace ATAdmin.Controllers
 
     public class AspNetUserRolesEditViewModel : AspNetUserRolesBaseViewModel
     {
-
+        public virtual AspNetRoles Role { get; set; }
+        public virtual AspNetUsers User { get; set; }
     }
 
     public class AspNetUserRolesBaseValidator<T> : AtBaseValidator<T> where T : AspNetUserRolesBaseViewModel

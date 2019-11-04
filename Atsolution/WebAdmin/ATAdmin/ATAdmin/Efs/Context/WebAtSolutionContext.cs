@@ -6,13 +6,7 @@ namespace ATAdmin.Efs.Entities
 {
     public partial class WebAtSolutionContext : DbContext
     {
-        internal string LoginUserId { get; set; }
-        public WebAtSolutionContext()
-        {
-        }
-        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options) : base(options)
-        {
-        }
+        internal string LoginUserId;
 
         public virtual DbSet<AboutCustomer> AboutCustomer { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
@@ -44,7 +38,9 @@ namespace ATAdmin.Efs.Entities
         public virtual DbSet<TableVersion> TableVersion { get; set; }
         public virtual DbSet<ViewUserRole> ViewUserRole { get; set; }
 
-       
+        public WebAtSolutionContext(DbContextOptions<WebAtSolutionContext> options) : base(options)
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1182,6 +1178,14 @@ namespace ATAdmin.Efs.Entities
                 entity.HasNoKey();
 
                 entity.ToView("View_User_Role");
+
+                entity.Property(e => e.IdRole)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.IdUser)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.Property(e => e.TenNguoiDung).HasMaxLength(256);
 
