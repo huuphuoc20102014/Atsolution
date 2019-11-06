@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AT", "AT\AT.csproj", "{7EEA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenEf", "GenEf\GenEf.csproj", "{94AB3646-34E8-460E-8D1D-8FB189F69AC7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATAdmin", "WebAdmin\ATAdmin\ATAdmin\ATAdmin.csproj", "{F598C280-5CAD-4D12-96F3-3FAD7697185A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94AB3646-34E8-460E-8D1D-8FB189F69AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AB3646-34E8-460E-8D1D-8FB189F69AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AB3646-34E8-460E-8D1D-8FB189F69AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F598C280-5CAD-4D12-96F3-3FAD7697185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F598C280-5CAD-4D12-96F3-3FAD7697185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F598C280-5CAD-4D12-96F3-3FAD7697185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F598C280-5CAD-4D12-96F3-3FAD7697185A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
