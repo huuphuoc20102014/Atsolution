@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AT.Efs.Entities;
 using AT.Models;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace AT.Controllers
 {
@@ -20,5 +23,6 @@ namespace AT.Controllers
             model.about = _webcontext.AboutUs.Single();
             return View(model);
         }
+     
     }
 }

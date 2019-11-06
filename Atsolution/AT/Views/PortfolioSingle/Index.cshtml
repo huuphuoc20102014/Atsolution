@@ -1,4 +1,7 @@
 ﻿@model PortfolioSingleViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
 @{
     ViewBag.Title = "Chi Tiết Dự Án";
 }
@@ -8,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="cell-12">
-                    <h1 class="fx" data-animate="fadeInLeft">Chi tiết <span>dự án</span></h1>
+                    <h1 class="fx" data-animate="fadeInLeft">Chi tiết <span>Dự án</span></h1>
                     <div class="breadcrumbs main-bg fx" data-animate="fadeInUp">
                         <span class="bold">Trang:</span><a href="~/Home">Trang chủ</a><span class="line-separate">/</span><a href="~/du-an">Dự Án </a><span class="line-separate">/</span><span>Chi Tiết Dự Án</span>
                     </div>
@@ -135,4 +138,20 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "du-an")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}
 

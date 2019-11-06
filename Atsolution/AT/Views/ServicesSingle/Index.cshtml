@@ -227,23 +227,23 @@
                             <div class="widget-content">
                                 <ul>
                                     @foreach (var item in Model.listService.Take(3))
-                                    {  
-                                            <li>
-                                                <div class="post-img">
-                                                    <img src="~/Images/News/@item.ImageSlug" alt="">
-                                                </div>
-                                                <div class="widget-post-info">
-                                                    <h4>
-                                                        <a href="~/chi-tiet-dich-vu?id=@item.Id">
-                                                            @item.ServiceName
-                                                        </a>
-                                                    </h4>
-                                                    <div class="meta">
-                                                        <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
+                                    {
+                                        <li>
+                                            <div class="post-img">
+                                                <img src="~/Images/News/@item.ImageSlug" alt="">
+                                            </div>
+                                            <div class="widget-post-info">
+                                                <h4>
+                                                    <a href="~/chi-tiet-dich-vu?id=@item.Id">
+                                                        @item.ServiceName
+                                                    </a>
+                                                </h4>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-clock-o"></i>@item.CreatedDate</span>
 
-                                                    </div>
                                                 </div>
-                                            </li>
+                                            </div>
+                                        </li>
                                     }
                                     @*<li>
                                             <div class="post-img">
@@ -280,31 +280,31 @@
                         </li>
 
                         @*<li class="widget blog-cat-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Blog Categories</h3>
-                            <div class="widget-content">
-                                <ul class="list list-ok alt">
-                                    @{
-                                        foreach (var item in Model.listBlogT)
-                                        {
-                                            int dem = 0;
-                                            <li>
+                                <h3 class="widget-head">Blog Categories</h3>
+                                <div class="widget-content">
+                                    <ul class="list list-ok alt">
+                                        @{
+                                            foreach (var item in Model.listBlogT)
+                                            {
+                                                int dem = 0;
+                                                <li>
 
-                                                @foreach (var item1 in Model.listBlog)
-                                                {
-                                                    if (item.Id == item1.FkNewsTypeId)
-                                                    { dem += 1; }
-                                                }
-                                                <a href="blog-single.html">@item.Name</a><span>[@dem]</span>
-                                            </li>
+                                                    @foreach (var item1 in Model.listBlog)
+                                                    {
+                                                        if (item.Id == item1.FkNewsTypeId)
+                                                        { dem += 1; }
+                                                    }
+                                                    <a href="blog-single.html">@item.Name</a><span>[@dem]</span>
+                                                </li>
+                                            }
                                         }
-                                    }
-                                    <li><a href="blog-single.html">Web development</a><span>[3]</span></li>
-                                        <li><a href="blog-single.html">Sports News</a><span>[25]</span></li>
-                                        <li><a href="blog-single.html">Corporate news</a><span>[12]</span></li>
+                                        <li><a href="blog-single.html">Web development</a><span>[3]</span></li>
+                                            <li><a href="blog-single.html">Sports News</a><span>[25]</span></li>
+                                            <li><a href="blog-single.html">Corporate news</a><span>[12]</span></li>
 
-                                </ul>
-                            </div>
-                        </li>*@
+                                    </ul>
+                                </div>
+                            </li>*@
 
                         @*<li class="widget r-comments-w fx" data-animate="fadeInRight">
                                 <h3 class="widget-head">Recent Comments</h3>
@@ -359,3 +359,19 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "dich-vu")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}

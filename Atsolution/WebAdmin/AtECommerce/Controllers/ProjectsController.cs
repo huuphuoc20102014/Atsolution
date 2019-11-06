@@ -10,11 +10,7 @@ using FluentValidation;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Hosting;
-
-using AtECommerce.Efs.Entities;
-
-
-
+using Microsoft.Extensions.Configuration;
 
 namespace AtECommerce.Controllers
 {
@@ -108,6 +104,8 @@ namespace AtECommerce.Controllers
         // GET: Projects/Create
         public async Task<IActionResult> Create()
         {
+            ViewData["ControllerNameForImageBrowser"] = nameof(ImageBrowserProjectController).Replace("Controller", "");
+
             // Get list master of foreign property and set to view data
             await PrepareListMasterForeignKey();
 
@@ -121,7 +119,7 @@ namespace AtECommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] ProjectCreateViewModel vmItem)
         {
-
+            ViewData["ControllerNameForImageBrowser"] = nameof(ImageBrowserProjectController).Replace("Controller", "");
             // Invalid model
             if (!ModelState.IsValid)
             {
@@ -353,7 +351,39 @@ namespace AtECommerce.Controllers
     }
 
 
+    public class ImageBrowserProjectController : EditorImageBrowserController
+    {
+        public const string FOLDER_NAME = "ImagesProject";
+        public string FOLDER_ROOTPATH;
 
+        /// <summary>
+        /// Gets the base paths from which content will be served.
+        /// </summary>
+        public override string ContentPath
+        {
+            get
+            {
+                return CreateUserFolder();
+            }
+        }
+
+        public ImageBrowserProjectController(IHostingEnvironment hostingEnvironment, IConfiguration staticFileSetting)
+           : base(hostingEnvironment)
+        {
+            FOLDER_ROOTPATH = staticFileSetting.GetValue<string>("StaticFileSetting");
+        }
+        private string CreateUserFolder()
+        {
+            var virtualPath = System.IO.Path.Combine(FOLDER_NAME);
+            //var path = HostingEnvironment.WebRootFileProvider.GetFileInfo(virtualPath).PhysicalPath;
+            var path = System.IO.Path.Combine(FOLDER_ROOTPATH, FOLDER_NAME);
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            return path;
+        }
+    }
     public class ProjectBaseViewModel
     {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class News : AtBaseECommerceEntity
+    public partial class News
     {
         public string Id { get; set; }
         public string FkNewsTypeId { get; set; }
@@ -23,6 +23,7 @@ namespace AtECommerce.Efs.Entities
         public byte[] RowVersion { get; set; }
         public int RowStatus { get; set; }
         public string ImageSlug { get; set; }
+        public string Coment { get; set; }
 
         public virtual NewsType FkNewsType { get; set; }
     }

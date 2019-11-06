@@ -26,17 +26,17 @@
                     var servicesModel = await AT.Helpers.ServicesHelper.GetDataServices(webContext);
                     foreach (var item in servicesModel.listService)
                     {
-                        if(item.AutoSlug == true)
+                        if (item.RowStatus != 1)
                         {
-                        <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
-                            <div class="box-2-cont">
-                                <i class="fa @item.Icon"></i>
-                                <h4>@item.ServiceName</h4>
-                                <div class="center sub-title main-color">sub title</div>
-                                <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                                <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
+                            <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
+                                <div class="box-2-cont">
+                                    <img src="~/Images/Service/@item.ImageSlug" style="border-radius:50%">
+                                    <h4>@item.ServiceName</h4>
+                                    <div class="center sub-title main-color">sub title</div>
+                                    <p class="mediumFont">@item.ShortDescriptionHtml</p>
+                                    <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
+                                </div>
                             </div>
-                        </div> 
                         }
                     }
                 }
@@ -206,52 +206,49 @@
         </div>
     </div>
 
-    <div class="sectionWrapper gry-pattern">
-        <div class="container">
-            <h3 class="block-head">We Also offer</h3>
-            @foreach (var item in servicesModel.listService)
-            {
-                <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
-                    <div class="box-head">
-                        <i class="icon main-bg fa @item.Icon"></i>
-                        <h4 class="main-color"><span data-hover="@item.ServiceName">@item.ServiceName</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                    <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
+
+    @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
+                <div class="box-head">
+                    <i class="icon main-bg fa fa-android"></i>
+                    <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
                 </div>
-            }
-            @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
-                        <div class="box-head">
-                            <i class="icon main-bg fa fa-android"></i>
-                            <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
-                        </div>
-                        <div class="clearfix"></div>
-                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                        <a class="r-more main-color" href="#">Read More</a>
-                    </div>
-                    <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
-                        <div class="box-head">
-                            <i class="icon main-bg fa fa-bell"></i>
-                            <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
-                        </div>
-                        <div class="clearfix"></div>
-                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                        <a class="r-more main-color" href="#">Read More</a>
-                    </div>
-                    <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
-                        <div class="box-head">
-                            <i class="icon main-bg fa fa-lightbulb-o"></i>
-                            <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
-                        </div>
-                        <div class="clearfix"></div>
-                        <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                        <a class="r-more main-color" href="#">Read More</a>
-                    </div>
-                </div>*@
-        </div>
-
-
-    </div>
+                <div class="clearfix"></div>
+                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                <a class="r-more main-color" href="#">Read More</a>
+            </div>
+            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
+                <div class="box-head">
+                    <i class="icon main-bg fa fa-bell"></i>
+                    <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
+                </div>
+                <div class="clearfix"></div>
+                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                <a class="r-more main-color" href="#">Read More</a>
+            </div>
+            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
+                <div class="box-head">
+                    <i class="icon main-bg fa fa-lightbulb-o"></i>
+                    <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
+                </div>
+                <div class="clearfix"></div>
+                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
+                <a class="r-more main-color" href="#">Read More</a>
+            </div>
+        </div>*@
 </div>
-
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "dich-vu")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}

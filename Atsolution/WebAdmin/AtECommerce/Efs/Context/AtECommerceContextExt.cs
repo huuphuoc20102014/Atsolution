@@ -5,18 +5,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class WebAtSolutionContext : DbContext
+    public partial class AtECommerceContext : DbContext
     {
         internal string LoginUserId { get; set; }
 
-        public WebAtSolutionContext() : base()
+        public AtECommerceContext() : base()
         {
         }
     }
 
     public class AtBaseECommerceEntity
     {
-        public const string FULL_DB_CONTEXT_NAME = "AtECommerce.Efs.Entities.WebAtSolutionContext";
+        public const string FULL_DB_CONTEXT_NAME = "AtECommerce.Efs.Entities.AtECommerceContext";
     }
 
     public class AtRegisterValidatorModel { }

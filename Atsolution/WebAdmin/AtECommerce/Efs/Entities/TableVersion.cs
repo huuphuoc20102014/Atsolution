@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class TableVersion : AtBaseECommerceEntity
+    public partial class TableVersion
     {
         public string Id { get; set; }
         public DateTime LastModify { get; set; }

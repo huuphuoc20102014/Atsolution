@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class AboutUs : AtBaseECommerceEntity
+    public partial class AboutUs
     {
         public string Id { get; set; }
         public string Title { get; set; }
@@ -22,5 +22,6 @@ namespace AtECommerce.Efs.Entities
         public DateTime? UpdatedDate { get; set; }
         public byte[] RowVersion { get; set; }
         public int RowStatus { get; set; }
+        public string Skill { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace AT.Models
         public List<Service> listService { get; set; }
         public List<Contact> listContact { get; set; }
         public List<AboutCustomer> listPartner { get; set; }
+        public List<NewsType> listNewType { get; set; }
     }
 }
 

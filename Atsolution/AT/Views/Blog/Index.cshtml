@@ -29,42 +29,50 @@
                         @{ var loaitinModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
                             foreach (var item in Model)
                             {
-                                <div class="post-item fx" data-animate="fadeInLeft">
-                                    <div class="post-image">
-                                        <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                            <div class="mask"></div>
-                                            <div class="post-lft-info">
-                                                <div class="main-bg">@item.CreatedDate.Day<br>@item.CreatedDate.Month<br>@item.CreatedDate.Year</div>
-                                            </div>
-                                            <img src="~/Images/blog/small/@item.ImageSlug" alt="Our Blog post image goes here">
-                                        </a>
-                                    </div>
-                                    <article class="post-content">
-                                        <div class="post-info-container">
-                                            <div class="post-info">
-                                                <h2><a class="main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">@item.Title</a></h2>
-                                                <ul class="post-meta">
-                                                    <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.CreatedBy</a></li>
-                                                    <li><i class="fa fa-folder-open"></i>Category: <a href="#">
-                                                        @{foreach (var item1 in loaitinModel.listBlogT)
-                                                            {
-                                                                if(item.FkNewsTypeId == item1.Id)
-                                                                     { @item1.Name; break; }
-                                                            }
-                                                        }</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            @item.ShortDescriptionHtml
-                                            <a class="read-more" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
-                                                Read more
+                                if (item.RowStatus != 1)
+                                {
+                                    <div class="post-item fx" data-animate="fadeInLeft">
+                                        <div class="post-image">
+                                            <a href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                <div class="mask"></div>
+                                                <div class="post-lft-info">
+                                                    <div class="main-bg">@item.CreatedDate.Day<br>@item.CreatedDate.Month<br>@item.CreatedDate.Year</div>
+                                                </div>
+                                                <img src="~/Image/@Url.Content(@item.ImageSlug)" alt="Our Blog post image goes here">
                                             </a>
-                                        </p>
-                                    </article>
-                                </div>
-                            } }
+                                        </div>
+                                        <article class="post-content">
+                                            <div class="post-info-container">
+                                                <div class="post-info">
+                                                    <h2><a class="main-color" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">@item.Title</a></h2>
+                                                    <ul class="post-meta">
+                                                        <li class="meta-user"><i class="fa fa-user"></i>By: <a href="#">@item.CreatedBy</a></li>
+                                                        <li>
+                                                            <i class="fa fa-folder-open"></i>Category: <a href="#">
+                                                                @{foreach (var item1 in loaitinModel.listBlogT)
+                                                                    {
+                                                                        if (item.FkNewsTypeId == item1.Id)
+                                                                        { @item1.Name; break;
+                                                                    }
+                                                                }
+                                                                }
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                @item.ShortDescriptionHtml
+                                                <a class="read-more" href="~/chi-tiet-tin-tuc?id=@item.Id&type=@item.FkNewsTypeId">
+                                                    Read more
+                                                </a>
+                                            </p>
+                                        </article>
+                                    </div>
+                                }
+                            }
+                        }
                         <div class="pager skew-25">
 
 
@@ -75,7 +83,8 @@
 
                             <a asp-action="Index"
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-Trang="@(Model.PageIndex - 1)"
+                               asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
                                class="btn btn-default @prevDisabled">
                                 Previous
@@ -83,7 +92,8 @@
 
                             <a asp-action="Index"
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-Trang="@(Model.PageIndex + 1)"
+                               asp-route-id="@Model.Id"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
                                class="btn btn-default @nextDisabled">
                                 Next
@@ -94,36 +104,18 @@
                 </div>
                 <aside class="cell-3 right-sidebar">
                     <ul class="sidebar_widgets">
-                       
+
 
                         <li class="widget r-posts-w fx" data-animate="fadeInRight">
                             <h3 class="widget-head">Recent Posts</h3>
                             <div class="widget-content">
                                 <ul>
                                     @{ var menuModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
-                                        int maxDay = 0;
-                                        int maxMonth = 0;
-                                        int maxYear = 0;
-                                        foreach (var item in menuModel.listBlog)
+
+                                        foreach (var item in menuModel.listBlog.Take(3))
                                         {
-                                            if (item.CreatedDate.Day > maxDay)
-                                            {
-                                                maxDay = item.CreatedDate.Day;
-                                            }
-                                            if (item.CreatedDate.Month > maxMonth)
-                                            {
-                                                maxMonth = item.CreatedDate.Month;
-                                            }
-                                            if (item.CreatedDate.Year > maxYear)
-                                            {
-                                                maxYear = item.CreatedDate.Year;
-                                            }
-                                        }
-                                    }
-                                    @foreach (var item in menuModel.listBlog)
-                                    {
-                                        if (item.CreatedDate.Day > (maxDay - 3) && item.CreatedDate.Month == maxMonth && item.CreatedDate.Year == maxYear)
-                                        {
+                                            if(item.RowStatus !=1)
+                                            { 
                                             <li>
                                                 <div class="post-img">
                                                     <img src="~/Images/News/@item.ImageSlug" alt="">
@@ -140,6 +132,7 @@
                                                     </div>
                                                 </div>
                                             </li>
+                                            }
                                         }
                                     }
                                     @*<li>
@@ -191,7 +184,7 @@
                                                     if (item.Id == item1.FkNewsTypeId)
                                                     { dem += 1; }
                                                 }
-                                                <a href="blog-single.html">@item.Name</a><span>[@dem]</span>
+                                                <a href="~/tin-tuc?id=@item.Id">@item.Name</a><span>[@dem]</span>
                                             </li>
                                         }
                                     }
@@ -230,4 +223,20 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "tin-tuc")
+            {
+                <style>
+                .title-1 {
+            background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}
 <!-- Content End -->

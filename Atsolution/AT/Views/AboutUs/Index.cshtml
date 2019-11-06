@@ -1,5 +1,11 @@
 ﻿@model OperationHistoryViewModel
 	<!-- Content Start -->
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@inject AT.Efs.Entities.WebAtSolutionContext webContext
+@{
+    ViewData["Title"] = "Giới Thiệu";
+}
 <div id="contentWrapper">
     <div class="page-title title-1">
         <div class="container">
@@ -16,13 +22,16 @@
     <div class="sectionWrapper">
         <div class="container">
             <div class="fx" data-animate="fadeInUp">
-                <h3 class="block-head">@Model.about.Title</h3>
-                <p>
-                    @Model.about.ShortDescriptionHtml
-                </p>
-                <p>
-                    @Model.about.LongDescriptionHtml
-                </p>
+                @if (Model.about.RowStatus != 1)
+                {
+                    <h3 class="block-head">@Model.about.Title</h3>
+                    <p>
+                        @Model.about.ShortDescriptionHtml
+                    </p>
+                    <p>
+                        @Model.about.LongDescriptionHtml
+                    </p>
+                }
             </div>
 
             <div class="clearfix"></div>
@@ -92,7 +101,7 @@
                         <div class="block fx" data-animate="fadeInRight">
                             <h3>@item.Title</h3>
                             <p>
-                               @item.HistoryDescription
+                                @item.HistoryDescription
                             </p>
                             <div class="plan-year"><span>@item.CreateDate.Year</span></div>
                         </div>
@@ -136,21 +145,21 @@
                     }
                 }
                 @*<div class="block fx" data-animate="fadeInLeft">
-            <h3>Larger Achievments</h3>
-            <p>
-                Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-            </p>
-            <div class="plan-year"><span>2014</span></div>
-        </div>
-        <div class="block fx" data-animate="fadeInLeft">
-            <h3>Enlarge Our Scope</h3>
-            <p>
-                Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
-                Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
-            </p>
-            <div class="plan-year"><span>2016</span></div>
-        </div>*@
+                        <h3>Larger Achievments</h3>
+                        <p>
+                            Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                            Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+                        </p>
+                        <div class="plan-year"><span>2014</span></div>
+                    </div>
+                    <div class="block fx" data-animate="fadeInLeft">
+                        <h3>Enlarge Our Scope</h3>
+                        <p>
+                            Fusce mollis massa vel leo imperdiet ultrices. Cras ut tristique tellus. Morbi velit risus, ultrices vitae sodales ac, aliquam id eros.
+                            Vivamus sit amet odio pellentesque odio faucibus tristique. Morbi facilisis, ligula a faucibus pellentesque, orci justo consequat massa, sit amet dapibus dolor diam viverra mi.
+                        </p>
+                        <div class="plan-year"><span>2016</span></div>
+                    </div>*@
             </div>
         </div>
     </div>
@@ -234,35 +243,37 @@
             </div>
         </div>
     </div>
-
     <div class="sectionWrapper gry-pattern">
         <div class="container team-boxes">
             <h3 class="block-head">Thành Viên Công Ty</h3>
             @foreach (var item in Model.listPeople)
             {
-                <div class="cell-3 fx" data-animate="bounceIn">
-                    <div class="team-box">
-                        <div class="team-img">
-                            <img alt="" src="images/people/@item.Img">
-                            <h3>@item.Name</h3>
-                        </div>
-                        <div class="team-details">
-                            <h3 class="gry-bg">@item.Name</h3>
-                            <div class="t-position">@item.Job</div>
-                            <p>@item.JobIntroduction</p>
-                            <div class="team-socials">
-                                <ul>
-                                    <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
-                                    <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
-                                    <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
-                                </ul>
+                if (item.RowStatus != 1)
+                {
+                    <div class="cell-3 fx" data-animate="bounceIn">
+                        <div class="team-box">
+                            <div class="team-img">
+                                <img alt="" src="~/Image/@Url.Content(@item.Img)">
+                                <h3>@item.Name</h3>
+                            </div>
+                            <div class="team-details">
+                                <h3 class="gry-bg">@item.Name</h3>
+                                <div class="t-position">@item.Job</div>
+                                <p>@item.JobIntroduction</p>
+                                <div class="team-socials">
+                                    <ul>
+                                        <li><a href="#" title="facebook"><span class="fa fa-facebook"></span></a></li>
+                                        <li><a href="#" title="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                                        <li><a href="#" title="skype"><span class="fa fa-skype"></span></a></li>
+                                        <li><a href="#" title="twitter"><span class="fa fa-twitter"></span></a></li>
+                                        <li><a href="#" title="vimeo"><span class="fa fa-google-plus"></span></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 }
+            }
             @*<div class="cell-3 fx" data-animate="bounceIn" data-animation-delay="200">
             <div class="team-box">
                 <div class="team-img">
@@ -333,3 +344,19 @@
     </div>
 
 </div>
+@section scripts{
+    @{
+        var titleimg = await AT.Helpers.MenuHelper.GetDataMenu(webContext);
+        foreach (var item in titleimg.listMenu)
+        {
+            if (item.SlugName == "gioi-thieu")
+            {
+                <style>
+                .title-1 {
+                     background: #fff url('../@item.ImageSlug') no-repeat 50% 50%;
+                }
+                </style>
+            }
+        }
+    }
+}

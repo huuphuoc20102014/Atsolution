@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class AspNetUserLogins : AtBaseECommerceEntity
+    public partial class AspNetUserLogins
     {
         public string LoginProvider { get; set; }
         public string ProviderKey { get; set; }

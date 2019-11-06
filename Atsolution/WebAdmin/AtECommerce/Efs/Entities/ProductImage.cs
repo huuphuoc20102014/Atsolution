@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AtECommerce.Efs.Entities
 {
-    public partial class ProductImage : AtBaseECommerceEntity
+    public partial class ProductImage
     {
         public string Id { get; set; }
         public string Name { get; set; }
