@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="sectionWrapper">
-        <div class="portfolio-filterable">
+        <div class="portfolio-filterable container">
             <div class="row">
                 <div class="cell-9 blog-thumbs">
                     <div class="blog-posts">
@@ -29,10 +29,9 @@
                                 <li class="active"><a href="#" class="skew25 filter" data-filter="*">Tất cả</a></li>
                                 <li><a href="#" class="skew25 filter" data-filter=".DS01">Website</a></li>
                                 <li><a href="#" class="skew25 filter" data-filter=".DL01">Phần mềm</a></li>
-                                @*<li><a href="#" class="skew25 filter" data-filter=".seo">SEO Management</a></li>*@
                             </ul>
                         </div>
-
+                        
                         <div class="portfolio-items" id="container">
                             @{
                                 var projectsModel = await AT.Helpers.ProjectsHelper.GetDataProjects(webContext);
@@ -45,9 +44,9 @@
                                                 <div class="img-holder">
                                                     <div class="img-over">
                                                         <a href="~/chi-tiet-du-an?id=@item.Id" class="fx link"><b class="fa fa-link"></b></a>
-                                                        <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                                        <a href="~/Image/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
                                                     </div>
-                                                    <img alt="" src="~/Images/Project/@item.ImageSlug">
+                                                    <img alt="" src="~/Image/@item.ImageSlug">
                                                 </div>
                                                 <div class="name-holder">
                                                     <a href="~/chi-tiet-du-an?id=@item.Id" class="project-name">@item.Name</a>
@@ -65,165 +64,7 @@
                                     }
                                 }
                             }
-                            @*<div class="cell-3 develop" data-category="develop">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 develop seo" data-category="develop">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="gallery portfolio-img-slick">
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                        <img src="images/portfolio/1.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 design" data-category="design">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 seo" data-category="seo">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 design" data-category="design">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="#videoDiv" class="fx zoom" title="Project Title" data-gal="prettyPhoto[pp_gal]"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <iframe src='http://player.vimeo.com/video/94502406?title=0&byline=0&portrait=0;api=1' width='100%' height='307'></iframe>
-                                            <div id="videoDiv" style="display:none">
-                                                <iframe src='http://player.vimeo.com/video/94502406?title=0&byline=0&portrait=0;api=1' width='100%' height='300'></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 develop" data-category="develop">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 design" data-category="design">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 develop" data-category="develop">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over full-hover">
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" title="Project Title" data-gal="prettyPhoto[pp_gal]"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cell-3 design" data-category="design">
-                                    <div class="portfolio-item">
-                                        <div class="img-holder">
-                                            <div class="img-over">
-                                                <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                                <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                            </div>
-                                            <img alt="" src="images/portfolio/1.jpg">
-                                        </div>
-                                        <div class="name-holder">
-                                            <a href="#" class="project-name">Project Title</a>
-                                            <span class="project-options">Project Category</span>
-                                        </div>
-                                    </div>
-                                </div>*@
+                           
                         </div>
                     </div>
                 </div>
@@ -232,7 +73,7 @@
 
 
                         <li class="widget r-posts-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Recent Posts</h3>
+                            <h3 class="widget-head">Tuyển dụng</h3>
                             <div class="widget-content">
                                 <ul>
                                     @{ var menuModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
@@ -259,42 +100,13 @@
 
                                         }
                                     }
-                                    @*<li>
-                                            <div class="post-img">
-                                                <img src="images/people/1.jpg" alt="">
-                                            </div>
-                                            <div class="widget-post-info">
-                                                <h4>
-                                                    <a href="blog-single.html">
-                                                        Blog post title
-                                                    </a>
-                                                </h4>
-                                                <div class="meta">
-                                                    <span><i class="fa fa-clock-o"></i>Dec 28, 2013,</span><a href="blog-single.html"></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="post-img">
-                                                <img src="images/people/1.jpg" alt="">
-                                            </div>
-                                            <div class="widget-post-info">
-                                                <h4>
-                                                    <a href="blog-single.html">
-                                                        Blog post title with Image
-                                                    </a>
-                                                </h4>
-                                                <div class="meta">
-                                                    <span><i class="fa fa-clock-o"></i>Dec 28, 2013,</span><a href="blog-single.html"></a>
-                                                </div>
-                                            </div>
-                                        </li>*@
+                                  
                                 </ul>
                             </div>
                         </li>
 
                         <li class="widget blog-cat-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Blog Categories</h3>
+                            <h3 class="widget-head">Loại bài đăng</h3>
                             <div class="widget-content">
                                 <ul class="list list-ok alt">
                                     @{var demModel = await AT.Helpers.BlogHelper.GetDataBlog(webContext);
@@ -318,7 +130,7 @@
 
 
                         <li class="widget tags-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Tag Cloud</h3>
+                            <h3 class="widget-head">Thẻ</h3>
                             <div class="widget-content">
                                 <div class="tags">
                                     <a href="#">Design</a>
@@ -334,12 +146,7 @@
                             </div>
                         </li>
 
-                        <li class="widget flickr-stream-w fx" data-animate="fadeInRight">
-                            <h3 class="widget-head">Flickr Stream</h3>
-                            <div class="widget-content">
-                                <ul id="flickrFeed-inner"></ul>
-                            </div>
-                        </li>
+                       
                     </ul>
                 </aside>
             </div>

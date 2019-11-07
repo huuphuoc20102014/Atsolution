@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="sectionWrapper">
+    @*<div class="sectionWrapper">
         <div class="container fx" data-animate="fadeInDown">
             <div class="portfolio-img-slick">
                 <div>
@@ -34,19 +34,19 @@
             </div>
             <div class="clearfix"></div>
         </div>
-    </div>
+    </div>*@
 
     <div class="sectionWrapper gry-bg">
         <div class="container">
             <div class="row">
-                <div class="cell-3 fx" data-animate="fadeInLeft">
+                <div class="cell-6 fx" data-animate="fadeInLeft">
                     <h3 class="block-head">Chi Tiết Dự Án</h3>
                     <ul class="list-details">
                         <li>
                             <i class="fa fa-tag"></i> <span class="main-color">Thể loại:</span> @Model.proj.Name
                         </li>
                         <li>
-                            <i class="fa fa-user"></i> <span class="main-color">Được tạo bởi:</span> @Model.proj.SlugName
+                            <i class="fa fa-user"></i> <span class="main-color">Được tạo bởi:</span> @Model.proj.CreatedBy
                         </li>
                         <li>
                             <i class="fa fa-calendar"></i> <span class="main-color">Ngày tạo:</span> @Model.proj.CreatedDate
@@ -65,7 +65,7 @@
                         @Model.proj.LongDescriptionHtml
                     </p>
                 </div>
-                <div class="cell-3 porto-stats fx" data-animate="fadeInRight">
+                @*<div class="cell-3 porto-stats fx" data-animate="fadeInRight">
                     <h3 class="block-head">Chỉ Số Dự Án</h3>
                     <div class="staff-3">
                         <div class="cell-6 fx" data-animate="bounceIn">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

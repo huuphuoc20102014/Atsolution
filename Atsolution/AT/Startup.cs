@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AT.Efs.Entities;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using AT.Models;
 
 namespace AT
 {
@@ -37,7 +38,7 @@ namespace AT
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.Configure<StaticFileSetting>(Configuration.GetSection("StaticFileSetting"));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ATConnection")));

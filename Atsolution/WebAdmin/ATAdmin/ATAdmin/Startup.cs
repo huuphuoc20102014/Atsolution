@@ -19,6 +19,7 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using ATAdmin.Efs.Entities;
 using FluentValidation.AspNetCore;
+using AT.Models;
 
 namespace ATAdmin
 {
@@ -48,7 +49,7 @@ namespace ATAdmin
                  options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
              });
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
+            services.Configure<StaticFileSetting>(Configuration.GetSection("StaticFileSetting"));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WebAtSolutionContext")));
