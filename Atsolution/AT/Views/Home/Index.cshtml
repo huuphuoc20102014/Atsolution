@@ -19,7 +19,7 @@
                     if (item.Description == "slider")
                     {
                         <div class="swiper-slide">
-                            <img src="~/Images/slider/slider-3/@item.Thumbnail" />
+                            <img src="~/Image/@item.Thumbnail" />
                         </div>
                     }
                 }
@@ -60,81 +60,22 @@
                     {
                         <div class="cell-3 service-box-3 fx" data-animate="fadeInDown">
                             <div class="box-head">
-                                <i class="fa"><img src="~/Images/Service/@item.ImageSlug" style="border-radius:50%"></i>
+                                <i class="fa"><img src="~/Image/@item.ImageSlug" style="border-radius:50%"></i>
                                 <h4 class="main-color"><span data-hover="@item.ServiceName">@item.ServiceName</span></h4>
                             </div>
                             <div class="clearfix"></div>
                             <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                            <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
+                            <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Đọc thêm</a>
                         </div>
                     }
                 }
 
             }
 
-            @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-android"></i>
-                        <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>
-                <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-bell"></i>
-                        <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>
-                <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
-                    <div class="box-head">
-                        <i class="icon main-bg fa fa-lightbulb-o"></i>
-                        <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                    <a class="r-more main-color" href="services.html">Read More</a>
-                </div>*@
+
         </div>
     </div>
 
-    <!-- FUN Staff -->
-    @*<div class="fun-staff staff-2 block-bg-4 sectionWrapper black-overlay">
-            <div class="container">
-                <div class="cell-2 fx" data-animate="fadeInDown">
-                    <div class="fun-icon"><i class="fa fa-leaf witTxt"></i></div>
-                    <div class="fun-text witTxt">Thành lập</div>
-                    <div class="fun-number witTxt">2017</div>
-                </div>
-                <div class="cell-2 fx" data-animate="fadeInDown" data-animation-delay="200">
-                    <div class="fun-icon"><i class="fa fa-clock-o witTxt"></i></div>
-                    <div class="fun-text witTxt">Giờ làm việc</div>
-                    <div class="fun-number witTxt">1360</div>
-                </div>
-                <div class="cell-4 fx" data-animate="fadeInDown">
-                    <div class="fun-title extraBold">
-                        Sự thật<br><span>Thú vị</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet</p>
-                    </div>
-                </div>
-                <div class="cell-2 fx" data-animate="fadeInDown" data-animation-delay="400">
-                    <div class="fun-icon"><i class="fa fa-group witTxt"></i></div>
-                    <div class="fun-text witTxt">Nhân viên</div>
-                    <div class="fun-number witTxt">2350</div>
-                </div>
-                <div class="cell-2 fx" data-animate="fadeInDown" data-animation-delay="600">
-                    <div class="fun-icon"><i class="fa fa-bell witTxt"></i></div>
-                    <div class="fun-text witTxt">Dự án</div>
-                    <div class="fun-number witTxt">25</div>
-                </div>
-            </div>
-        </div>*@
-
-    <!-- portfolio -->
     <div class="sectionWrapper">
         <div class="container">
             <h3 class="block-head">Danh mục dự án</h3>
@@ -147,7 +88,6 @@
                                 <li class="active"><a href="#" class="skew25 filter" data-filter="*">Tất cả</a></li>
                                 <li><a href="#" class="skew25 filter" data-filter=".DS01">Website</a></li>
                                 <li><a href="#" class="skew25 filter" data-filter=".DL01">Phần mềm</a></li>
-                                @*<li><a href="#" class="skew25 filter" data-filter=".seo">SEO Management</a></li>*@
                             </ul>
                         </div>
                         <div class="portfolio-items" id="container">
@@ -163,27 +103,27 @@
                                                     <div class="gallery portfolio-img-slick">
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
+                                                                <img src="~/Image/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
+                                                                <img src="~/Image/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
+                                                                <img src="~/Image/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
+                                                                <img src="~/Image/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
                                                             <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Images/Project/@item.ImageSlug" alt="">
+                                                                <img src="~/Image/@item.ImageSlug" alt="">
                                                             </a>
                                                         </div>
                                                     </div>
@@ -209,36 +149,8 @@
                     </div>
                 </div>
             </div>
-            @*<div class="clearfix"></div>
-                <div class="view-all-projects"><a class="btn main-bg btn-3d btn-lg" href="portfolio-4-cols.html">Browse All Projects</a></div>*@
         </div>
     </div>
-
-    <!-- Follow us -->
-    @*<div class="sectionWrapper follow-block gry-bg">
-        <div class="container">
-            <h3 class="block-head">Theo dõi chúng tôi trên Twitter</h3>
-            <span class="icon-middle main-color skew-25"><i class="fa fa-twitter skew25"></i></span>
-            <div class="twitter-carousel">
-                <div>
-                    <p><strong>about 2 days ago</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesqueLorem ipsum</p>
-                    <p class="follow-link"><a href="#">https://twitter.com/exception/creative</a></p>
-                </div>
-                <div>
-                    <p><strong>about 8 days ago</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesqueLorem ipsum</p>
-                    <p class="follow-link"><a href="#">https://twitter.com/exception/creative</a></p>
-                </div>
-                <div>
-                    <p><strong>about 11 days ago</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesqueLorem ipsum</p>
-                    <p class="follow-link"><a href="#">https://twitter.com/exception/creative</a></p>
-                </div>
-                <div>
-                    <p><strong>about 20 days ago</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesqueLorem ipsum</p>
-                    <p class="follow-link"><a href="#">https://twitter.com/exception/creative</a></p>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
     <!-- Responsive Design start -->
     <div class="sectionWrapper">
@@ -282,7 +194,7 @@
     </div>
     <!-- Responsive Design end -->
     <!-- our clients block start -->
-    <div class="sectionWrapper gry-bg">
+    @*<div class="sectionWrapper gry-bg">
         <div class="container">
             <h3 class="block-head">Khách hàng của chúng tôi</h3>
             <div class="clients">
@@ -315,7 +227,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     <!-- our clients block end -->
 
 </div>

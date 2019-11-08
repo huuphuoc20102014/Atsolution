@@ -30,11 +30,11 @@
                         {
                             <div class="cell-3 service-box-2 fx" data-animate="fadeInDown">
                                 <div class="box-2-cont">
-                                    <img src="~/Image/@item.ImageSlug" style="border-radius:50%">
+                                    <img src="~/Image/@item.ImageSlug" class="img-fluid" style="border-radius:50%">
                                     <h4>@item.ServiceName</h4>
-                                    <div class="center sub-title main-color">sub title</div>
+                                    @*<div class="center sub-title main-color">sub title</div>*@
                                     <p class="mediumFont">@item.ShortDescriptionHtml</p>
-                                    <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Read More</a>
+                                    <a class="r-more main-color" href="~/chi-tiet-dich-vu?id=@item.Id">Đọc thêm</a>
                                 </div>
                             </div>
                         }
@@ -95,9 +95,9 @@
                                 <div class="img-holder">
                                     <div class="img-over">
                                         <a href="~/chi-tiet-du-an?id=@item.Id" class="fx link"><b class="fa fa-link"></b></a>
-                                        <a href="~/Images/Project/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
+                                        <a href="~/Image/@item.ImageSlug" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
                                     </div>
-                                    <img alt="" src="~/Images/Project/@item.ImageSlug">
+                                    <img alt="" src="~/Image/@item.ImageSlug">
                                 </div>
                                 <div class="name-holder">
                                     <a href="#" class="project-name">@item.Name</a>
@@ -114,115 +114,14 @@
                         </div>
                     }
                 }
-                @*<div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="portfolio-item">
-                            <div class="img-holder">
-                                <div class="img-over">
-                                    <a href="portfolio-single.html" class="fx link"><b class="fa fa-link"></b></a>
-                                    <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title"><b class="fa fa-search-plus"></b></a>
-                                </div>
-                                <img alt="" src="images/portfolio/1.jpg">
-                            </div>
-                            <div class="name-holder">
-                                <a href="#" class="project-name">Project Title</a>
-                                <span class="project-options">Project Category</span>
-                            </div>
-                        </div>
-                    </div>*@
+               
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 
 
-    @*<div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="200">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-android"></i>
-                    <h4 class="main-color"><span data-hover="Fast &amp; Fresh">Fast &amp; Fresh</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="400">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-bell"></i>
-                    <h4 class="main-color"><span data-hover="User Experience">User Experience</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-            <div class="cell-3 service-box-3 fx" data-animate="fadeInDown" data-animation-delay="600">
-                <div class="box-head">
-                    <i class="icon main-bg fa fa-lightbulb-o"></i>
-                    <h4 class="main-color"><span data-hover="Responsive Layout">Responsive Layout</span></h4>
-                </div>
-                <div class="clearfix"></div>
-                <p class="mediumFont">Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.Proin gravida nibh vel velit auctor enean sollicitud lorem quis bibendum auctor, nisi elit consequipsum.</p>
-                <a class="r-more main-color" href="#">Read More</a>
-            </div>
-        </div>*@
+    
 </div>
 @section scripts{
     @{

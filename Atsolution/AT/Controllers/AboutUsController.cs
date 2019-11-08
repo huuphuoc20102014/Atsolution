@@ -18,7 +18,7 @@ namespace AT.Controllers
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             OperationHistoryViewModel model = new OperationHistoryViewModel();
-            model.listOperation = _webcontext.OperationHistory.ToList();
+            model.listOperation = _webcontext.OperationHistory.OrderBy(p=>p.CreateDate).ToList();
             model.listPeople = _webcontext.People.ToList();
             model.about = _webcontext.AboutUs.Single();
             return View(model);
