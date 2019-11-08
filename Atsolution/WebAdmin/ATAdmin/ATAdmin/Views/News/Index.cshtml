@@ -55,15 +55,13 @@
         );
         columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
         //FkNewsTypeId
-        columns.Bound(c => c.FkNewsTypeId).Title(EntityLocalizer[nameof(News.FkNewsTypeId)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.Title).Title(EntityLocalizer[nameof(News.Title)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.SlugTitle).Title(EntityLocalizer[nameof(News.SlugTitle)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.ShortDescriptionHtml).Title(EntityLocalizer[nameof(News.ShortDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.LongDescriptionHtml).Title(EntityLocalizer[nameof(News.LongDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.Tags).Title(EntityLocalizer[nameof(News.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.KeyWord).Title(EntityLocalizer[nameof(News.KeyWord)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.MetaData).Title(EntityLocalizer[nameof(News.MetaData)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-        columns.Bound(c => c.Note).Title(EntityLocalizer[nameof(News.Note)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.FkNewsTypeId).Title("Mã loại bài đăng").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.Title).Title(BaseEntityLocalizer[nameof(News.Title)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.SlugTitle).Title("SEO").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.ShortDescriptionHtml).Title(BaseEntityLocalizer[nameof(News.ShortDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.LongDescriptionHtml).Title(BaseEntityLocalizer[nameof(News.LongDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.Tags).Title(BaseEntityLocalizer[nameof(News.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+        columns.Bound(c => c.Note).Title(BaseEntityLocalizer[nameof(News.Note)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
         columns.Bound(c => c.ImageSlug).Title("Hình ảnh").Width(150).Locked(true).Filterable(false).Sortable(false).ClientTemplate(
 
             "<img class=\"border border-primary\" id=\"img_ImageSlug\" width=\"100\" src='" + "Image/" + "#= ImageSlug #'" +

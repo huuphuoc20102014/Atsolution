@@ -54,19 +54,20 @@
             "><i class=\"far fa-trash-alt\"></i></a> "
         );		
 			columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Title).Title(EntityLocalizer[nameof(AboutUs.Title)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.SlugTitle).Title(EntityLocalizer[nameof(AboutUs.SlugTitle)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.ShortDescriptionHtml).Title(EntityLocalizer[nameof(AboutUs.ShortDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.LongDescriptionHtml).Title(EntityLocalizer[nameof(AboutUs.LongDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.ImageSlug).Title(EntityLocalizer[nameof(AboutUs.ImageSlug)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Tags).Title(EntityLocalizer[nameof(AboutUs.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.KeyWord).Title(EntityLocalizer[nameof(AboutUs.KeyWord)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.MetaData).Title(EntityLocalizer[nameof(AboutUs.MetaData)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Note).Title(EntityLocalizer[nameof(AboutUs.Note)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.Title).Title("Tiêu đề").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.SlugTitle).Title("SEO").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.ShortDescriptionHtml).Title(BaseEntityLocalizer[nameof(AboutUs.ShortDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.LongDescriptionHtml).Title(BaseEntityLocalizer[nameof(AboutUs.LongDescriptionHtml)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.Tags).Title(BaseEntityLocalizer[nameof(AboutUs.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+		    columns.Bound(c => c.Note).Title(BaseEntityLocalizer[nameof(AboutUs.Note)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.CreatedDate).Title(BaseEntityLocalizer[nameof(BaseEntityResources.CreatedDate)]).Width(180).Format(SharedLocalizer["Format_DateTime"]).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.UpdatedDate).Title(BaseEntityLocalizer[nameof(BaseEntityResources.UpdatedDate)]).Width(180).Format(SharedLocalizer["Format_DateTime"]).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.CreatedBy).Title(BaseEntityLocalizer[nameof(BaseEntityResources.CreatedBy)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.UpdatedBy).Title(BaseEntityLocalizer[nameof(BaseEntityResources.UpdatedBy)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+             columns.Bound(c => c.ImageSlug).Title("Hình ảnh").Width(150).Locked(true).Filterable(false).Sortable(false).ClientTemplate(
+
+            "<img class=\"border border-primary\" id=\"img_ImageSlug\" width=\"100\" src='" + "Image/" + "#= ImageSlug #'" +
+            "/>");
     })
     .HtmlAttributes(new { style = "height: 600px;" })
 	.Resizable(r => r.Columns(true))

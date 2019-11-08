@@ -54,14 +54,16 @@
             "><i class=\"far fa-trash-alt\"></i></a> "
         );
             columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.Name).Title(EntityLocalizer[nameof(People.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.BirthDay).Title(EntityLocalizer[nameof(People.BirthDay)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.Job).Title(EntityLocalizer[nameof(People.Job)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.JobIntroduction).Title(EntityLocalizer[nameof(People.JobIntroduction)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.Phone).Title(EntityLocalizer[nameof(People.Phone)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.Gmail).Title(EntityLocalizer[nameof(People.Gmail)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-            columns.Bound(c => c.Img).Title(EntityLocalizer[nameof(People.Img)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Name).Title(BaseEntityLocalizer[nameof(People.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.BirthDay).Title("Ngày sinh").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Job).Title("Vị trí").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Phone).Title("SĐT").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Gmail).Title(BaseEntityLocalizer[nameof(People.Gmail)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Img).Title(BaseEntityLocalizer[nameof(People.Img)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+            columns.Bound(c => c.Img).Title("Hình ảnh").Width(150).Locked(true).Filterable(false).Sortable(false).ClientTemplate(
 
+            "<img class=\"border border-primary\" id=\"img_ImageSlug\" width=\"100\" src='" + "Image/" + "#= Img #'" +
+            "/>");
     })
     .HtmlAttributes(new { style = "height: 600px;" })
     .Resizable(r => r.Columns(true))
