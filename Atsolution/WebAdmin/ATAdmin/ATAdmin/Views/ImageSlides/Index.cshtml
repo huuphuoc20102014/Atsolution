@@ -56,7 +56,7 @@
             "><i class=\"far fa-trash-alt\"></i></a> "
         );		
 			columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Name).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.Name).Title("Tên").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.SlugName).Title(EntityLocalizer[nameof(ImageSlide.SlugName)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Extension).Title(EntityLocalizer[nameof(ImageSlide.Extension)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Description).Title(EntityLocalizer[nameof(ImageSlide.Description)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });

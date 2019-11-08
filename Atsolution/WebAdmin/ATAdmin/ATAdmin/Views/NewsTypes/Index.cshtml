@@ -55,7 +55,7 @@
         );		
 			columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Code).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Code)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Name).Title(BaseEntityLocalizer[nameof(BaseEntityResources.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.Name).Title("Tên").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.SlugName).Title(EntityLocalizer[nameof(NewsType.SlugName)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Tags).Title(EntityLocalizer[nameof(NewsType.Tags)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.KeyWord).Title(EntityLocalizer[nameof(NewsType.KeyWord)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });

@@ -31,7 +31,7 @@
             <a asp-action="Index" asp-route-id="" class="btn btn-primary">@SharedLocalizer["Btn_ListAll"]</a>
         }
         else
-        {
+        {EntityLocalizer[nameof(ProjectType.Name)]
         }
 	</p>
 </div>
@@ -54,7 +54,7 @@
             "><i class=\"far fa-trash-alt\"></i></a> "
         );		
 			columns.Bound(c => c.RowStatus).Title(BaseEntityLocalizer[nameof(BaseEntityResources.RowStatus)]).Width(150).HtmlAttributes(new { @class = "text-nowrap" });
-			columns.Bound(c => c.Name).Title(EntityLocalizer[nameof(ProjectType.Name)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
+			columns.Bound(c => c.Name).Title("Tên").Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.SlugName).Title(EntityLocalizer[nameof(ProjectType.SlugName)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.Code).Title(EntityLocalizer[nameof(ProjectType.Code)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
 			columns.Bound(c => c.KeyWord).Title(EntityLocalizer[nameof(ProjectType.KeyWord)]).Width(200).HtmlAttributes(new { @class = "text-nowrap" });
