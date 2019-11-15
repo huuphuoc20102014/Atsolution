@@ -11,12 +11,15 @@ using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATAdmin.Controllers
 {
     //Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.NavigationMetadata
     //FkProjectType
     //FkProjectTypeId
+    [Authorize]
+
     public class ProjectsController : AtBaseController
     {
         private readonly WebAtSolutionContext _context;

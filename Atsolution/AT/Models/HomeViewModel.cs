@@ -13,7 +13,7 @@ namespace AT.Models
         public List<NewsType> listBlogT { get; set; }
         public News Blog { get; set; }
         public NewsType BlogT { get; set; }
-        public List<AboutCustomer> listdoitac{ get; set; }
+        public List<ProjectImage> imageProject{ get; set; }
         public List<Service> listservice { get; set; }
         public List<Setting>listSetting { get; set; }
         public List<ImageSlide> listimg { get; set; }

@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using ATAdmin.Efs.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATAdmin.Controllers
 {
+    [Authorize]
     public class AboutUsController : AtBaseController
     {
         private readonly WebAtSolutionContext _context;

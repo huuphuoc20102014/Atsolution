@@ -15,12 +15,12 @@ namespace AT.Controllers
         {
             WebAtSolutionContext _webcontext = new WebAtSolutionContext();
             HomeViewModel model = new HomeViewModel();
-            //model.listdoitac = _webcontext.AboutCustomer.ToList();
             model.listProj = _webcontext.Project.ToList();
             model.listBlog = _webcontext.News
                 .OrderByDescending(p => p.CreatedDate)
                 .ToList();
             model.listservice= _webcontext.Service.ToList();
+            model.imageProject = _webcontext.ProjectImage.ToList();
             return View(model);
         }
     }

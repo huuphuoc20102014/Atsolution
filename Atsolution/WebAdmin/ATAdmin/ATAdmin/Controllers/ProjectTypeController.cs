@@ -11,9 +11,12 @@ using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ATAdmin.Controllers
 {
+    [Authorize]
+
     public class ProjectTypeController : AtBaseController
     {
         private readonly WebAtSolutionContext _context;

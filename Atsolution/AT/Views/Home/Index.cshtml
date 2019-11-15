@@ -101,31 +101,44 @@
                                             <div class="portfolio-item">
                                                 <div class="img-holder">
                                                     <div class="gallery portfolio-img-slick">
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Image/@item.ImageSlug" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Image/@item.ImageSlug" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Image/@item.ImageSlug" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Image/@item.ImageSlug" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div>
-                                                            <a href="images/portfolio/1.jpg" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
-                                                                <img src="~/Image/@item.ImageSlug" alt="">
-                                                            </a>
-                                                        </div>
+
+                                                        @foreach (var itemIP in Model.imageProject)
+                                                        {
+                                                            if (item.Id == itemIP.FkProjectId)
+                                                            {
+                                                                <div>
+                                                                    <a href="~/Image/@itemIP.Name" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                        <img src="~/Image/@itemIP.Name" alt="">
+                                                                    </a>
+                                                                </div>
+                                                            }
+
+                                                        }
+                                                        @*<div>
+                                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                    <img src="~/Image/@item.Name" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                    <img src="~/Image/@item.Name" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                    <img src="~/Image/@item.Name" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                    <img src="~/Image/@item.Name" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <a href="~/chi-tiet-du-an?id=@item.Id" class="fx zoom" data-gal="prettyPhoto[pp_gal]" title="Project Title">
+                                                                    <img src="~/Image/@item.ImageSlug" alt="">
+                                                                </a>
+                                                            </div>*@
                                                     </div>
                                                 </div>
                                                 <div class="name-holder">
@@ -195,39 +208,39 @@
     <!-- Responsive Design end -->
     <!-- our clients block start -->
     @*<div class="sectionWrapper gry-bg">
-        <div class="container">
-            <h3 class="block-head">Khách hàng của chúng tôi</h3>
-            <div class="clients">
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-1.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-2.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-3.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-4.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-5.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-6.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-7.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-8.png"></a>
-                </div>
-                <div>
-                    <a class="white-bg" href="#"><img alt="" src="images/clients/client-9.png"></a>
+            <div class="container">
+                <h3 class="block-head">Khách hàng của chúng tôi</h3>
+                <div class="clients">
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-1.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-2.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-3.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-4.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-5.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-6.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-7.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-8.png"></a>
+                    </div>
+                    <div>
+                        <a class="white-bg" href="#"><img alt="" src="images/clients/client-9.png"></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <!-- our clients block end -->
 
 </div>

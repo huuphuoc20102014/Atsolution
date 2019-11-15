@@ -116,7 +116,7 @@ namespace ATAdmin.Controllers
             // Create save db item
             var dbItem = new AspNetRoles
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = vmItem.Name,
                 Name = vmItem.Name,
                 NormalizedName = vmItem.NormalizedName,
                 ConcurrencyStamp = vmItem.ConcurrencyStamp,
